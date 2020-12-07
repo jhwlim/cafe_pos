@@ -15,8 +15,7 @@ public class EmployeeView {
 	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.EMPLOYEE);
-		panel.setLayout(new CardLayout());
-		panel.setBackground(Color.lightGray);
+		
 	}
 	
 	public EmployeeView() {

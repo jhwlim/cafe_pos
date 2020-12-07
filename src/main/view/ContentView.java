@@ -22,15 +22,13 @@ public class ContentView {
 	static {
 		panel = FramePanel.getFramePanel(FramePanelEnum.CONTENT);
 		panel.setLayout(new BorderLayout(X_MARGIN, Y_MARGIN));
-		
+	
 	}
 	
 	public ContentView() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public ContentView(MenuBtnEnum mbe) {
-		System.out.println("ContentView 호출");
 		
 		JPanel contentPanel = ContentPanel.getInstance();
 		panel.add(contentPanel, BorderLayout.CENTER);

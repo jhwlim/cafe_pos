@@ -14,6 +14,7 @@ public class OrderView {
 	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.ORDER);
+		
 	}
 	
 	public OrderView() {

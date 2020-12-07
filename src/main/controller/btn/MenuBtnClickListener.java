@@ -28,7 +28,7 @@ public class MenuBtnClickListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(mbe);
+
 		new ContentView(mbe);
 		
 		try {
@@ -40,7 +40,6 @@ public class MenuBtnClickListener implements ActionListener {
 			e1.printStackTrace();
 		}
 		
-//		contentContainer.removeAll();
 		((CardLayout) container.getLayout()).show(container, FramePanelEnum.CONTENT.toString());
 		((CardLayout) contentContainer.getLayout()).show(contentContainer, mbe.toString());
 		

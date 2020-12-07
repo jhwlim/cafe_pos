@@ -1,5 +1,7 @@
 package stock.view;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -12,13 +14,19 @@ public class Stockview {
 	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.STOCK);
+		
 	}
 	
 	public Stockview() {
+		
 		// 패널 초기화
 		panel.removeAll();
 
 		// ↓↓↓↓↓↓↓↓↓↓↓↓ 코드 작성 영역 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 		panel.add(new JLabel("재고관리 페이지"));
+	
+	
 	}
 }
+
+

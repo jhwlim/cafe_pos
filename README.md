@@ -14,7 +14,7 @@
 ```
 ```
 * main
-    ├ * componet : 화면 구성시 필요한 컴포넌트들을 담아놓는 패키지
+    ├ * component : 화면 구성시 필요한 컴포넌트들을 담아놓는 패키지
     ├ * controller : 각 컴포넌트들의 동작을 처리하는 클래스들을 담아놓는 패키지 (ex. ActionLister, MouseClickListener 등)
     ├ * view : 실제로 화면에 보여지는 화면을 구성하는 클래스들을 담아놓는 패키지 
     └ * dao (Data Access Object) : DB와 연결하여 데이터를 처리하는 클래스들을 담아 놓는 패키지

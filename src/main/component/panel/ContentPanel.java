@@ -28,14 +28,12 @@ public class ContentPanel extends JPanel {
 			
 			JPanel fp = new JPanel();
 			
-			fp.setBackground(Color.white);
-			
 			cpMap.put(mbe, fp);
 			
 			panel.add(mbe.toString(), fp);
 			
 		}
-		System.out.println(cpMap);
+		
 	}
 	
 	private ContentPanel() {
