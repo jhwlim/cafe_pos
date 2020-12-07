@@ -27,3 +27,5 @@ bin
 .classpath
 .project
 .settings
+lib
+*.properties
