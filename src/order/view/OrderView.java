@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.component.btn.MenuBtnEnum;
+import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 
 public class OrderView {

@@ -1,4 +1,4 @@
-package main.component.btn;
+package main.component.button;
 
 public enum MenuBtnEnum {
 	
