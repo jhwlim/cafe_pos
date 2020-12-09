@@ -43,15 +43,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		try {
 			conn = ds.getConnection();
 			
-			String sql = "INSERT INTO employees(emp_name, emp_birth, emp_rank, emp_nick, certif_expire_date, store_id) "
-					+ "VALUES (?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO employees(emp_id, emp_name, emp_birth, emp_rank, emp_nick, certif_expire_date, store_id) "
+					+ "VALUES (emp_seq.nextval, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, employee.getEmpName());
 			pstmt.setString(2, employee.getEmpBirth());
 			pstmt.setInt(3, employee.getEmpRank());
 			pstmt.setString(4, employee.getEmpNick());
 			pstmt.setString(5, employee.getCertifExpireDate());
-			pstmt.setInt(6, employee.getStoreId());
+			
+			if (employee.getStoreId() == -1) {
+				pstmt.setString(6, null);
+			} else {
+				pstmt.setInt(6, employee.getStoreId());
+			}
 			
 			pstmt.executeUpdate();
 			
