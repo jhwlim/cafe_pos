@@ -17,7 +17,7 @@ import main.component.panel.ContentPanel;
 
 public class EmployeeView {
 
-	public static JPanel panel;
+	private static JPanel panel;
 	
 	static String empPageName = "MENU";
 	
@@ -28,9 +28,12 @@ public class EmployeeView {
 	
 	}
 	
+	public static JPanel getContentPanel() {
+		return panel;
+	}
 	
 	public EmployeeView() {
-		
+		System.out.println("EmpView");
 		// 패널 초기화
 		panel.removeAll();
 		
@@ -39,12 +42,6 @@ public class EmployeeView {
 		EmpMenuPanel emp = EmpMenuPanel.getInstance();
 		panel.add(empPageName, emp);
 		
-		for (EmpMenuBtnEnum embe : EmpMenuBtnEnum.values()) {
-			JPanel contentPanel = new EmpContentPanel(embe);
-			panel.add(embe.pageName, contentPanel);
-			
-			
-		}
 		
 	}
 
