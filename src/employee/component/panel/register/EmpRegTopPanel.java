@@ -10,7 +10,7 @@ public class EmpRegTopPanel extends JPanel {
 	private static EmpRegTopPanel panel;
 	
 	public static final int WIDTH = 0;
-	public static final int HEIGHT = 200;
+	public static final int HEIGHT = 100;
 	
 	static {
 		panel = new EmpRegTopPanel();

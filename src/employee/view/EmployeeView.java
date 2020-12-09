@@ -33,7 +33,7 @@ public class EmployeeView {
 	}
 	
 	public EmployeeView() {
-		System.out.println("EmpView");
+		
 		// 패널 초기화
 		panel.removeAll();
 		

@@ -26,11 +26,9 @@ public class EmpRegView {
 	}
 	
 	public EmpRegView() {
-		System.out.println("EmpRegView");
 		
 		panel = new EmpContentPanel(embe);
 		parentPanel.add(embe.pageName, panel);
-		
 		
 		setDefaultConfig();
 		
