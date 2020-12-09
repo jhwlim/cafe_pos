@@ -36,10 +36,10 @@ public class EmpRegFormRemarkPanel extends JPanel {
 			JLabel remark = new EmpRegRemarkLabel();
 			switch (field) {
 			case BIRTH :
-				remark.setText("ex) 950123");
+				remark.setText("ex) 19950123");
 				break;
 			case CERTIF :
-				remark.setText("ex) 210102");
+				remark.setText("ex) 20210102");
 				break;
 			default :
 				break;	
