@@ -23,8 +23,10 @@ public class EmpRegFormPanel extends JPanel {
 		JPanel leftPanel = EmpRegFormFieldPanel.getInstance();
 		this.add(leftPanel, BorderLayout.WEST);
 		
-		JPanel rightPanel = new EmpRegFormInputPanel();
-		this.add(rightPanel , BorderLayout.CENTER);
+		JPanel centerPanel = new EmpRegFormInputPanel();
+		this.add(centerPanel , BorderLayout.CENTER);
 		
+		JPanel rightPanel = new EmpRegFormRemarkPanel();
+		this.add(rightPanel, BorderLayout.EAST);
 	}
 }

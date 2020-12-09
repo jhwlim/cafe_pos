@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
-import employee.component.label.register.EmpRegIUsermgLabel;
+import employee.component.label.register.EmpRegUserImgLabel;
 
 public class EmpRegTopPanel extends JPanel {
 	
@@ -34,7 +34,7 @@ public class EmpRegTopPanel extends JPanel {
 	
 	private void setComponents() {
 		try {
-			this.add(new EmpRegIUsermgLabel());
+			this.add(new EmpRegUserImgLabel());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

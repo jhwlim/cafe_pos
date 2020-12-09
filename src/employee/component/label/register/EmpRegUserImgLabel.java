@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 
 import employee.component.panel.register.EmpRegTopPanel;
 
-public class EmpRegIUsermgLabel extends JLabel {
+public class EmpRegUserImgLabel extends JLabel {
 	
 	static String imgPath;
 	
@@ -22,7 +22,7 @@ public class EmpRegIUsermgLabel extends JLabel {
 		imgPath = "resources/img/employee/register/user.png";
 	}
 	
-	public EmpRegIUsermgLabel() throws IOException {
+	public EmpRegUserImgLabel() throws IOException {
 		super(new ImageIcon(ImageIO.read(new File(imgPath)).getScaledInstance(WIDTH, HEIGHT, Image.SCALE_SMOOTH)));
 	}
 	
