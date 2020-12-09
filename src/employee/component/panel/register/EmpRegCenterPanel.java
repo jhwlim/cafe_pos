@@ -28,5 +28,9 @@ public class EmpRegCenterPanel extends JPanel {
 		
 		EmpRegBottomPanel bottomPanel = EmpRegBottomPanel.getInstance();
 		this.add(bottomPanel, BorderLayout.SOUTH);
+	
+//		this.add(new EmgRegSidePanel(), BorderLayout.EAST);
+//		this.add(new EmgRegSidePanel(), BorderLayout.WEST);
+	
 	}
 }
