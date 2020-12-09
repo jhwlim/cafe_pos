@@ -1,4 +1,4 @@
-package employee.component.button;
+package employee.component.button.menu;
 
 public enum EmpMenuBtnEnum {
 	

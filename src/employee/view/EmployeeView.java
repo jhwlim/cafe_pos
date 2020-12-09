@@ -9,7 +9,7 @@ import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import employee.component.button.EmpMenuBtnEnum;
+import employee.component.button.menu.EmpMenuBtnEnum;
 import employee.component.panel.content.EmpContentPanel;
 import employee.component.panel.menu.EmpMenuPanel;
 import main.component.button.MenuBtnEnum;

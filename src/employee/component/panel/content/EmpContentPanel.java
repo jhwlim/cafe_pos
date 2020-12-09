@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import employee.component.button.EmpMenuBtnEnum;
+import employee.component.button.menu.EmpMenuBtnEnum;
 
 public class EmpContentPanel extends JPanel {
 
