@@ -19,7 +19,7 @@ public class EmployeeView {
 
 	private static JPanel panel;
 	
-	static String empPageName = "MENU";
+	public static final String MENU_PAGE_NAME = "MENU";
 	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.EMPLOYEE);
@@ -40,7 +40,7 @@ public class EmployeeView {
 		/////////////////////////////////////////////////
 		
 		EmpMenuPanel emp = EmpMenuPanel.getInstance();
-		panel.add(empPageName, emp);
+		panel.add(MENU_PAGE_NAME, emp);
 		
 		
 	}

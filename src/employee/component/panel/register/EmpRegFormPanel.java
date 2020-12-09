@@ -7,10 +7,11 @@ import javax.swing.JPanel;
 
 public class EmpRegFormPanel extends JPanel {
 
+	static EmpRegFormInputPanel centerPanel;
+	
 	public EmpRegFormPanel() {
 		this.setDefaultConfig();
 	}
-	
 	
 	private void setDefaultConfig() {
 		this.setLayout(new BorderLayout(10, 0));
@@ -20,13 +21,16 @@ public class EmpRegFormPanel extends JPanel {
 	}
 	
 	private void setCompenents() {
-		JPanel leftPanel = EmpRegFormFieldPanel.getInstance();
+		EmpRegFormFieldPanel leftPanel = EmpRegFormFieldPanel.getInstance();
 		this.add(leftPanel, BorderLayout.WEST);
 		
-		JPanel centerPanel = new EmpRegFormInputPanel();
+		centerPanel = new EmpRegFormInputPanel();
 		this.add(centerPanel , BorderLayout.CENTER);
-		
-		JPanel rightPanel = new EmpRegFormRemarkPanel();
+		EmpRegFormRemarkPanel rightPanel = new EmpRegFormRemarkPanel();
 		this.add(rightPanel, BorderLayout.EAST);
+	}
+	
+	public static EmpRegFormInputPanel getCenterPanel() {
+		return centerPanel;
 	}
 }

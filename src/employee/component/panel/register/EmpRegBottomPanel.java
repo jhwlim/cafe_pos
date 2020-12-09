@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import employee.component.button.register.CancelBtn;
@@ -41,8 +42,12 @@ public class EmpRegBottomPanel extends JPanel {
 		JPanel btnPanel = new JPanel();
 		btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, BTN_GAP, 0));
 		btnPanel.setBackground(new Color(EmpRegCenterPanel.COLOR));
-		btnPanel.add(new CancelBtn());
-		btnPanel.add(new SubmitBtn());
+		
+		JButton cancelBtn = new CancelBtn();
+		btnPanel.add(cancelBtn);
+		
+		JButton submitBtn = new SubmitBtn();
+		btnPanel.add(submitBtn);
 		
 		add(btnPanel);
 	}

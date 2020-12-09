@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 
 import employee.common.font.EmpBtnFont;
+import employee.controller.button.EmpRegBtnClickListener;
 
 public class SubmitBtn extends JButton {
 	
@@ -20,6 +21,8 @@ public class SubmitBtn extends JButton {
 		super.setForeground(Color.white);
 		super.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		super.setBackground(new Color(COLOR));
+		
+		super.addActionListener(new EmpRegBtnClickListener());
 	}
 	
 }

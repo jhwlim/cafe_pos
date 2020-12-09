@@ -27,7 +27,7 @@ public class HikariCPTest {
 		ResultSet rs = null;
 		
 		try {
-			conn = ds.getConnection();;
+			conn = ds.getConnection();
 			pstmt = conn.prepareStatement("SELECT * FROM employees");
 			rs = pstmt.executeQuery();
 			
