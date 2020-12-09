@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
 
 import employee.component.button.EmpMenuBtnEnum;
 import main.component.button.MenuBtnEnum;
@@ -25,6 +26,13 @@ public class EmpMenuClickListener implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		try {
+			Class.forName(embe.classPath).getConstructor().newInstance();
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException 
+				| IllegalArgumentException | InvocationTargetException | NoSuchMethodException 
+				| SecurityException e1) {
+			e1.printStackTrace();
+		}
 		((CardLayout) container.getLayout()).show(container, embe.pageName);
 	}
 
