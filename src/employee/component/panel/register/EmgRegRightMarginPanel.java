@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class EmgRegRightMarginPanel extends JPanel {
 	
-	private static final int WIDTH = 180;
+	private static final int WIDTH = 120;
 	private static final int HEIGHT = 0;
 	
 	public EmgRegRightMarginPanel() {

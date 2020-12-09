@@ -17,6 +17,8 @@ public class EmpRegBottomPanel extends JPanel {
 	public static final int WIDTH = 0;
 	public static final int HEIGHT = 100;
 	
+	public static final int BTN_GAP = 50;
+	
 	static {
 		panel = new EmpRegBottomPanel();
 	}
@@ -37,7 +39,7 @@ public class EmpRegBottomPanel extends JPanel {
 	private void setComponents() {
 		
 		JPanel btnPanel = new JPanel();
-		btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 0));
+		btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, BTN_GAP, 0));
 		btnPanel.setBackground(new Color(EmpRegCenterPanel.COLOR));
 		btnPanel.add(new CancelBtn());
 		btnPanel.add(new SubmitBtn());
