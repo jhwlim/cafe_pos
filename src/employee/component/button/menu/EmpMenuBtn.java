@@ -1,4 +1,4 @@
-package employee.component.button;
+package employee.component.button.menu;
 
 import java.awt.Color;
 import java.awt.Image;

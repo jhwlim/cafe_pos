@@ -8,8 +8,8 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import employee.component.button.EmpMenuBtn;
-import employee.component.button.EmpMenuBtnEnum;
+import employee.component.button.menu.EmpMenuBtn;
+import employee.component.button.menu.EmpMenuBtnEnum;
 
 public class EmpMenuBtnPanel extends JPanel {
 

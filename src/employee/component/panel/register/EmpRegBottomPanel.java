@@ -1,16 +1,21 @@
 package employee.component.panel.register;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
+
+import employee.component.button.register.CancelBtn;
+import employee.component.button.register.SubmitBtn;
 
 public class EmpRegBottomPanel extends JPanel {
 	
 	private static EmpRegBottomPanel panel;
 	
 	public static final int WIDTH = 0;
-	public static final int HEIGHT = 70;
+	public static final int HEIGHT = 100;
 	
 	static {
 		panel = new EmpRegBottomPanel();
@@ -21,14 +26,23 @@ public class EmpRegBottomPanel extends JPanel {
 	}
 	
 	private void setDefaultConfig() {
-		setBackground(Color.black);
+		setBackground(new Color(EmpRegCenterPanel.COLOR));
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		
+		setLayout(new CardLayout(50, (HEIGHT-SubmitBtn.HEIGHT)/2));
 		
 		setComponents();
 	}
 	
 	private void setComponents() {
 		
+		JPanel btnPanel = new JPanel();
+		btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 0));
+		btnPanel.setBackground(new Color(EmpRegCenterPanel.COLOR));
+		btnPanel.add(new CancelBtn());
+		btnPanel.add(new SubmitBtn());
+		
+		add(btnPanel);
 	}
 	
 	public static EmpRegBottomPanel getInstance() {
