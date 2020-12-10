@@ -26,6 +26,7 @@ public class EmpRegBtnClickListener implements ActionListener {
 	
 	static Container container;
 	static String menuPageName;
+	
 	static {
 		container = ContentPanel.getPanel(MenuBtnEnum.EMPLOYEE);
 		menuPageName = EmployeeView.MENU_PAGE_NAME;
