@@ -10,8 +10,8 @@ public class EmpSearchCenterPanel extends JPanel {
 
 	public static final int COLOR = 0xf0f5f5;
 	
-	public static EmpSearchTopPanel topPanel;
-	public static EmpSearchResultPanel resultPanel;
+	public EmpSearchTopPanel topPanel;
+	public EmpSearchResultPanel resultPanel;
 	
 	public EmpSearchCenterPanel() {
 		this.setDefaultConfig();
@@ -26,15 +26,24 @@ public class EmpSearchCenterPanel extends JPanel {
 	}
 	
 	private void setComponents() {
-		topPanel = EmpSearchTopPanel.getInstance();
+		topPanel = new EmpSearchTopPanel();
 		this.add(topPanel, BorderLayout.NORTH);
 		
-		resultPanel = new EmpSearchResultPanel(null);
-		this.add(resultPanel, BorderLayout.CENTER);	
+		if (resultPanel == null) {
+			resultPanel = new EmpSearchResultPanel(null);
+			this.add(resultPanel, BorderLayout.CENTER);				
+		}
 	}
 	
-	public static EmpSearchResultPanel getResultPanel() {
+	public EmpSearchResultPanel getResultPanel() {
 		return resultPanel;
 	}
 	
+	public EmpSearchTopPanel getTopPanel() {
+		return topPanel;
+	}
+	
+	public void setResultPanel(EmpSearchResultPanel panel) {
+		resultPanel = panel;
+	}
 }

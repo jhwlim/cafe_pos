@@ -2,6 +2,7 @@ package employee.component.table;
 
 import java.util.List;
 
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 
 import common.model.EmployeeVO;
@@ -59,7 +60,11 @@ public class EmpSearchResultTable extends AbstractTableModel {
 		case JOIN_DATE :
 			return list.get(rowIndex).getJoinDate();
 		case STORE_ID :
-			return list.get(rowIndex).getStoreId();
+			if (list.get(rowIndex).getStoreId() == 0) {
+				return null;
+			} else {
+				return list.get(rowIndex).getStoreId();
+			}
 		}
 		
 		return null;
