@@ -20,6 +20,7 @@ public class EmpSearchResultPanel extends JPanel {
 	
 	List<EmployeeVO> list;
 	
+	static AbstractTableModel model;
 	
 	public EmpSearchResultPanel(List<EmployeeVO> employeeList) {
 		this.list = employeeList;
@@ -37,10 +38,12 @@ public class EmpSearchResultPanel extends JPanel {
 		if (list == null) {
 			list = new ArrayList<EmployeeVO>();
 		}
-		
-		JTable table = new JTable(new EmpSearchResultTable(list));
+		model = new EmpSearchResultTable(list);
+		JTable table = new JTable(model);
 		add(new JScrollPane(table));
-		
 	}
 	
+	public static AbstractTableModel getTableModel() {
+		return model;
+	}
 }

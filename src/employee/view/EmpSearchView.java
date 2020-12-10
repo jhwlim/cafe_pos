@@ -13,8 +13,10 @@ import employee.component.panel.search.EmpSearchCenterPanel;
 
 public class EmpSearchView {
 
-	public static EmpContentPanel panel;
-	public static Container parentPanel;
+	private static EmpContentPanel panel;
+	private static Container parentPanel;
+	
+	private static EmpSearchCenterPanel centerPanel;
 	
 	static EmpMenuBtnEnum embe;
 	
@@ -45,8 +47,12 @@ public class EmpSearchView {
 	
 	private static void setComponents() {
 		
-		EmpSearchCenterPanel centerPanel = new EmpSearchCenterPanel();
+		centerPanel = new EmpSearchCenterPanel();
 		panel.add(centerPanel);
 		
+	}
+	
+	public static EmpSearchCenterPanel getSearchCenterPanel() {
+		return centerPanel;
 	}
 }

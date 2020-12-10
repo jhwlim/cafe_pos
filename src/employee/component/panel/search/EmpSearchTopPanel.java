@@ -22,13 +22,9 @@ public class EmpSearchTopPanel extends JPanel {
 	public static final int WIDTH = 0;
 	public static final int HEIGHT = 100;
 	
-	private static EmpSearchTopPanel panel;
+	private JTextField textField; 
 	
-	static {
-		panel = new EmpSearchTopPanel();
-	}
-	
-	private EmpSearchTopPanel() {
+	public EmpSearchTopPanel() {
 		setDefaultConfig();
 	}
 	
@@ -51,17 +47,13 @@ public class EmpSearchTopPanel extends JPanel {
 		JButton btn = new EmpNameSearchBtn();
 		SearchPanel.add(btn);
 		
-		JTextField textField = new JTextField();
+		textField = new JTextField();
 		textField.setPreferredSize(new Dimension(200, 25));
 		SearchPanel.add(textField);
 	}
 	
-	public static EmpSearchTopPanel getInstance() {
-		if (panel == null) {
-			panel = new EmpSearchTopPanel();
-		}
-		return panel;
+	public JTextField getKeyword() {
+		return textField;
 	}
-	
 	
 }
