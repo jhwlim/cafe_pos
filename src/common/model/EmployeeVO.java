@@ -13,6 +13,23 @@ public class EmployeeVO {
 	private String CertifExpireDate;
 	private int storeId;
 	
+	public EmployeeVO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public EmployeeVO(int empId, String empName, String empBirth, int empRank, String empNick, Date joinDate,
+			String certifExpireDate, int storeId) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.empBirth = empBirth;
+		this.empRank = empRank;
+		this.empNick = empNick;
+		this.joinDate = joinDate;
+		CertifExpireDate = certifExpireDate;
+		this.storeId = storeId;
+	}
+	
 	public int getEmpId() {
 		return empId;
 	}

@@ -1,10 +1,12 @@
 package employee.dao;
 
+import java.util.List;
+
 import common.model.EmployeeVO;
 
 public interface EmployeeDao {
 	
 	public void insert(EmployeeVO employee);
 	
-	public void searchByName(String keyword);
+	public List<EmployeeVO> searchByName(String keyword);
 }

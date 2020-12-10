@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import employee.component.button.menu.EmpMenuBtnEnum;
 import employee.component.panel.content.EmpContentPanel;
 import employee.component.panel.register.EmpRegCenterPanel;
+import employee.component.panel.search.EmpSearchCenterPanel;
 
 public class EmpSearchView {
 
@@ -26,7 +27,6 @@ public class EmpSearchView {
 	}
 	
 	public EmpSearchView() {
-		System.out.println("EmpSearchView");
 		
 		panel = new EmpContentPanel(embe);
 		parentPanel.add(embe.pageName, panel);
@@ -38,14 +38,14 @@ public class EmpSearchView {
 	
 	private static void setDefaultConfig() {
 		panel.setLayout(new CardLayout(X_MARGIN, Y_MARGIN));
-		panel.setBackground(Color.cyan);
+		panel.setBackground(Color.white);
 		
 		setComponents();
 	}
 	
 	private static void setComponents() {
 		
-		EmpRegCenterPanel centerPanel = new EmpRegCenterPanel();
+		EmpSearchCenterPanel centerPanel = new EmpSearchCenterPanel();
 		panel.add(centerPanel);
 		
 	}

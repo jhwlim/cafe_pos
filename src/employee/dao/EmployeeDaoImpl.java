@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -38,7 +40,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public void insert(EmployeeVO employee) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		
 		try {
 			conn = ds.getConnection();
@@ -64,7 +65,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (rs != null) rs.close();
 				if (pstmt != null) pstmt.close();
 				if (conn != null) conn.close();
 			} catch (SQLException e) {
@@ -75,9 +75,48 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public void searchByName(String keyword) {
-		// TODO Auto-generated method stub
+	public List<EmployeeVO> searchByName(String keyword) {
+		List<EmployeeVO> list = new ArrayList<EmployeeVO>();
 		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "SELECT * FROM employees WHERE emp_name LIKE ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword + "%");
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				EmployeeVO employee = new EmployeeVO(rs.getInt("emp_id"), 
+													 rs.getString("emp_name"), 
+													 rs.getString("emp_birth"), 
+													 rs.getInt("emp_rank"), 
+													 rs.getString("emp_nick"), 
+													 rs.getDate("join_date"), 
+													 rs.getString("certif_expire_date"), 
+													 rs.getInt("store_id"));
+				list.add(employee);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return list;
 	}
 	
 }
