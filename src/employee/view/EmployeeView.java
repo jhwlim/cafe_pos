@@ -2,20 +2,34 @@ package employee.view;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.component.btn.MenuBtnEnum;
+import employee.component.button.menu.EmpMenuBtnEnum;
+import employee.component.panel.content.EmpContentPanel;
+import employee.component.panel.menu.EmpMenuPanel;
+import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 
 public class EmployeeView {
 
-	public static JPanel panel;
+	private static JPanel panel;
+	
+	public static final String MENU_PAGE_NAME = "MENU";
 	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.EMPLOYEE);
-		
+		panel.setLayout(new CardLayout());
+		panel.setBackground(Color.white);
+	
+	}
+	
+	public static JPanel getContentPanel() {
+		return panel;
 	}
 	
 	public EmployeeView() {
@@ -23,9 +37,12 @@ public class EmployeeView {
 		// 패널 초기화
 		panel.removeAll();
 		
-		// ↓↓↓↓↓↓↓↓↓↓↓↓ 코드 작성 영역 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-		panel.add(new JLabel("직원관리 페이지"));
+		/////////////////////////////////////////////////
+		
+		EmpMenuPanel emp = EmpMenuPanel.getInstance();
+		panel.add(MENU_PAGE_NAME, emp);
 		
 		
 	}
+
 }

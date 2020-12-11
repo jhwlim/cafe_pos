@@ -5,8 +5,8 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
-import main.component.btn.MenuBtn;
-import main.component.btn.MenuBtnEnum;
+import main.component.button.MenuBtn;
+import main.component.button.MenuBtnEnum;
 import main.component.panel.FramePanel;
 import main.component.panel.FramePanelEnum;
 import main.controller.btn.MenuBtnClickListener;
