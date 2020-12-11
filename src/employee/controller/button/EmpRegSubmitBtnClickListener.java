@@ -22,7 +22,7 @@ import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 
 // 직원 등록 화면 - 등록 버튼 클릭시 발생하는 이벤트 처리 클래스
-public class EmpRegBtnClickListener implements ActionListener {
+public class EmpRegSubmitBtnClickListener implements ActionListener {
 	
 	static Container container;
 	static String menuPageName;

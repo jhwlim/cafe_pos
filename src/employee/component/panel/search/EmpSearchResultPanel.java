@@ -15,6 +15,7 @@ import javax.swing.table.TableModel;
 
 import common.model.EmployeeVO;
 import employee.component.table.EmpSearchResultTable;
+import employee.controller.mouse.EmpTableMouseClickListener;
 
 public class EmpSearchResultPanel extends JPanel {
 	
@@ -41,6 +42,8 @@ public class EmpSearchResultPanel extends JPanel {
 		model = new EmpSearchResultTable(list);
 		JTable table = new JTable(model);
 		add(new JScrollPane(table));
+		
+		table.addMouseListener(new EmpTableMouseClickListener(table));
 	}
 	
 	public static AbstractTableModel getTableModel() {

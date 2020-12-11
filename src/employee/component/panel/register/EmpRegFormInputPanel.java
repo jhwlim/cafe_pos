@@ -25,14 +25,13 @@ public class EmpRegFormInputPanel extends JPanel {
 	private Map<EmpRegFormFieldEnum, JLabel> labelMap;
 	
 	public EmpRegFormInputPanel() {
-		this.setDefaultConfig();
+		setDefaultConfig();
+		setComponents();
 	}
 	
 	private void setDefaultConfig() {
 		setLayout(new GridLayout(GRID_ROW, GRID_COL));
-		setBackground(new Color(EmpRegCenterPanel.COLOR));
-		
-		setComponents();
+		setBackground(new Color(EmpRegCenterPanel.COLOR));		
 	}
 	
 	private void setComponents() {
@@ -63,5 +62,54 @@ public class EmpRegFormInputPanel extends JPanel {
 		return labelMap.get(field);
 	}
 
+	private EmployeeVO employee;
 	
+	public EmpRegFormInputPanel(EmployeeVO employee) {
+		this.employee = employee;
+		setDefaultConfig();
+		setComponents(employee);
+	}
+	private void setComponents(EmployeeVO employee) {
+		inputMap = new HashMap<EmpRegFormFieldEnum, JComponent>();
+		labelMap = new HashMap<EmpRegFormFieldEnum, JLabel>();
+		for (EmpRegFormFieldEnum field : EmpRegFormFieldEnum.values()) {
+			if (field != EmpRegFormFieldEnum.RANK) {
+				JTextField input = new JTextField();
+				switch (field) {
+				case NAME:
+					input.setText(employee.getEmpName());
+					break;
+				case NICK:
+					input.setText(employee.getEmpNick());
+					break;
+				case BIRTH:
+					input.setText(employee.getEmpBirth());
+					break;
+				case CERTIF:
+					input.setText(employee.getCertifExpireDate());
+					break;
+				case STORE_ID:
+					if (employee.getStoreId() != 0) {
+						input.setText(String.valueOf(employee.getStoreId()));
+					}
+					break;
+				}
+				
+				add(input);
+				inputMap.put(field, input);
+				
+				EmpRegErrorLabel label = new EmpRegErrorLabel();
+				add(label);
+				labelMap.put(field, label);
+			} else {
+				JComboBox<String> input = new EmpRankComboBox();
+				add(input);
+				inputMap.put(field, input);
+			}
+		}
+	}
+	
+	public EmployeeVO getEmployee() {
+		return employee;
+	}
 }
