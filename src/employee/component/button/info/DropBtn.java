@@ -6,8 +6,8 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 
 import employee.common.font.EmpBtnFont;
-import employee.controller.button.EmpRegSubmitBtnClickListener;
 import employee.controller.button.info.EmpInfoDropBtnClickListener;
+import employee.controller.button.register.EmpRegSubmitBtnClickListener;
 
 public class DropBtn extends JButton {
 

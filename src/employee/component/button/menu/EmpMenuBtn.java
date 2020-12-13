@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import employee.controller.button.EmpMenuClickListener;
+import employee.controller.button.menu.EmpMenuClickListener;
 
 public class EmpMenuBtn extends JButton {
 	

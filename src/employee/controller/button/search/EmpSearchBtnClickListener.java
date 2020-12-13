@@ -1,4 +1,4 @@
-package employee.controller.button;
+package employee.controller.button.search;
 
 import java.awt.BorderLayout;
 import java.awt.Container;

@@ -1,4 +1,4 @@
-package employee.controller.button;
+package employee.controller.button.register;
 
 import java.awt.CardLayout;
 import java.awt.Container;
