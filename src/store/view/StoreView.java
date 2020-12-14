@@ -26,7 +26,7 @@ public class StoreView {
 		panel.removeAll();
 		
 		StoreMenuPanel menuPanel = StoreMenuPanel.getInstance();
-		panel.add(menuPanel);
+		panel.add(MENU_PAGE_NAME, menuPanel);
 		
 	}
 	

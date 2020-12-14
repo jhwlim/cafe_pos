@@ -10,30 +10,29 @@ import store.component.panel.add.center.StoreAddSideMarginPanel;
 
 public class StoreAddFormPanel extends JPanel {
 
-	static StoreAddFormPanel panel;
+	static StoreAddFormInputPanel centerPanel;
 	
 	public StoreAddFormPanel() {
-		this.setDefaultConfig();
+		setDefaultConfig();
+		setCompenents();
 	}
 	
 	private void setDefaultConfig() {
-		this.setLayout(new BorderLayout(10, 0));
+		setLayout(new BorderLayout(10, 0));
 		setBackground(new Color(StoreAddCenterPanel.COLOR));
-		
-		this.setCompenents();
 	}
 	
 	private void setCompenents() {
 		StoreAddFormFieldPanel leftPanel = StoreAddFormFieldPanel.getInstance();
-		this.add(leftPanel, BorderLayout.WEST);
+		add(leftPanel, BorderLayout.WEST);
 		
-		StoreAddFormInputPanel centerPanel = new StoreAddFormInputPanel();
-		this.add(centerPanel , BorderLayout.CENTER);
+		centerPanel = new StoreAddFormInputPanel();
+		add(centerPanel , BorderLayout.CENTER);
 		
 		add(new StoreAddSideMarginPanel(50, 0), BorderLayout.EAST);
 	}
 	
-	public static StoreAddFormPanel getCenterPanel() {
-		return panel;
+	public static StoreAddFormInputPanel getCenterPanel() {
+		return centerPanel;
 	}
 }

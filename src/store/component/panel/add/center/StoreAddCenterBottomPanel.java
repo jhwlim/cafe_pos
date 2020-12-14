@@ -8,8 +8,9 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import employee.component.button.register.CancelBtn;
-import employee.component.button.register.SubmitBtn;
+import store.component.button.add.CancelBtn;
+import store.component.button.add.SubmitBtn;
+
 
 public class StoreAddCenterBottomPanel extends JPanel {
 	

@@ -18,7 +18,7 @@ public class StoreAddView {
 	public static Container parentPanel;
 	
 	public static final int X_MARGIN = 200;
-	public static final int Y_MARGIN = 230;
+	public static final int Y_MARGIN = 190;
 	
 	static StoreMenuBtnEnum smb;
 	
