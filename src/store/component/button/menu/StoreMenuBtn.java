@@ -20,12 +20,12 @@ public class StoreMenuBtn extends JButton {
 	
 	public StoreMenuBtn(StoreMenuBtnEnum smb) throws IOException {
 		super(new ImageIcon(ImageIO.read(new File(smb.imgPath)).getScaledInstance(IMG_WIDTH, IMG_HEIGHT, Image.SCALE_SMOOTH)));
-		super.setBackground(new Color(COLOR));
-		super.addActionListener(new StoreMenuClickListener(smb));
+		setBackground(new Color(COLOR));
+		addActionListener(new StoreMenuClickListener(smb));
 	}
 	
 	public StoreMenuBtn() {
-		super.setBackground(new Color(COLOR));
+		setBackground(new Color(COLOR));
 	}
 	
 }
