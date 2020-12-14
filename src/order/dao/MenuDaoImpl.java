@@ -77,4 +77,42 @@ public class MenuDaoImpl implements MenuDao {
 
 		return list;
 	}
+
+	@Override
+	public List<String> selectByCategory(String category) {
+		List<String> list = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "SELECT menu_img FROM menus WHERE menu_category = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String imgPath = rs.getString("menu_img");
+				list.add(imgPath);
+			}
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return list;
+	}
 }

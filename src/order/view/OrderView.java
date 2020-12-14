@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -17,8 +18,11 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import common.model.MenuVO;
 import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
+import order.dao.MenuDao;
+import order.dao.MenuDaoImpl;
 
 public class OrderView {
 
@@ -122,11 +126,17 @@ public class OrderView {
 		// panel에 작업하는게 왼쪽 영역에 표시됨.
 //		BorderLayout Border = new BorderLayout();// 기본 레이아웃(임시 좌표용)
 
+		MenuDao dao = MenuDaoImpl.getInstance();
+//		List<MenuVO> menus = dao.selectAll();
+		List<String> drinkList = dao.selectByCategory("drink");
+		List<String> mdList = dao.selectByCategory("md");
+		List<String> foodList = dao.selectByCategory("food");
+	
 		
 		
-		for (int i = 0; i <= 14; i++) {
+		for (int i = 0; i < drinkList.size(); i++) {
 
-			Image C_D_Image = new ImageIcon("resources/img/drink/" + i + ".jpg").getImage().getScaledInstance(175, 175,
+			Image C_D_Image = new ImageIcon(drinkList.get(i)).getImage().getScaledInstance(175, 175,
 					Image.SCALE_REPLICATE);
 
 			ImageIcon USE_D_Image = new ImageIcon(C_D_Image);
@@ -134,9 +144,9 @@ public class OrderView {
 			D_panel.add(new JButton(USE_D_Image)).setPreferredSize(new Dimension(175, 175));
 		}
 
-		for (int i = 0; i <= 14; i++) {
+		for (int i = 0; i < mdList.size(); i++) {
 
-			Image C_F_Image = new ImageIcon("resources/img/food/" + i + ".jpg").getImage().getScaledInstance(175, 175,
+			Image C_F_Image = new ImageIcon(mdList.get(i)).getImage().getScaledInstance(175, 175,
 					Image.SCALE_REPLICATE);
 
 			ImageIcon USE_F_Image = new ImageIcon(C_F_Image);
@@ -144,14 +154,15 @@ public class OrderView {
 			F_panel.add(new JButton(USE_F_Image)).setPreferredSize(new Dimension(175, 175));
 		}
 
-		for (int i = 0; i <= 14; i++) {
-			Image C_M_Image = new ImageIcon("resources/img/md/" + i + ".jpg").getImage().getScaledInstance(175, 175,
+		for (int i = 0; i < foodList.size(); i++) {
+			Image C_M_Image = new ImageIcon(foodList.get(i)).getImage().getScaledInstance(175, 175,
 					Image.SCALE_REPLICATE);
 
 			ImageIcon USE_M_Image = new ImageIcon(C_M_Image);
 
 			M_panel.add(new JButton(USE_M_Image)).setPreferredSize(new Dimension(175, 175));
 		}
+		
 
 		JButton btn_drink = new JButton("음료");
 		btn_drink.setPreferredSize(new Dimension(90, 90));

@@ -8,5 +8,6 @@ public interface MenuDao {
 	
 	public List<MenuVO> selectAll();
 	
-	
+	public List<String> selectByCategory(String category); 
+	 
 }
