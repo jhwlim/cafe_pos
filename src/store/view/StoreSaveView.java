@@ -6,8 +6,9 @@ import java.awt.Container;
 
 import store.component.button.menu.StoreMenuBtnEnum;
 import store.component.panel.content.StoreContentPanel;
+import store.component.panel.save.StoreSaveCenterPanel;
 
-public class StoreRegView {
+public class StoreSaveView {
 
 	public static StoreContentPanel panel;
 	public static Container parentPanel;
@@ -22,7 +23,7 @@ public class StoreRegView {
 		smb = StoreMenuBtnEnum.REGISTER;
 	}
 	
-	public StoreRegView() {
+	public StoreSaveView() {
 		panel = new StoreContentPanel(smb);
 		parentPanel.add(smb.pageName, panel);
 		
@@ -38,8 +39,8 @@ public class StoreRegView {
 	
 	private static void setComponents() {
 		
-//		EmpRegCenterPanel centerPanel = new EmpRegCenterPanel();
-//		panel.add(centerPanel);
+		StoreSaveCenterPanel centerPanel = new StoreSaveCenterPanel();
+		panel.add(centerPanel);
 		
 	}
 }
