@@ -1,4 +1,4 @@
-package employee.component.label.menu;
+package store.component.label.menu;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,22 +9,20 @@ import javax.swing.SwingConstants;
 import common.font.ContentMenuTitleFont;
 import main.component.panel.SideUpPanel;
 
-public class EmpMenuTitleLabel extends JLabel {
+public class StoreMenuTitleLabel extends JLabel {
 	
 	public static final int WIDTH = 340;
 	public static final int HEIGHT = SideUpPanel.PANEL_HEIGHT;
 	
-	static final int COLOR = 0x387e9c;
-//	static final int COLOR = 0xffffff;
+	static final int COLOR = 0x508a63;
 	
-	public EmpMenuTitleLabel() {
+	public StoreMenuTitleLabel() {
 	}
 	
-	public EmpMenuTitleLabel(String label) {
+	public StoreMenuTitleLabel(String label) {
 		super(label, SwingConstants.CENTER);
-		super.setFont(new ContentMenuTitleFont());
-		super.setForeground(new Color(COLOR));
-//		super.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		setFont(new ContentMenuTitleFont());
+		setForeground(new Color(COLOR));
 		super.setVerticalTextPosition(CENTER);
 	}
 }
