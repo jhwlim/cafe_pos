@@ -137,13 +137,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			
 			while(rs.next()) {
 				employee = new EmployeeVO(rs.getInt("emp_id"), 
-													 rs.getString("emp_name"), 
-													 rs.getString("emp_birth"), 
-													 rs.getInt("emp_rank"), 
-													 rs.getString("emp_nick"), 
-													 rs.getDate("join_date"), 
-													 rs.getString("certif_expire_date"), 
-													 rs.getInt("store_id"));
+									 	  rs.getString("emp_name"), 
+										  rs.getString("emp_birth"), 
+										  rs.getInt("emp_rank"), 
+										  rs.getString("emp_nick"), 
+										  rs.getDate("join_date"), 
+										  rs.getString("certif_expire_date"), 
+										  rs.getInt("store_id"));
 			}
 		
 		} catch (SQLException e) {
