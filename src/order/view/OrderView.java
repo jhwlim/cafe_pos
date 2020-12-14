@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -19,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 
 import main.component.btn.MenuBtnEnum;
 import main.component.panel.ContentPanel;
+import order.dao.MenuDao;
+import order.dao.MenuDaoImpl;
 
 public class OrderView {
 
@@ -49,7 +52,7 @@ public class OrderView {
 		 * 
 		 * 7. 결제 페이지 구성
 		 * 
-		 * 8.메뉴 버튼 enum 화 (값이랑 가격 매겨줘야할듯.. )
+		 * 
 		 */
 
 		panel.setBackground(Color.red);// 중앙 색
@@ -81,15 +84,8 @@ public class OrderView {
 		panel.add(C_panel, BorderLayout.CENTER);
 
 		// 필드 생성
+		
 
-//		DefaultTableModel Dtm = new DefaultTableModel(new String[] {"번호", "메뉴", "가격", "개수"}, 0){
-//			
-//			public boolean isCellEditable(int row, int column) {
-//				return false;
-//			}
-//			
-//		};
-//
 		String title[] = { "번호", "메뉴", "가격", "개수" };
 		String data[][] = new String[0][3];
 
@@ -122,8 +118,45 @@ public class OrderView {
 		// panel에 작업하는게 왼쪽 영역에 표시됨.
 //		BorderLayout Border = new BorderLayout();// 기본 레이아웃(임시 좌표용)
 
+		MenuDao dao = MenuDaoImpl.getInstance();
+//		List<MenuVO> menus = dao.selectAll();
+		List<String> drinkList = dao.selectByCategory("drink");
+		List<String> mdList = dao.selectByCategory("md");
+		List<String> foodList = dao.selectByCategory("food");
+	
 		
 		
+		for (int i = 0; i < drinkList.size(); i++) {
+
+			Image C_D_Image = new ImageIcon(drinkList.get(i)).getImage().getScaledInstance(175, 175,
+					Image.SCALE_REPLICATE);
+
+			ImageIcon USE_D_Image = new ImageIcon(C_D_Image);
+
+			D_panel.add(new JButton(USE_D_Image)).setPreferredSize(new Dimension(175, 175));
+		}
+
+		for (int i = 0; i < foodList.size(); i++) {
+
+			Image C_F_Image = new ImageIcon(foodList.get(i)).getImage().getScaledInstance(175, 175,
+					Image.SCALE_REPLICATE);
+
+			ImageIcon USE_F_Image = new ImageIcon(C_F_Image);
+
+			F_panel.add(new JButton(USE_F_Image)).setPreferredSize(new Dimension(175, 175));
+		}
+
+		for (int i = 0; i < mdList.size(); i++) {
+			Image C_M_Image = new ImageIcon(mdList.get(i)).getImage().getScaledInstance(175, 175,
+					Image.SCALE_REPLICATE);
+
+			ImageIcon USE_M_Image = new ImageIcon(C_M_Image);
+
+			M_panel.add(new JButton(USE_M_Image)).setPreferredSize(new Dimension(175, 175));
+		}
+		
+		/*
+		// drink 를 받아서
 		for (int i = 0; i <= 14; i++) {
 
 			Image C_D_Image = new ImageIcon("resources/img/drink/" + i + ".jpg").getImage().getScaledInstance(175, 175,
@@ -134,6 +167,7 @@ public class OrderView {
 			D_panel.add(new JButton(USE_D_Image)).setPreferredSize(new Dimension(175, 175));
 		}
 
+		
 		for (int i = 0; i <= 14; i++) {
 
 			Image C_F_Image = new ImageIcon("resources/img/food/" + i + ".jpg").getImage().getScaledInstance(175, 175,
@@ -153,6 +187,7 @@ public class OrderView {
 			M_panel.add(new JButton(USE_M_Image)).setPreferredSize(new Dimension(175, 175));
 		}
 
+*/
 		JButton btn_drink = new JButton("음료");
 		btn_drink.setPreferredSize(new Dimension(90, 90));
 		JButton btn_Food = new JButton("푸드");
@@ -165,13 +200,15 @@ public class OrderView {
 		btn_pay.setPreferredSize(new Dimension(90, 90));
 
 		btn_drink.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				((CardLayout) menu_panel.getLayout()).show(menu_panel, "Drink");
 			}
 		});
-
+		
+		
+		
+		
 		btn_Food.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
