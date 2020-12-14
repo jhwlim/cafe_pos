@@ -2,6 +2,7 @@ package store.component.panel.save;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
@@ -32,8 +33,10 @@ public class StoreSaveCenterPanel extends JPanel {
 		StoreSearchPanel centerPanel = new StoreSearchPanel();
 		add(centerPanel, BorderLayout.CENTER);
 		
-//		StoreAddCenterBottomPanel bottomPanel = StoreAddCenterBottomPanel.getInstance();
-//		add(bottomPanel, BorderLayout.SOUTH);
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setPreferredSize(new Dimension(0, 100));
+		bottomPanel.setBackground(new Color(COLOR));
+		add(bottomPanel, BorderLayout.SOUTH);
 //	
 //		add(new StoreAddSideMarginPanel(), BorderLayout.EAST);
 //		add(new StoreAddSideMarginPanel(), BorderLayout.WEST);

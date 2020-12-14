@@ -43,7 +43,7 @@ public class StoreInfoPanel extends JPanel {
 	private void setComponents() {
 		
 		StoreDao dao = StoreDaoImpl.getInstance();
-		StoreVO store = dao.selectOne(StoreConfig.storeId);
+		StoreVO store = dao.selectOne(StoreConfig.getStoreId());
 		
 		if (store == null) {
 			setLayout(new BorderLayout());

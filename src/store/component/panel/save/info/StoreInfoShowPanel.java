@@ -18,14 +18,11 @@ public class StoreInfoShowPanel extends JPanel {
 	public static final int GRID_COL = 1;
 	public static final int GRID_X_MARGIN = 0;
 	public static final int GRID_Y_MARGIN = StoreInfoFieldPanel.GRID_Y_MARGIN;
-	
-//	private static EmpInfoShowPanel panel;
-	
+		
 	StoreVO store;
 	
 	public StoreInfoShowPanel(StoreVO store) {
 		this.store = store;
-//		panel = this;
 		setDefaultConfig();
 		setComponents(store);
 	}
@@ -52,7 +49,11 @@ public class StoreInfoShowPanel extends JPanel {
 				input.setText(store.getStoreAddr());
 				break;
 			case SIZE:
-				input.setText(String.valueOf(store.getStoreType()));
+				if (store.getStoreSize() == 0) {
+					input.setText("");
+				} else {
+					input.setText(String.valueOf(store.getStoreSize()));
+				}
 				break;
 			case TYPE :
 				input.setText(String.valueOf(store.getStoreType()));
@@ -62,13 +63,5 @@ public class StoreInfoShowPanel extends JPanel {
 			
 		}
 	}
-	
-//	public static EmpInfoShowPanel getCurrentPanel() {
-//		return panel;
-//	}
-//	
-//	public EmployeeVO getEmployee() {
-//		return employee;
-//	}
-	
+
 }
