@@ -42,7 +42,6 @@ public class StoreSearchBtnClickListener implements ActionListener {
 		StoreDao dao = StoreDaoImpl.getInstance();
 		List<StoreVO> stores = dao.searchByAddr(topPanel.getKeyword().getText());
 		
-		System.out.println(stores);
 		StoreSearchResultPanel newPanel = new StoreSearchResultPanel(stores);
 		parentContainer.setResultPanel(newPanel);
 		

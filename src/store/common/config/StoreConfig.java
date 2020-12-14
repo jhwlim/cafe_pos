@@ -12,7 +12,7 @@ import org.json.simple.parser.ParseException;
 
 public class StoreConfig {
 
-	public static int storeId;
+	private static int storeId;
 	
 	private static final String prefix = "resources/settings/";
 	private static final String fileName = "store.sav"; 
@@ -22,7 +22,11 @@ public class StoreConfig {
 	private static final int DEFAULT_STORE_ID = 0;
 	
 	
-	static {
+	public static String getFilePath() {
+		return prefix + fileName;
+	}
+	
+	public static int getStoreId() {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(prefix + fileName));
 			
@@ -38,6 +42,7 @@ public class StoreConfig {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		return storeId;
 	}
-	
 }

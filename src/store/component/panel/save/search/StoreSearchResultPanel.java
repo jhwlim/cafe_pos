@@ -18,6 +18,7 @@ import common.model.StoreVO;
 import employee.component.table.EmpSearchResultTable;
 import employee.controller.mouse.EmpTableMouseClickListener;
 import store.component.table.StoreSearchResultTable;
+import store.controller.mouse.search.StoreTableMouseClickListener;
 
 public class StoreSearchResultPanel extends JPanel {
 	
@@ -45,7 +46,7 @@ public class StoreSearchResultPanel extends JPanel {
 		JTable table = new JTable(model);
 		add(new JScrollPane(table));
 		
-		table.addMouseListener(new EmpTableMouseClickListener(table));
+		table.addMouseListener(new StoreTableMouseClickListener(table));
 	}
 	
 	public static AbstractTableModel getTableModel() {
