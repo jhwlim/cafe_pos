@@ -17,7 +17,7 @@ import main.component.btn.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 import main.controller.btn.MenuBtnClickListener;
 import stock.component.StockPanel;
-
+ 
 public class Stockview {
 
 	public static JPanel panel;
