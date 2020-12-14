@@ -12,30 +12,29 @@ public class StoreAddCenterPanel extends JPanel {
 	public static final int COLOR = 0xe1f0e6;
 	
 	public StoreAddCenterPanel() {
-		this.setDefaultConfig();
-		
+		setDefaultConfig();
+		setComponents();
 	}
 	
-	private void setDefaultConfig() {
-		
-		this.setLayout(new BorderLayout());
-		this.setBackground(new Color(COLOR));
-		
-		setComponents();
+	private void setDefaultConfig() {	
+		setLayout(new BorderLayout());
+		setBackground(new Color(COLOR));
 	}
 	
 	private void setComponents() {
 		StoreAddCenterTopPanel topPanel = StoreAddCenterTopPanel.getInstance();
-		this.add(topPanel, BorderLayout.NORTH);
+		add(topPanel, BorderLayout.NORTH);
 		
 		StoreAddFormPanel centerPanel = new StoreAddFormPanel();
-		this.add(centerPanel, BorderLayout.CENTER);
+		add(centerPanel, BorderLayout.CENTER);
 		
 		StoreAddCenterBottomPanel bottomPanel = StoreAddCenterBottomPanel.getInstance();
-		this.add(bottomPanel, BorderLayout.SOUTH);
+		add(bottomPanel, BorderLayout.SOUTH);
 	
-		this.add(new StoreAddSideMarginPanel(), BorderLayout.EAST);
-		this.add(new StoreAddSideMarginPanel(), BorderLayout.WEST);
-//	
+		add(new StoreAddSideMarginPanel(), BorderLayout.EAST);
+		add(new StoreAddSideMarginPanel(), BorderLayout.WEST);
+	
 	}
+	
+	
 }
