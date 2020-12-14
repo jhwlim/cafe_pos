@@ -1,6 +1,7 @@
 package store.common.config;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -28,6 +29,11 @@ public class StoreConfig {
 	
 	public static int getStoreId() {
 		try {
+			File folder = new File(prefix);
+			if (!folder.exists()) {
+				folder.mkdir();
+			}
+			
 			BufferedReader br = new BufferedReader(new FileReader(prefix + fileName));
 			
 			JSONParser parser = new JSONParser();
