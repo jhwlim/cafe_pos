@@ -9,6 +9,7 @@ import employee.component.panel.content.EmpContentPanel;
 import employee.component.panel.register.EmpRegCenterPanel;
 import employee.view.EmployeeView;
 import store.component.button.menu.StoreMenuBtnEnum;
+import store.component.panel.add.center.StoreAddCenterPanel;
 import store.component.panel.content.StoreContentPanel;
 
 public class StoreAddView {
@@ -16,8 +17,8 @@ public class StoreAddView {
 	public static StoreContentPanel panel;
 	public static Container parentPanel;
 	
-	public static final int X_MARGIN = 150;
-	public static final int Y_MARGIN = 120;
+	public static final int X_MARGIN = 200;
+	public static final int Y_MARGIN = 230;
 	
 	static StoreMenuBtnEnum smb;
 	
@@ -37,13 +38,10 @@ public class StoreAddView {
 	private static void setDefaultConfig() {
 		panel.setLayout(new CardLayout(X_MARGIN, Y_MARGIN));
 		panel.setBackground(Color.white);
-	
 	}
 	
 	private static void setComponents() {
-		
-//		EmpRegCenterPanel centerPanel = new EmpRegCenterPanel();
-//		panel.add(centerPanel);
-		
+		StoreAddCenterPanel centerPanel = new StoreAddCenterPanel();
+		panel.add(centerPanel);
 	}
 }
