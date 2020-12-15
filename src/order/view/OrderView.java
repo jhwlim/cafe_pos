@@ -3,13 +3,11 @@ package order.view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +17,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import common.model.MenuVO;
 import main.component.btn.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 import order.dao.MenuDao;
@@ -126,6 +125,7 @@ public class OrderView {
 		List<String> mdList = dao.selectByCategory("md");
 		List<String> foodList = dao.selectByCategory("food");
 
+		List<MenuVO> foodMenuList = dao.selectAllByCategory("food");
 		
 		for (int i = 0; i < drinkList.size(); i++) {
 
@@ -137,16 +137,19 @@ public class OrderView {
 			JButton dbtn = new JButton(USE_D_Image);
 			
 			D_panel.add(dbtn).setPreferredSize(new Dimension(175, 175));
+			MenuVO menu = foodMenuList.get(i);
 			
 			dbtn.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					JTable jtable = (JTable)e.getSource();
-					int row = jtable.getSelectedRow();
-					int col = jtable.getSelectedColumn();
-					
-					System.out.println(dtm.getValueAt(row, col));
+					dtm.addRow(new Object[] {
+							menu.getMenuId(),
+							menu.getMenuName(),
+							menu.getMenuCost(),
+							1
+					}); 
+
 				}
 				
 			});

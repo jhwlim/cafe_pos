@@ -10,4 +10,6 @@ public interface MenuDao {
 	
 	public List<String> selectByCategory(String category); 
 	 
+	public List<MenuVO> selectAllByCategory(String category);  
+
 }

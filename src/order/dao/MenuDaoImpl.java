@@ -77,6 +77,7 @@ public class MenuDaoImpl implements MenuDao {
 
 		return list;
 	}
+	
 
 	@Override
 	public List<String> selectByCategory(String category) {
@@ -97,6 +98,48 @@ public class MenuDaoImpl implements MenuDao {
 			while(rs.next()) {
 				String imgPath = rs.getString("menu_img");
 				list.add(imgPath);
+			}
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return list;
+	}
+	
+	@Override
+	public List<MenuVO> selectAllByCategory(String category) {
+		List<MenuVO> list = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			
+			String sql = "SELECT * FROM menus WHERE menu_category = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MenuVO menu = new MenuVO(rs.getInt("menu_id"),
+										 rs.getString("menu_name"),
+										 rs.getInt("menu_cost"),
+										 rs.getString("menu_category"),
+										 rs.getString("menu_img"));
+				list.add(menu);
 			}
 			
 			pstmt.executeUpdate();
