@@ -5,7 +5,7 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import main.component.btn.MenuBtnEnum;
+import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 import main.component.panel.FramePanel;
 import main.component.panel.FramePanelEnum;
@@ -15,14 +15,14 @@ public class ContentView {
 	
 	public static FramePanel panel;
 	
-	private static final int X_MARGIN = 10;
+	private static final int X_MARGIN = 5;
 	private static final int Y_MARGIN = 0;
 	
-	
+
 	static {
 		panel = FramePanel.getFramePanel(FramePanelEnum.CONTENT);
 		panel.setLayout(new BorderLayout(X_MARGIN, Y_MARGIN));
-	
+		panel.setBackground(Color.gray);
 	}
 	
 	public ContentView() {

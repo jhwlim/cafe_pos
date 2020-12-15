@@ -19,7 +19,7 @@ public class LogoLabel extends JLabel {
 	
 	static {
 		try {
-			logoImg = ImageIO.read(new File(LOGO_IMG_PATH));
+			logoImg = ImageIO.read(new File(LOGO_IMG_PATH));			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

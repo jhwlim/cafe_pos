@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import common.font.SidePanelTitleLabelFont;
-import main.component.btn.MenuBtnEnum;
+import main.component.button.MenuBtnEnum;
 import main.component.panel.SideUpPanel;
 
 public class SidePanelTitleLabel extends JLabel {

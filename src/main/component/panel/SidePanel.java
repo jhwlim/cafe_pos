@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.component.btn.MenuBtnEnum;
+import main.component.button.MenuBtnEnum;
 import main.controller.btn.MainBtnClickListener;
 
 public class SidePanel extends JPanel {
