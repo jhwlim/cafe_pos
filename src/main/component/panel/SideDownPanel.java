@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import main.component.btn.SidePanelBtn;
+import main.component.button.SidePanelBtn;
 import main.controller.btn.MainBtnClickListener;
 
 public class SideDownPanel extends JPanel {

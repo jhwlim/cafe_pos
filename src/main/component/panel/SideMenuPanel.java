@@ -10,9 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.component.btn.MenuBtn;
-import main.component.btn.MenuBtnEnum;
-import main.component.btn.SidePanelBtn;
+import main.component.button.MenuBtn;
+import main.component.button.MenuBtnEnum;
+import main.component.button.SidePanelBtn;
 import main.controller.btn.MenuBtnClickListener;
 
 public class SideMenuPanel extends JPanel {
