@@ -4,8 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
+
+import main.controller.frame.SystemWindowListener;
 
 public class MainFrame extends JFrame {
 	
@@ -30,6 +35,8 @@ public class MainFrame extends JFrame {
 		setLocationRelativeTo(null); // 프로그램을 윈도우 가운데 위치
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+		this.addWindowListener(new SystemWindowListener());
 	}
 	
 
