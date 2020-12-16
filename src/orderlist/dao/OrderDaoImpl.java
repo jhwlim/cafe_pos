@@ -1,10 +1,12 @@
-package test;
+package orderlist.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -48,6 +50,7 @@ public class OrderDaoImpl implements OrderDao {
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;		
 		PreparedStatement pstmt4 = null;		
+		PreparedStatement pstmt5 = null;		
 		ResultSet rs = null;
 		
 		int generatedKey = -1;
@@ -74,11 +77,20 @@ public class OrderDaoImpl implements OrderDao {
 				generatedKey = rs.getInt(1);
 			}
 			
+			String sql5 = "SELECT order_date FROM orders WHERE order_id = ?";
+			pstmt5 = conn.prepareStatement(sql5);
+			pstmt5.setInt(1, generatedKey);
+			rs = pstmt5.executeQuery();
+			Timestamp orderDate = null;
+			if (rs.next()) {
+				orderDate = rs.getTimestamp(1);
+			}
+			
 			String sql3 = "INSERT INTO orders_detail(order_id, menu_id, menu_count, discounted_cost) "
 					+ "VALUES (?, ?, ?, ?)";
 			pstmt3 = conn.prepareStatement(sql3);
 			
-			String sql4 = "SELECT menu_category FROM menus WHERE menu_id = ?";
+			String sql4 = "SELECT menu_category, menu_name FROM menus WHERE menu_id = ?";
 			pstmt4 = conn.prepareStatement(sql4);
 			
 			for (int i = 0; i < details.size(); i++) {
@@ -94,6 +106,8 @@ public class OrderDaoImpl implements OrderDao {
 				if (rs.next()) {
 					if (!rs.getString(1).equals("md")) {
 						detail.setOrderId(generatedKey);
+						detail.setMenuName(rs.getString("menu_name"));
+						detail.setOrderDate(orderDate);
 						OrderListConfig.getList().add(detail);
 					}
 				}

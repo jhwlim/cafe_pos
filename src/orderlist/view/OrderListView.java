@@ -14,8 +14,8 @@ public class OrderListView {
 
 	public static JPanel panel;
 	
-	static final int X_MARGIN = 100;
-	static final int Y_MARGIN = 100;
+	static final int X_MARGIN = 200;
+	static final int Y_MARGIN = 200;
 	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.ORDERLIST);

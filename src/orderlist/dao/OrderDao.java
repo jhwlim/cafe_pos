@@ -1,4 +1,4 @@
-package test;
+package orderlist.dao;
 
 import java.util.List;
 

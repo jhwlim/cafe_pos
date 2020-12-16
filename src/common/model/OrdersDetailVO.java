@@ -1,5 +1,8 @@
 package common.model;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 public class OrdersDetailVO {
 	
 	private int orderId;
@@ -7,8 +10,10 @@ public class OrdersDetailVO {
 	private int menuCount;
 	private int discountedCost;
 	
+	private String menuName;
+	private Timestamp orderDate;
+	
 	public OrdersDetailVO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public OrdersDetailVO(int orderId, int menuId, int menuCount, int discountedCost) {
@@ -51,6 +56,22 @@ public class OrdersDetailVO {
 		this.discountedCost = discountedCost;
 	}
 
+	public String getMenuName() {
+		return menuName;
+	}
+	
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+	
+	public Timestamp getOrderDate() {
+		return orderDate;
+	}
+	
+	public void setOrderDate(Timestamp orderDate) {
+		this.orderDate = orderDate;
+	}
+	
 	@Override
 	public String toString() {
 		return "OrdersDetailVO [orderId=" + orderId + ", menuId=" + menuId + ", menuCount=" + menuCount
