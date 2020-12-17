@@ -24,9 +24,17 @@ import javax.swing.table.DefaultTableModel;
 import common.model.MenuVO;
 import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
+import order.component.button.OrderBtn1;
+import order.component.button.OrderBtn2;
+import order.component.button.OrderFoodBtn;
+import order.component.panel.OrderMenuPanel;
 import order.dao.MenuDao;
 import order.dao.MenuDaoImpl;
 
+// 구조
+// - 상단 -> 클래스 생성 (JPanel을 상속받는)
+// - 중간 -> 클래스 생성
+// - 하단 -> 클래스 생성
 public class OrderView {
 
 	public static JPanel panel;
@@ -37,33 +45,10 @@ public class OrderView {
 		panel.setBackground(Color.red);// 중앙 색
 
 		panel.setLayout(new BorderLayout());
-		JPanel menu_panel = new JPanel(new CardLayout(10, 10));// 메인 패널 위에 메뉴패널?
-		JPanel D_panel = new JPanel();// 메인 패널 위에 메뉴패널
-		JPanel F_panel = new JPanel();// 메인 패널 위에 메뉴패널
-		JPanel M_panel = new JPanel();// 메인 패널 위에 메뉴패널
-
-		JPanel C_panel = new JPanel();// 센터 패널(공사중)
-
-		JPanel B_panel = new JPanel();// 하단 패널 버튼
-
-		// 상단부
-		menu_panel.setBackground(Color.WHITE);
-		panel.add(menu_panel, BorderLayout.NORTH);
-		menu_panel.setPreferredSize(new Dimension(0, 580));
-
-		menu_panel.add(D_panel, "Drink");
-		menu_panel.add(F_panel, "Food");
-		menu_panel.add(M_panel, "MD");
-
-		// 중간부
-		C_panel.setBackground(Color.WHITE);
-		panel.add(C_panel, BorderLayout.CENTER);
-
+		
 		// 필드 생성
-
 		String title[] = { "번호", "메뉴", "가격", "개수" };
-		String title2[] = {"메뉴", "가격", "개수"};
-
+		
 		DefaultTableModel dtm = new DefaultTableModel(title, 0) {
 			public boolean isCellEditable(int row, int column) {
 				if (column >= 0) {
@@ -73,6 +58,35 @@ public class OrderView {
 				}
 			}
 		};
+		
+//		JPanel menu_panel = new JPanel(new CardLayout(10, 10));// 메인 패널 위에 메뉴패널?
+		JPanel menu_panel = new OrderMenuPanel(dtm);// 메인 패널 위에 메뉴패널?
+//		JPanel D_panel = new JPanel();// 메인 패널 위에 메뉴패널
+//		JPanel F_panel = new JPanel();// 메인 패널 위에 메뉴패널
+//		JPanel M_panel = new JPanel();// 메인 패널 위에 메뉴패널
+
+		JPanel C_panel = new JPanel();// 센터 패널(공사중)
+
+		JPanel B_panel = new JPanel();// 하단 패널 버튼
+
+		// 상단부
+//		menu_panel.setBackground(Color.WHITE);						
+		panel.add(menu_panel, BorderLayout.NORTH);
+//		
+//		menu_panel.setPreferredSize(new Dimension(0, 580));
+//
+//		menu_panel.add(D_panel, "Drink");
+//		menu_panel.add(F_panel, "Food");
+//		menu_panel.add(M_panel, "MD");
+
+		// 중간부
+		C_panel.setBackground(Color.WHITE);
+		panel.add(C_panel, BorderLayout.CENTER);
+
+		
+//		String title2[] = {"메뉴", "가격", "개수"};
+
+		
 
 
 		JTable table = new JTable(dtm);
@@ -101,155 +115,165 @@ public class OrderView {
 
 		// panel에 작업하는게 왼쪽 영역에 표시됨.
 
-		MenuDao dao = MenuDaoImpl.getInstance();
-		List<String> drinkList = dao.selectByCategory("drink");
-		List<String> mdList = dao.selectByCategory("md");
-		List<String> foodList = dao.selectByCategory("food");
+//		MenuDao dao = MenuDaoImpl.getInstance();
+//		List<String> drinkList = dao.selectByCategory("drink");
+//		List<String> mdList = dao.selectByCategory("md");
+//		List<String> foodList = dao.selectByCategory("food");
+//
+//		List<MenuVO> drinkMenuList = dao.selectAllByCategory("drink");
+//		List<MenuVO> foodMenuList = dao.selectAllByCategory("food");
+//		List<MenuVO> mdMenuList = dao.selectAllByCategory("md");
 
-		List<MenuVO> drinkMenuList = dao.selectAllByCategory("drink");
-		List<MenuVO> foodMenuList = dao.selectAllByCategory("food");
-		List<MenuVO> mdMenuList = dao.selectAllByCategory("md");
 
+//		for (int i = 0; i < drinkList.size(); i++) {
+//
+//			Image C_D_Image = new ImageIcon(drinkList.get(i)).getImage().getScaledInstance(175, 175,
+//					Image.SCALE_REPLICATE);
+//
+//			ImageIcon USE_D_Image = new ImageIcon(C_D_Image);
+//
+//			JButton dbtn = new JButton(USE_D_Image);
+//
+//			D_panel.add(dbtn).setPreferredSize(new Dimension(175, 175));
+//
+//			MenuVO menu = drinkMenuList.get(i);
+//
+//			dbtn.addActionListener(new ActionListener() {
+//
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					boolean flag = false;
+//					int i = 0;
+//
+//					// 테이블의 row를 한바퀴 돌면서 menuId가 있는지를 확인해서 있으면 flag를 true하고, break하는 코드
+//					// 멈추는 곳이 i = 같은 menuId가 있는 row
+//					for (i = 0; i < dtm.getRowCount(); i++) {
+//						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
+//							flag = true;
+//							break;
+//						}
+//					}
+//
+//					if (!flag) {
+//						dtm.addRow(new Object[] { menu.getMenuId(), menu.getMenuName(), menu.getMenuCost(), 1 });
+//					} else {
+//						int count = (int) dtm.getValueAt(i, 3);
+//						if (count >= 9) {
+//							JOptionPane.showMessageDialog(null, "각 수량은 9개를 초과할수 없습니다", "경고",
+//									JOptionPane.WARNING_MESSAGE);
+//						} else {
+//							count += 1; // 버튼 눌린 횟수
+//							dtm.setValueAt(count, i, 3);
+//
+//						}
+//
+//					}
+//				}
+//
+//			});
+//		}
+//
+//		for (int i = 0; i < foodList.size(); i++) {
+//
+//			Image C_F_Image = new ImageIcon(foodList.get(i)).getImage().getScaledInstance(175, 175,
+//					Image.SCALE_REPLICATE);
+//
+//			ImageIcon USE_F_Image = new ImageIcon(C_F_Image);
+//
+//			JButton fbtn = new JButton(USE_F_Image);
+//
+//			F_panel.add(fbtn).setPreferredSize(new Dimension(175, 175));
+//
+//			MenuVO menu = foodMenuList.get(i);
+//
+//			fbtn.addActionListener(new ActionListener() {
+//
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					boolean flag = false;
+//					int i = 0;
+//
+//					for (i = 0; i < dtm.getRowCount(); i++) {
+//						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
+//							flag = true;
+//							break;
+//						}
+//					}
+//
+//					if (!flag) {
+//						dtm.addRow(new Object[] { menu.getMenuId(), menu.getMenuName(), menu.getMenuCost(), 1 });
+//					} else {
+//						int count = (int) dtm.getValueAt(i, 3);
+//						if (count >= 9) {
+//							JOptionPane.showMessageDialog(null, "각 수량은 9개를 초과할수 없습니다", "경고",
+//									JOptionPane.WARNING_MESSAGE);
+//						} else {
+//							count += 1; // 버튼 눌린 횟수
+//							dtm.setValueAt(count, i, 3);
+//
+//						}
+//
+//					}
+//				}
+//
+//			});
+//		}
+//
+//		for (int i = 0; i < mdList.size(); i++) {
+//			Image C_M_Image = new ImageIcon(mdList.get(i)).getImage().getScaledInstance(175, 175,
+//					Image.SCALE_REPLICATE);
+//
+//			ImageIcon USE_M_Image = new ImageIcon(C_M_Image);
+//
+//			JButton mbtn = new JButton(USE_M_Image);
+//
+//			M_panel.add(mbtn).setPreferredSize(new Dimension(175, 175));
+//
+//			MenuVO menu = mdMenuList.get(i);
+//
+//			mbtn.addActionListener(new ActionListener() {
+//
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					boolean flag = false;
+//					int i = 0;
+//
+//					for (i = 0; i < dtm.getRowCount(); i++) {
+//						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
+//							flag = true;
+//							break;
+//						}
+//					}
+//
+//					if (!flag) {
+//						dtm.addRow(new Object[] { menu.getMenuId(), menu.getMenuName(), menu.getMenuCost(), 1 });
+//					} else {
+//						int count = (int) dtm.getValueAt(i, 3);
+//						if (count >= 9) {
+//							JOptionPane.showMessageDialog(null, "각 수량은 9개를 초과할수 없습니다", "경고",
+//									JOptionPane.WARNING_MESSAGE);
+//						} else {
+//							count += 1; // 버튼 눌린 횟수
+//							dtm.setValueAt(count, i, 3);
+//
+//						}
+//
+//					}
+//				}
+//
+//			});
+//		}
 
-		for (int i = 0; i < drinkList.size(); i++) {
-
-			Image C_D_Image = new ImageIcon(drinkList.get(i)).getImage().getScaledInstance(175, 175,
-					Image.SCALE_REPLICATE);
-
-			ImageIcon USE_D_Image = new ImageIcon(C_D_Image);
-
-			JButton dbtn = new JButton(USE_D_Image);
-
-			D_panel.add(dbtn).setPreferredSize(new Dimension(175, 175));
-
-			MenuVO menu = drinkMenuList.get(i);
-
-			dbtn.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					boolean flag = false;
-					int i = 0;
-
-					// 테이블의 row를 한바퀴 돌면서 menuId가 있는지를 확인해서 있으면 flag를 true하고, break하는 코드
-					// 멈추는 곳이 i = 같은 menuId가 있는 row
-					for (i = 0; i < dtm.getRowCount(); i++) {
-						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
-							flag = true;
-							break;
-						}
-					}
-
-					if (!flag) {
-						dtm.addRow(new Object[] { menu.getMenuId(), menu.getMenuName(), menu.getMenuCost(), 1 });
-					} else {
-						int count = (int) dtm.getValueAt(i, 3);
-						if (count >= 9) {
-							JOptionPane.showMessageDialog(null, "각 수량은 9개를 초과할수 없습니다", "경고",
-									JOptionPane.WARNING_MESSAGE);
-						} else {
-							count += 1; // 버튼 눌린 횟수
-							dtm.setValueAt(count, i, 3);
-
-						}
-
-					}
-				}
-
-			});
-		}
-
-		for (int i = 0; i < foodList.size(); i++) {
-
-			Image C_F_Image = new ImageIcon(foodList.get(i)).getImage().getScaledInstance(175, 175,
-					Image.SCALE_REPLICATE);
-
-			ImageIcon USE_F_Image = new ImageIcon(C_F_Image);
-
-			JButton fbtn = new JButton(USE_F_Image);
-
-			F_panel.add(fbtn).setPreferredSize(new Dimension(175, 175));
-
-			MenuVO menu = foodMenuList.get(i);
-
-			fbtn.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					boolean flag = false;
-					int i = 0;
-
-					for (i = 0; i < dtm.getRowCount(); i++) {
-						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
-							flag = true;
-							break;
-						}
-					}
-
-					if (!flag) {
-						dtm.addRow(new Object[] { menu.getMenuId(), menu.getMenuName(), menu.getMenuCost(), 1 });
-					} else {
-						int count = (int) dtm.getValueAt(i, 3);
-						if (count >= 9) {
-							JOptionPane.showMessageDialog(null, "각 수량은 9개를 초과할수 없습니다", "경고",
-									JOptionPane.WARNING_MESSAGE);
-						} else {
-							count += 1; // 버튼 눌린 횟수
-							dtm.setValueAt(count, i, 3);
-
-						}
-
-					}
-				}
-
-			});
-		}
-
-		for (int i = 0; i < mdList.size(); i++) {
-			Image C_M_Image = new ImageIcon(mdList.get(i)).getImage().getScaledInstance(175, 175,
-					Image.SCALE_REPLICATE);
-
-			ImageIcon USE_M_Image = new ImageIcon(C_M_Image);
-
-			JButton mbtn = new JButton(USE_M_Image);
-
-			M_panel.add(mbtn).setPreferredSize(new Dimension(175, 175));
-
-			MenuVO menu = mdMenuList.get(i);
-
-			mbtn.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					boolean flag = false;
-					int i = 0;
-
-					for (i = 0; i < dtm.getRowCount(); i++) {
-						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
-							flag = true;
-							break;
-						}
-					}
-
-					if (!flag) {
-						dtm.addRow(new Object[] { menu.getMenuId(), menu.getMenuName(), menu.getMenuCost(), 1 });
-					} else {
-						int count = (int) dtm.getValueAt(i, 3);
-						if (count >= 9) {
-							JOptionPane.showMessageDialog(null, "각 수량은 9개를 초과할수 없습니다", "경고",
-									JOptionPane.WARNING_MESSAGE);
-						} else {
-							count += 1; // 버튼 눌린 횟수
-							dtm.setValueAt(count, i, 3);
-
-						}
-
-					}
-				}
-
-			});
-		}
-
+		// 아래 패널
+		JButton btn_drink = new OrderBtn1("음료");
+		JButton btn_Food = new OrderFoodBtn("푸드", menu_panel);
+		JButton btn_M = new OrderBtn1("MD");
+		JButton btn_tocan = new OrderBtn1("전체 취소");
+		JButton btn_pickdel = new OrderBtn1("선택 취소");
+		JButton btn_plus = new OrderBtn2("+");
+		JButton btn_minus = new OrderBtn2("-");
+		
+		/*
 		JButton btn_drink = new JButton("음료");
 		btn_drink.setPreferredSize(new Dimension(90, 90));
 		JButton btn_Food = new JButton("푸드");
@@ -260,14 +284,16 @@ public class OrderView {
 		btn_tocan.setPreferredSize(new Dimension(90, 90));
 		JButton btn_pickdel = new JButton("선택 취소");
 		btn_pickdel.setPreferredSize(new Dimension(90, 90));
+		
+		
 		JButton btn_plus = new JButton("+");
 		btn_plus.setPreferredSize(new Dimension(50, 50));
 		JButton btn_minus = new JButton("-");
 		btn_minus.setPreferredSize(new Dimension(50, 50));
-
+*/
 		// + - 크기 조절
-		btn_plus.setFont(new Font("맑은고딕", Font.BOLD, 25));
-		btn_minus.setFont(new Font("맑은고딕", Font.BOLD, 25));
+//		btn_plus.setFont(new Font("맑은고딕", Font.BOLD, 25));
+//		btn_minus.setFont(new Font("맑은고딕", Font.BOLD, 25));
 
 		// 버튼 간격을 위한 임시
 		JButton temp1 = new JButton();
@@ -286,9 +312,10 @@ public class OrderView {
 		temp1.setOpaque(false);
 		temp2.setOpaque(false);
 
-		JButton btn_pay = new JButton("결제");
-		btn_pay.setPreferredSize(new Dimension(90, 90));
-
+		JButton btn_pay = new OrderBtn1("결제");
+//		btn_pay.setPreferredSize(new Dimension(90, 90));
+		
+		// 아래패널
 		btn_drink.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -296,12 +323,14 @@ public class OrderView {
 			}
 		});
 
+		/*
 		btn_Food.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				((CardLayout) menu_panel.getLayout()).show(menu_panel, "Food");
 			}
 		});
+		*/
 
 		btn_M.addActionListener(new ActionListener() {
 			@Override
