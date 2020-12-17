@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.component.btn.MenuBtnEnum;
+import main.component.button.MenuBtnEnum;
 import main.component.label.SidePanelTitleLabel;
 
 public class SideUpPanel extends JPanel {

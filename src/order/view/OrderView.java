@@ -21,8 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import common.model.MenuVO;
-import main.component.btn.MenuBtnEnum;
+import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 import order.dao.MenuDao;
 import order.dao.MenuDaoImpl;
