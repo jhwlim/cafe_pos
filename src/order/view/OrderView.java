@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import common.model.MenuVO;
 import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 import order.dao.MenuDao;
@@ -32,29 +33,6 @@ public class OrderView {
 
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.ORDER);
-		/*
-		 * 1. 기본 패널을 만든다 <- 기본 패널이다.
-		 * 
-		 * 2. 기본 패널 위에 카드 레이아웃으로 돌릴 메뉴 패널을 만든다. (사이즈 조절 및 위치조절? 방법) 2-1. 음료, 푸드, MD 패널을
-		 * 각각 만들어서 각각 버튼을 넣어준다 2-2. 버튼을 넣어준 3개의 패널을 겹쳐서 메뉴 패널에 붙인다.
-		 * 
-		 * 3. 기본 패널 중간 부분에 주문 확인 패널을 넣는다(어떤 방식인지 아직 더 봐야함)
-		 * 
-		 * 4. 기본 패널 하단에 버튼을 단다.(5가지) 4-1 각 버튼을 누르면 액션리스너로 카드레이아웃에 담긴 패널을 보여준다 음료,푸드,MD
-		 * <- 카드 레이아웃만 변하게 해주고 결제 및 이전으로는 <- 우측 메뉴 바 처럼 만들어도 가능하다
-		 *
-		 * -----------------------------------------------------------------------------
-		 * -----↑완
-		 * 
-		 * ↓(목요일 이전까지 생각 및 구성을 해야함.) 5. 결제 페이지를 기본 패널 위의 새로운 패널로 전체 덮을것이 좋을지? 결제 페이지를 기본
-		 * 패널 페이지 중앙에서 상단 부분 패널로 덮을것인지?
-		 * 
-		 * 6. 나머지는 이번주 안으로 더 구상 및 보완예정.
-		 * 
-		 * 7. 결제 페이지 구성
-		 * 
-		 * 
-		 */
 
 		panel.setBackground(Color.red);// 중앙 색
 
@@ -68,8 +46,6 @@ public class OrderView {
 
 		JPanel B_panel = new JPanel();// 하단 패널 버튼
 
-//		JPanel P_panel = new JPanel(); // 결제 페이지
-
 		// 상단부
 		menu_panel.setBackground(Color.WHITE);
 		panel.add(menu_panel, BorderLayout.NORTH);
@@ -78,7 +54,6 @@ public class OrderView {
 		menu_panel.add(D_panel, "Drink");
 		menu_panel.add(F_panel, "Food");
 		menu_panel.add(M_panel, "MD");
-//		menu_panel.add(P_panel, "Pay");
 
 		// 중간부
 		C_panel.setBackground(Color.WHITE);
@@ -88,7 +63,6 @@ public class OrderView {
 
 		String title[] = { "번호", "메뉴", "가격", "개수" };
 		String title2[] = {"메뉴", "가격", "개수"};
-//		String data[][] = new String[0][3];
 
 		DefaultTableModel dtm = new DefaultTableModel(title, 0) {
 			public boolean isCellEditable(int row, int column) {
@@ -126,10 +100,8 @@ public class OrderView {
 		B_panel.setPreferredSize(new Dimension(0, 100));
 
 		// panel에 작업하는게 왼쪽 영역에 표시됨.
-//		BorderLayout Border = new BorderLayout();// 기본 레이아웃(임시 좌표용)
 
 		MenuDao dao = MenuDaoImpl.getInstance();
-//		List<MenuVO> menus = dao.selectAll();
 		List<String> drinkList = dao.selectByCategory("drink");
 		List<String> mdList = dao.selectByCategory("md");
 		List<String> foodList = dao.selectByCategory("food");
@@ -138,9 +110,6 @@ public class OrderView {
 		List<MenuVO> foodMenuList = dao.selectAllByCategory("food");
 		List<MenuVO> mdMenuList = dao.selectAllByCategory("md");
 
-//		boolean[] d_checks = new boolean[drinkMenuList.size()];
-//		boolean[] checks = new boolean[foodMenuList.size()];
-//		boolean[] m_checks = new boolean[mdMenuList.size()];
 
 		for (int i = 0; i < drinkList.size(); i++) {
 
@@ -210,8 +179,6 @@ public class OrderView {
 					boolean flag = false;
 					int i = 0;
 
-					// 테이블의 row를 한바퀴 돌면서 menuId가 있는지를 확인해서 있으면 flag를 true하고, break하는 코드
-					// 멈추는 곳이 i = 같은 menuId가 있는 row
 					for (i = 0; i < dtm.getRowCount(); i++) {
 						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
 							flag = true;
@@ -257,8 +224,6 @@ public class OrderView {
 					boolean flag = false;
 					int i = 0;
 
-					// 테이블의 row를 한바퀴 돌면서 menuId가 있는지를 확인해서 있으면 flag를 true하고, break하는 코드
-					// 멈추는 곳이 i = 같은 menuId가 있는 row
 					for (i = 0; i < dtm.getRowCount(); i++) {
 						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
 							flag = true;
@@ -419,13 +384,7 @@ public class OrderView {
 					
 					total_su += (int)table.getValueAt(j, 3);
 					
-//					System.out.println(table.getValueAt(0,1));// 첫번째 메뉴
-//					System.out.println(table.getValueAt(0,2));// 첫번째 가격
-//					System.out.println(table.getValueAt(0,3));// 첫번째 수령
-					// 0,0 / 1,0 / 2,0 <- 불러오기 x
 				}
-				
-//				System.out.println(total_price);
 				
 				JButton btn_ok = new JButton("결제");
 				JButton btn_no = new JButton("취소");
@@ -435,9 +394,6 @@ public class OrderView {
 				subFr.add(top_panel, BorderLayout.NORTH);
 
 				cen_panel.setBackground(Color.white);
-//				cen_panel.add(notice);
-//				cen_panel.add(to_price);
-
 
 				for (int i = 0; i < table.getRowCount(); i++) {
 						
