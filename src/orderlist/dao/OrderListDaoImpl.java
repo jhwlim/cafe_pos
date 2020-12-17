@@ -20,9 +20,9 @@ import store.common.config.StoreConfig;
 import store.dao.StoreDao;
 import store.dao.StoreDaoImpl;
 
-public class OrderDaoImpl implements OrderDao {
+public class OrderListDaoImpl implements OrderListDao {
 
-	private static OrderDao dao;
+	private static OrderListDao dao;
 	
 	static HikariConfig config;
 	static HikariDataSource ds;
@@ -30,15 +30,15 @@ public class OrderDaoImpl implements OrderDao {
 	static {
 		config = new HikariConfig(Configs.getHikariConfigPath());
 		ds = new HikariDataSource(config);
-		dao = new OrderDaoImpl();
+		dao = new OrderListDaoImpl();
 	}
 	
-	private OrderDaoImpl() {
+	private OrderListDaoImpl() {
 	}
 	
-	public static OrderDao getInstance() {
+	public static OrderListDao getInstance() {
 		if (dao == null) {
-			dao = new OrderDaoImpl();
+			dao = new OrderListDaoImpl();
 		}
 		return dao;
 	}

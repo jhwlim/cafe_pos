@@ -10,7 +10,7 @@ import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 
-import main.controller.frame.SystemWindowListener;
+import orderlist.controller.window.SystemWindowListener;
 
 public class MainFrame extends JFrame {
 	

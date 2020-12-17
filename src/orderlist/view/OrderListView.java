@@ -3,7 +3,6 @@ package orderlist.view;
 import java.awt.CardLayout;
 import java.awt.Color;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.component.button.MenuBtnEnum;
@@ -24,9 +23,6 @@ public class OrderListView {
 	}
 	
 	public OrderListView() {
-		
-		// 패널 초기화
-		panel.removeAll();
 		
 		OrderListPanel orderListPanel = new OrderListPanel();
 		panel.add(orderListPanel);

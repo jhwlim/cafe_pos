@@ -1,4 +1,4 @@
-package main.controller.frame;
+package orderlist.controller.window;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -24,7 +24,7 @@ import orderlist.common.config.OrderListConfig;
 public class SystemWindowListener extends WindowAdapter {
 
 	private static final String prefix = "resources/settings/";
-	private static final String fileName = "test"; 
+	private static final String fileName = "orderlist.sav"; 
 
 	@Override
 	public void windowOpened(WindowEvent e) {
@@ -79,19 +79,6 @@ public class SystemWindowListener extends WindowAdapter {
 
 			List<OrdersDetailVO> list = OrderListConfig.getList();
 			JSONArray jsonArr = new JSONArray();
-
-			/*
-			// 테스트용 임시 코드 -> 삭제 예정 
-			for (int i = 0; i < 10; i++) {
-				OrdersDetailVO detail = new OrdersDetailVO();
-				detail.setOrderId(i);
-				detail.setMenuId(41 + i);
-				detail.setMenuName("아이스카페라떼");
-				detail.setMenuCount((int) (Math.random()*5) + 1);
-				detail.setDiscountedCost(0);
-				list.add(detail);
-			}
-			 */
 
 			for (int i = 0; i < list.size(); i++) {
 				JSONObject obj = new JSONObject();
