@@ -8,7 +8,6 @@ public class MenuVO {
 	private String menuImg;
 	
 	public MenuVO() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public MenuVO(int menuId, String menuName, int menuCost, String menuCategory, String menuImg) {

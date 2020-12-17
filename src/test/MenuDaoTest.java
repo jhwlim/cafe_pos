@@ -25,6 +25,7 @@ public static void main(String[] args) {
 			// 이미지 아이콘
 			try {
 				ImageIO.read(new File(menu.getMenuImg()));
+				System.out.println("테스트성공");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

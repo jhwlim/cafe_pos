@@ -25,7 +25,6 @@ public class EmployeeView {
 		panel = ContentPanel.getPanel(MenuBtnEnum.EMPLOYEE);
 		panel.setLayout(new CardLayout());
 		panel.setBackground(Color.white);
-	
 	}
 	
 	public static JPanel getContentPanel() {
@@ -37,11 +36,8 @@ public class EmployeeView {
 		// 패널 초기화
 		panel.removeAll();
 		
-		/////////////////////////////////////////////////
-		
 		EmpMenuPanel emp = EmpMenuPanel.getInstance();
 		panel.add(MENU_PAGE_NAME, emp);
-		
 		
 	}
 

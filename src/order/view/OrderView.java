@@ -4,100 +4,94 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import common.model.MenuVO;
 import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
+
+import order.component.button.OrderBtn1;
+import order.component.button.OrderBtn2;
+import order.component.button.OrderFoodBtn;
+import order.component.panel.OrderMenuPanel;
 import order.dao.MenuDao;
 import order.dao.MenuDaoImpl;
 
+// 구조
+// - 상단 -> 클래스 생성 (JPanel을 상속받는)
+// - 중간 -> 클래스 생성
+// - 하단 -> 클래스 생성
 public class OrderView {
 
 	public static JPanel panel;
 
-	private static DefaultTableModel dtm;
-
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.ORDER);
-		/*
-		 * 1. 기본 패널을 만든다 <- 기본 패널이다.
-		 * 
-		 * 2. 기본 패널 위에 카드 레이아웃으로 돌릴 메뉴 패널을 만든다. (사이즈 조절 및 위치조절? 방법) 2-1. 음료, 푸드, MD 패널을
-		 * 각각 만들어서 각각 버튼을 넣어준다 2-2. 버튼을 넣어준 3개의 패널을 겹쳐서 메뉴 패널에 붙인다.
-		 * 
-		 * 3. 기본 패널 중간 부분에 주문 확인 패널을 넣는다(어떤 방식인지 아직 더 봐야함)
-		 * 
-		 * 4. 기본 패널 하단에 버튼을 단다.(5가지) 4-1 각 버튼을 누르면 액션리스너로 카드레이아웃에 담긴 패널을 보여준다 음료,푸드,MD
-		 * <- 카드 레이아웃만 변하게 해주고 결제 및 이전으로는 <- 우측 메뉴 바 처럼 만들어도 가능하다
-		 *
-		 * -----------------------------------------------------------------------------
-		 * -----↑완
-		 * 
-		 * ↓(목요일 이전까지 생각 및 구성을 해야함.) 5. 결제 페이지를 기본 패널 위의 새로운 패널로 전체 덮을것이 좋을지? 결제 페이지를 기본
-		 * 패널 페이지 중앙에서 상단 부분 패널로 덮을것인지?
-		 * 
-		 * 6. 나머지는 이번주 안으로 더 구상 및 보완예정.
-		 * 
-		 * 7. 결제 페이지 구성
-		 * 
-		 * 8.메뉴 버튼 enum 화 (값이랑 가격 매겨줘야할듯.. )
-		 */
 
 		panel.setBackground(Color.red);// 중앙 색
 
 		panel.setLayout(new BorderLayout());
-		JPanel menu_panel = new JPanel(new CardLayout(10, 10));// 메인 패널 위에 메뉴패널?
-		JPanel D_panel = new JPanel();// 메인 패널 위에 메뉴패널
-		JPanel F_panel = new JPanel();// 메인 패널 위에 메뉴패널
-		JPanel M_panel = new JPanel();// 메인 패널 위에 메뉴패널
+		
+		// 필드 생성
+		String title[] = { "번호", "메뉴", "가격", "개수" };
+		
+		DefaultTableModel dtm = new DefaultTableModel(title, 0) {
+			public boolean isCellEditable(int row, int column) {
+				if (column >= 0) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		};
+		
+//		JPanel menu_panel = new JPanel(new CardLayout(10, 10));// 메인 패널 위에 메뉴패널?
+		JPanel menu_panel = new OrderMenuPanel(dtm);// 메인 패널 위에 메뉴패널?
+//		JPanel D_panel = new JPanel();// 메인 패널 위에 메뉴패널
+//		JPanel F_panel = new JPanel();// 메인 패널 위에 메뉴패널
+//		JPanel M_panel = new JPanel();// 메인 패널 위에 메뉴패널
 
 		JPanel C_panel = new JPanel();// 센터 패널(공사중)
 
 		JPanel B_panel = new JPanel();// 하단 패널 버튼
 
-		JPanel P_panel = new JPanel(); // 결제 페이지
-
 		// 상단부
-		menu_panel.setBackground(Color.WHITE);
+//		menu_panel.setBackground(Color.WHITE);						
 		panel.add(menu_panel, BorderLayout.NORTH);
-		menu_panel.setPreferredSize(new Dimension(0, 580));
-
-		menu_panel.add(D_panel, "Drink");
-		menu_panel.add(F_panel, "Food");
-		menu_panel.add(M_panel, "MD");
-		menu_panel.add(P_panel, "Pay");
+//		
+//		menu_panel.setPreferredSize(new Dimension(0, 580));
+//
+//		menu_panel.add(D_panel, "Drink");
+//		menu_panel.add(F_panel, "Food");
+//		menu_panel.add(M_panel, "MD");
 
 		// 중간부
 		C_panel.setBackground(Color.WHITE);
 		panel.add(C_panel, BorderLayout.CENTER);
 
-		// 필드 생성
+		
+//		String title2[] = {"메뉴", "가격", "개수"};
 
-//		DefaultTableModel Dtm = new DefaultTableModel(new String[] {"번호", "메뉴", "가격", "개수"}, 0){
-//			
-//			public boolean isCellEditable(int row, int column) {
-//				return false;
-//			}
-//			
-//		};
-//
-		String title[] = { "번호", "메뉴", "가격", "개수" };
-		String data[][] = new String[0][3];
+		
 
-		JTable table = new JTable(data, title);
+
+		JTable table = new JTable(dtm);
+
 		JScrollPane jsp = new JScrollPane(table);
 		C_panel.add(jsp);
 
@@ -105,18 +99,15 @@ public class OrderView {
 		table.getColumnModel().getColumn(1).setPreferredWidth(130);
 		table.getColumnModel().getColumn(2).setPreferredWidth(10);
 		table.getColumnModel().getColumn(3).setPreferredWidth(70);
-		
+
 		table.getTableHeader().setReorderingAllowed(false); // 컬럼 고정
-//		table.getTableHeader().setResizingAllowed(false); //사이즈 고정 
+		table.getTableHeader().setResizingAllowed(false); // 사이즈 고정
 		jsp.setPreferredSize(new Dimension(870, 200));
 
-		JSpinner spinner = new JSpinner();// 수량 화살표
-		spinner.setPreferredSize(new Dimension(30,30));
-		C_panel.add(spinner,BorderLayout.EAST);
+		JTable table2 = new JTable(table.getModel());
 		
-//		JButton cancel = new JButton("취소"); // 취소버튼
-//		cancel.setPreferredSize(new Dimension(50,50));
-//		C_panel.add(cancel,BorderLayout.EAST);
+		JScrollPane jsp2 = new JScrollPane(table2);
+
 		
 		// 하단부
 		B_panel.setBackground(Color.WHITE);
@@ -124,71 +115,222 @@ public class OrderView {
 		B_panel.setPreferredSize(new Dimension(0, 100));
 
 		// panel에 작업하는게 왼쪽 영역에 표시됨.
-//		BorderLayout Border = new BorderLayout();// 기본 레이아웃(임시 좌표용)
 
-		MenuDao dao = MenuDaoImpl.getInstance();
-//		List<MenuVO> menus = dao.selectAll();
-		List<String> drinkList = dao.selectByCategory("drink");
-		List<String> mdList = dao.selectByCategory("md");
-		List<String> foodList = dao.selectByCategory("food");
-	
+//		MenuDao dao = MenuDaoImpl.getInstance();
+//		List<String> drinkList = dao.selectByCategory("drink");
+//		List<String> mdList = dao.selectByCategory("md");
+//		List<String> foodList = dao.selectByCategory("food");
+//
+//		List<MenuVO> drinkMenuList = dao.selectAllByCategory("drink");
+//		List<MenuVO> foodMenuList = dao.selectAllByCategory("food");
+//		List<MenuVO> mdMenuList = dao.selectAllByCategory("md");
+
+//		for (int i = 0; i < drinkList.size(); i++) {
+//
+//			Image C_D_Image = new ImageIcon(drinkList.get(i)).getImage().getScaledInstance(175, 175,
+//					Image.SCALE_REPLICATE);
+//
+//			ImageIcon USE_D_Image = new ImageIcon(C_D_Image);
+//
+//			JButton dbtn = new JButton(USE_D_Image);
+//
+//			D_panel.add(dbtn).setPreferredSize(new Dimension(175, 175));
+//
+//			MenuVO menu = drinkMenuList.get(i);
+//
+//			dbtn.addActionListener(new ActionListener() {
+//
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					boolean flag = false;
+//					int i = 0;
+//
+//					// 테이블의 row를 한바퀴 돌면서 menuId가 있는지를 확인해서 있으면 flag를 true하고, break하는 코드
+//					// 멈추는 곳이 i = 같은 menuId가 있는 row
+//					for (i = 0; i < dtm.getRowCount(); i++) {
+//						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
+//							flag = true;
+//							break;
+//						}
+//					}
+//
+//					if (!flag) {
+//						dtm.addRow(new Object[] { menu.getMenuId(), menu.getMenuName(), menu.getMenuCost(), 1 });
+//					} else {
+//						int count = (int) dtm.getValueAt(i, 3);
+//						if (count >= 9) {
+//							JOptionPane.showMessageDialog(null, "각 수량은 9개를 초과할수 없습니다", "경고",
+//									JOptionPane.WARNING_MESSAGE);
+//						} else {
+//							count += 1; // 버튼 눌린 횟수
+//							dtm.setValueAt(count, i, 3);
+//
+//						}
+//
+//					}
+//				}
+//
+//			});
+//		}
+//
+//		for (int i = 0; i < foodList.size(); i++) {
+//
+//			Image C_F_Image = new ImageIcon(foodList.get(i)).getImage().getScaledInstance(175, 175,
+//					Image.SCALE_REPLICATE);
+//
+//			ImageIcon USE_F_Image = new ImageIcon(C_F_Image);
+//
+//			JButton fbtn = new JButton(USE_F_Image);
+//
+//			F_panel.add(fbtn).setPreferredSize(new Dimension(175, 175));
+//
+//			MenuVO menu = foodMenuList.get(i);
+//
+//			fbtn.addActionListener(new ActionListener() {
+//
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					boolean flag = false;
+//					int i = 0;
+//
+//					for (i = 0; i < dtm.getRowCount(); i++) {
+//						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
+//							flag = true;
+//							break;
+//						}
+//					}
+//
+//					if (!flag) {
+//						dtm.addRow(new Object[] { menu.getMenuId(), menu.getMenuName(), menu.getMenuCost(), 1 });
+//					} else {
+//						int count = (int) dtm.getValueAt(i, 3);
+//						if (count >= 9) {
+//							JOptionPane.showMessageDialog(null, "각 수량은 9개를 초과할수 없습니다", "경고",
+//									JOptionPane.WARNING_MESSAGE);
+//						} else {
+//							count += 1; // 버튼 눌린 횟수
+//							dtm.setValueAt(count, i, 3);
+//
+//						}
+//
+//					}
+//				}
+//
+//			});
+//		}
+//
+//		for (int i = 0; i < mdList.size(); i++) {
+//			Image C_M_Image = new ImageIcon(mdList.get(i)).getImage().getScaledInstance(175, 175,
+//					Image.SCALE_REPLICATE);
+//
+//			ImageIcon USE_M_Image = new ImageIcon(C_M_Image);
+//
+//			JButton mbtn = new JButton(USE_M_Image);
+//
+//			M_panel.add(mbtn).setPreferredSize(new Dimension(175, 175));
+//
+//			MenuVO menu = mdMenuList.get(i);
+//
+//			mbtn.addActionListener(new ActionListener() {
+//
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					boolean flag = false;
+//					int i = 0;
+//
+//					for (i = 0; i < dtm.getRowCount(); i++) {
+//						if (menu.getMenuId() == (int) dtm.getValueAt(i, 0)) {
+//							flag = true;
+//							break;
+//						}
+//					}
+//
+//					if (!flag) {
+//						dtm.addRow(new Object[] { menu.getMenuId(), menu.getMenuName(), menu.getMenuCost(), 1 });
+//					} else {
+//						int count = (int) dtm.getValueAt(i, 3);
+//						if (count >= 9) {
+//							JOptionPane.showMessageDialog(null, "각 수량은 9개를 초과할수 없습니다", "경고",
+//									JOptionPane.WARNING_MESSAGE);
+//						} else {
+//							count += 1; // 버튼 눌린 횟수
+//							dtm.setValueAt(count, i, 3);
+//
+//						}
+//
+//					}
+//				}
+//
+//			});
+//		}
+
+		// 아래 패널
+		JButton btn_drink = new OrderBtn1("음료");
+		JButton btn_Food = new OrderFoodBtn("푸드", menu_panel);
+		JButton btn_M = new OrderBtn1("MD");
+		JButton btn_tocan = new OrderBtn1("전체 취소");
+		JButton btn_pickdel = new OrderBtn1("선택 취소");
+		JButton btn_plus = new OrderBtn2("+");
+		JButton btn_minus = new OrderBtn2("-");
 		
-		
-		for (int i = 0; i < drinkList.size(); i++) {
-
-			Image C_D_Image = new ImageIcon(drinkList.get(i)).getImage().getScaledInstance(175, 175,
-					Image.SCALE_REPLICATE);
-
-			ImageIcon USE_D_Image = new ImageIcon(C_D_Image);
-
-			D_panel.add(new JButton(USE_D_Image)).setPreferredSize(new Dimension(175, 175));
-		}
-
-		for (int i = 0; i < mdList.size(); i++) {
-
-			Image C_F_Image = new ImageIcon(mdList.get(i)).getImage().getScaledInstance(175, 175,
-					Image.SCALE_REPLICATE);
-
-			ImageIcon USE_F_Image = new ImageIcon(C_F_Image);
-
-			F_panel.add(new JButton(USE_F_Image)).setPreferredSize(new Dimension(175, 175));
-		}
-
-		for (int i = 0; i < foodList.size(); i++) {
-			Image C_M_Image = new ImageIcon(foodList.get(i)).getImage().getScaledInstance(175, 175,
-					Image.SCALE_REPLICATE);
-
-			ImageIcon USE_M_Image = new ImageIcon(C_M_Image);
-
-			M_panel.add(new JButton(USE_M_Image)).setPreferredSize(new Dimension(175, 175));
-		}
-		
-
+		/*
 		JButton btn_drink = new JButton("음료");
 		btn_drink.setPreferredSize(new Dimension(90, 90));
 		JButton btn_Food = new JButton("푸드");
 		btn_Food.setPreferredSize(new Dimension(90, 90));
 		JButton btn_M = new JButton("MD");
 		btn_M.setPreferredSize(new Dimension(90, 90));
-		JButton btn_first = new JButton("처음으로");
-		btn_first.setPreferredSize(new Dimension(90, 90));
-		JButton btn_pay = new JButton("결제");
-		btn_pay.setPreferredSize(new Dimension(90, 90));
+		JButton btn_tocan = new JButton("전체 취소");
+		btn_tocan.setPreferredSize(new Dimension(90, 90));
+		JButton btn_pickdel = new JButton("선택 취소");
+		btn_pickdel.setPreferredSize(new Dimension(90, 90));
+		
+		
+		JButton btn_plus = new JButton("+");
+		btn_plus.setPreferredSize(new Dimension(50, 50));
+		JButton btn_minus = new JButton("-");
+		btn_minus.setPreferredSize(new Dimension(50, 50));
+*/
+		// + - 크기 조절
+//		btn_plus.setFont(new Font("맑은고딕", Font.BOLD, 25));
+//		btn_minus.setFont(new Font("맑은고딕", Font.BOLD, 25));
 
+		// 버튼 간격을 위한 임시
+		JButton temp1 = new JButton();
+		temp1.setPreferredSize(new Dimension(90, 90));
+		JButton temp2 = new JButton();
+		temp2.setPreferredSize(new Dimension(90, 90));
+
+		temp1.setBorderPainted(false);
+		temp1.setContentAreaFilled(false);
+		temp1.setFocusPainted(false);
+
+		temp2.setBorderPainted(false);
+		temp2.setContentAreaFilled(false);
+		temp2.setFocusPainted(false);
+
+		temp1.setOpaque(false);
+		temp2.setOpaque(false);
+
+		JButton btn_pay = new OrderBtn1("결제");
+//		btn_pay.setPreferredSize(new Dimension(90, 90));
+		
+		// 아래패널
 		btn_drink.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				((CardLayout) menu_panel.getLayout()).show(menu_panel, "Drink");
 			}
 		});
 
+		/*
 		btn_Food.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				((CardLayout) menu_panel.getLayout()).show(menu_panel, "Food");
 			}
 		});
+		*/
 
 		btn_M.addActionListener(new ActionListener() {
 			@Override
@@ -196,10 +338,11 @@ public class OrderView {
 				((CardLayout) menu_panel.getLayout()).show(menu_panel, "MD");
 			}
 		});
-		btn_first.addActionListener(new ActionListener() {
+		btn_tocan.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				((CardLayout) menu_panel.getLayout()).first(menu_panel);
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setNumRows(0);
 			}
 		});
 		btn_pay.addActionListener(new ActionListener() {
@@ -208,16 +351,134 @@ public class OrderView {
 				((CardLayout) menu_panel.getLayout()).show(menu_panel, "Pay");
 			}
 		});
+		btn_pickdel.addActionListener(new ActionListener() {
 
-		JButton btn99 = new JButton("테스트");
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int rowindex = table.getSelectedRow();
+				if (rowindex == -1)
+					return;
+				dtm.removeRow(rowindex);
+			}
+		});
+
+		btn_plus.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+				int col = 3;
+				int count = (int) table.getValueAt(row, col);
+
+				if (count < 9) {
+					table.setValueAt(count + 1, row, col);
+				}
+			}
+		});
+
+		btn_minus.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+				int col = 3;
+				int count = (int) table.getValueAt(row, col);
+
+				if (count > 1) {
+					table.setValueAt(count - 1, row, col);
+				}
+			}
+		});
+
+		btn_pay.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				JFrame subFr = new JFrame("결제");
+				subFr.setSize(600, 300);
+				subFr.setLocationRelativeTo(null);
+				subFr.setVisible(true);
+
+				JPanel top_panel = new JPanel();
+				JPanel bot_panel = new JPanel();
+				JPanel cen_panel = new JPanel();
+
+				int total_price = 0;
+				int total_su = 0;
+				
+				for (int j = 0; j < table.getRowCount(); j++) {
+					
+					total_price += (int)table.getValueAt(j,2) * (int)table.getValueAt(j,3);
+					
+					total_su += (int)table.getValueAt(j, 3);
+					
+				}
+				
+				JButton btn_ok = new JButton("결제");
+				JButton btn_no = new JButton("취소");
+
+				top_panel.setBorder(BorderFactory.createTitledBorder("결제 페이지"));
+				top_panel.setBackground(Color.white);
+				subFr.add(top_panel, BorderLayout.NORTH);
+
+				cen_panel.setBackground(Color.white);
+
+				for (int i = 0; i < table.getRowCount(); i++) {
+						
+				}
+				
+				jsp2.setPreferredSize(new Dimension(400, 150));
+				
+				cen_panel.add(jsp2);
+				
+				
+				JLabel total_pri = new JLabel("총 금액 : " + String.valueOf(total_price));
+				JLabel total_ea = new JLabel("총 갯수 : " + String.valueOf(total_su));
+				cen_panel.add(total_pri);
+				cen_panel.add(total_ea);
+				
+				
+				subFr.add(cen_panel, BorderLayout.CENTER);
+				
+				
+				bot_panel.setBackground(Color.white);
+				subFr.add(bot_panel, BorderLayout.SOUTH);
+				bot_panel.add(btn_ok);
+				bot_panel.add(btn_no);
+
+				// 결제 를 하면 넘어가는 단계 같이 해야할듯!
+				btn_ok.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+					}
+				});
+
+				btn_no.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						subFr.dispose();
+					}
+				});
+			}
+		});
 
 		B_panel.add(btn_drink);
 		B_panel.add(btn_Food);
 		B_panel.add(btn_M);
-		B_panel.add(btn_first);
-		B_panel.add(btn_pay);
 
-		P_panel.add(btn99);
+		B_panel.add(temp1);
+
+		B_panel.add(btn_plus);
+		B_panel.add(btn_minus);
+
+		B_panel.add(temp2);
+
+		B_panel.add(btn_pickdel);
+		B_panel.add(btn_tocan);
+		B_panel.add(btn_pay);
 
 	}
 

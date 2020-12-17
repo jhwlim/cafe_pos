@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import employee.common.font.EmpMenuTitleFont;
+import common.font.ContentMenuTitleFont;
 import main.component.panel.SideUpPanel;
 
 public class EmpMenuTitleLabel extends JLabel {
@@ -22,7 +22,7 @@ public class EmpMenuTitleLabel extends JLabel {
 	
 	public EmpMenuTitleLabel(String label) {
 		super(label, SwingConstants.CENTER);
-		super.setFont(new EmpMenuTitleFont());
+		super.setFont(new ContentMenuTitleFont());
 		super.setForeground(new Color(COLOR));
 //		super.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		super.setVerticalTextPosition(CENTER);

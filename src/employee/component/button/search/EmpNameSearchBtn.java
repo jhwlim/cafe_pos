@@ -4,7 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JButton;
 
-import employee.controller.button.EmpSearchBtnClickListener;
+import employee.controller.button.search.EmpSearchBtnClickListener;
 
 public class EmpNameSearchBtn extends JButton {
 	
