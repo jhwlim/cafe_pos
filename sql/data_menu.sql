@@ -1,154 +1,151 @@
--- menu ¸®½ºÆ®
-INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, '¾ÆÀÌ½º¾Æ¸Ş¸®Ä«³ë', 2500, 'drink', '/resources/img/main/logo.png');
+-- menu ë¦¬ìŠ¤íŠ¸
+INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
+VALUES (menu_seq.nextval, 'ë‚˜ì´íŠ¸ë¡œì½œë“œë¸Œë£¨', 5500, 'drink', 7, 'resources/img/drink/ë‚˜ì´íŠ¸ë¡œì½œë“œë¸Œë£¨.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '³ªÀÌÆ®·ÎÄİµåºê·ç', 5500, 'drink', 7, 'resources/img/drink/³ªÀÌÆ®·ÎÄİµåºê·ç.jpg');
+VALUES (menu_seq.nextval, 'ë°”ë‹ë¼í¬ë¦¼í”„ë¼í‘¸ì¹˜ë…¸', 6000, 'drink', 7, 'resources/img/drink/ë°”ë‹ë¼í¬ë¦¼í”„ë¼í‘¸ì¹˜ë…¸.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¹Ù´Ò¶óÅ©¸²ÇÁ¶óÇªÄ¡³ë', 6000, 'drink', 7, 'resources/img/drink/¹Ù´Ò¶óÅ©¸²ÇÁ¶óÇªÄ¡³ë.jpg');
+VALUES (menu_seq.nextval, 'ì•„ì´ìŠ¤ì•„ë©”ë¦¬ì¹´ë…¸', 4000, 'drink', 7, 'resources/img/drink/ì•„ì´ìŠ¤ì•„ë©”ë¦¬ì¹´ë…¸.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¾ÆÀÌ½º¾Æ¸Ş¸®Ä«³ë', 4000, 'drink', 7, 'resources/img/drink/¾ÆÀÌ½º¾Æ¸Ş¸®Ä«³ë.jpg');
+VALUES (menu_seq.nextval, 'ì•„ì´ìŠ¤ì¹´ë¼ë©œë§ˆí‚¤ì•„ë˜', 5000, 'drink', 7, 'resources/img/drink/ì•„ì´ìŠ¤ì¹´ë¼ë©œë§ˆí‚¤ì•„ë˜.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¾ÆÀÌ½ºÄ«¶ó¸á¸¶Å°¾Æ¶Ç', 5000, 'drink', 7, 'resources/img/drink/¾ÆÀÌ½ºÄ«¶ó¸á¸¶Å°¾Æ¶Ç.jpg');
-
-INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¾ÆÀÌ½ºÄ«Æä¶ó¶¼', 4500, 'drink', 7, 'resources/img/drink/¾ÆÀÌ½ºÄ«Æä¶ó¶¼.jpg');
+VALUES (menu_seq.nextval, 'ì•„ì´ìŠ¤ì¹´í˜ë¼ë–¼', 4500, 'drink', 7, 'resources/img/drink/ì•„ì´ìŠ¤ì¹´í˜ë¼ë–¼.jpg');
 
 
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¾ÆÀÌ½ºÄ«ÇªÄ¡³ë', 4500, 'drink', 7, 'resources/img/drink/¾ÆÀÌ½ºÄ«ÇªÄ¡³ë.jpg');
+VALUES (menu_seq.nextval, 'ì•„ì´ìŠ¤ì¹´í‘¸ì¹˜ë…¸', 4500, 'drink', 7, 'resources/img/drink/ì•„ì´ìŠ¤ì¹´í‘¸ì¹˜ë…¸.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¾ÆÆ÷°¡Åä', 6000, 'drink', 7, 'resources/img/drink/¾ÆÆ÷°¡Åä.jpg');
+VALUES (menu_seq.nextval, 'ì•„í¬ê°€í† ', 6000, 'drink', 7, 'resources/img/drink/ì•„í¬ê°€í† .jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¿¡½ºÇÁ·¹¼ÒÇÁ¶óÇªÄ¡³ë', 5500, 'drink', 7, 'resources/img/drink/¿¡½ºÇÁ·¹¼ÒÇÁ¶óÇªÄ¡³ë.jpg');
+VALUES (menu_seq.nextval, 'ì—ìŠ¤í”„ë ˆì†Œí”„ë¼í‘¸ì¹˜ë…¸', 5500, 'drink', 7, 'resources/img/drink/ì—ìŠ¤í”„ë ˆì†Œí”„ë¼í‘¸ì¹˜ë…¸.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ÀÚ¹ÙÄ¨ÇÁ¶óÇªÄ¡³ë', 6500, 'drink', 7, 'resources/img/drink/ÀÚ¹ÙÄ¨ÇÁ¶óÇªÄ¡³ë.jpg');
+VALUES (menu_seq.nextval, 'ìë°”ì¹©í”„ë¼í‘¸ì¹˜ë…¸', 6500, 'drink', 7, 'resources/img/drink/ìë°”ì¹©í”„ë¼í‘¸ì¹˜ë…¸.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'Äİµåºê·ç', 4500, 'drink', 7, 'resources/img/drink/Äİµåºê·ç.jpg');
+VALUES (menu_seq.nextval, 'ì½œë“œë¸Œë£¨', 4500, 'drink', 7, 'resources/img/drink/ì½œë“œë¸Œë£¨.jpg');
 
 
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ÇÖ¾Æ¸Ş¸®Ä«³ë', 4000, 'drink', 7, 'resources/img/drink/ÇÖ¾Æ¸Ş¸®Ä«³ë.jpg');
+VALUES (menu_seq.nextval, 'í•«ì•„ë©”ë¦¬ì¹´ë…¸', 4000, 'drink', 7, 'resources/img/drink/í•«ì•„ë©”ë¦¬ì¹´ë…¸.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ÇÖÄ«¶ó¸á¸¶Å°¾Æ¶Ç', 5000, 'drink', 7, 'resources/img/drink/ÇÖÄ«¶ó¸á¸¶Å°¾Æ¶Ç.jpg');
+VALUES (menu_seq.nextval, 'í•«ì¹´ë¼ë©œë§ˆí‚¤ì•„ë˜', 5000, 'drink', 7, 'resources/img/drink/í•«ì¹´ë¼ë©œë§ˆí‚¤ì•„ë˜.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ÇÖÄ«Æä¶ó¶¼', 4500, 'drink', 7, 'resources/img/drink/ÇÖÄ«Æä¶ó¶¼.jpg');
+VALUES (menu_seq.nextval, 'í•«ì¹´í˜ë¼ë–¼', 4500, 'drink', 7, 'resources/img/drink/í•«ì¹´í˜ë¼ë–¼.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ÇÖÄ«ÇªÄ¡³ë', 4500, 'drink', 7, 'resources/img/drink/ÇÖÄ«ÇªÄ¡³ë.jpg');
+VALUES (menu_seq.nextval, 'í•«ì¹´í‘¸ì¹˜ë…¸', 4500, 'drink', 7, 'resources/img/drink/í•«ì¹´í‘¸ì¹˜ë…¸.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'È­ÀÌÆ®Å¸ÀÌ°ÅÇÁ¶óÇªÄ¡³ë', 8000, 'drink', 7, 'resources/img/drink/È­ÀÌÆ®Å¸ÀÌ°ÅÇÁ¶óÇªÄ¡³ë.jpg');
+VALUES (menu_seq.nextval, 'í™”ì´íŠ¸íƒ€ì´ê±°í”„ë¼í‘¸ì¹˜ë…¸', 8000, 'drink', 7, 'resources/img/drink/í™”ì´íŠ¸íƒ€ì´ê±°í”„ë¼í‘¸ì¹˜ë…¸.jpg');
 
 ----------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, '±Û¶ó½º', 15000, 'md', 'resources/img/md/±Û¶ó½º.jpg');
+VALUES (menu_seq.nextval, 'ê¸€ë¼ìŠ¤', 15000, 'md', 'resources/img/md/ê¸€ë¼ìŠ¤.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, 'ºí·¢¸Ó±×', 18000, 'md', 'resources/img/md/ºí·¢¸Ó±×.jpg');
+VALUES (menu_seq.nextval, 'ë¸”ë™ë¨¸ê·¸', 18000, 'md', 'resources/img/md/ë¸”ë™ë¨¸ê·¸.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, 'È­ÀÌÆ®¸Ó±×', 18000, 'md', 'resources/img/md/È­ÀÌÆ®¸Ó±×.jpg');
+VALUES (menu_seq.nextval, 'í™”ì´íŠ¸ë¨¸ê·¸', 18000, 'md', 'resources/img/md/í™”ì´íŠ¸ë¨¸ê·¸.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, 'È­ÀÌÆ®ÅÒºí·¯', 30000, 'md', 'resources/img/md/È­ÀÌÆ®ÅÒºí·¯.jpg');
+VALUES (menu_seq.nextval, 'í™”ì´íŠ¸í…€ë¸”ëŸ¬', 30000, 'md', 'resources/img/md/í™”ì´íŠ¸í…€ë¸”ëŸ¬.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, '½Ç¹öÅÒºí·¯', 25000, 'md', 'resources/img/md/½Ç¹öÅÒºí·¯.jpg');
+VALUES (menu_seq.nextval, 'ì‹¤ë²„í…€ë¸”ëŸ¬', 25000, 'md', 'resources/img/md/ì‹¤ë²„í…€ë¸”ëŸ¬.jpg');
 
 
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, 'ºí·¢ÅÒºí·¯', 25000, 'md', 'resources/img/md/ºí·¢ÅÒºí·¯.jpg');
+VALUES (menu_seq.nextval, 'ë¸”ë™í…€ë¸”ëŸ¬', 25000, 'md', 'resources/img/md/ë¸”ë™í…€ë¸”ëŸ¬.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, 'ºí·¢ÄİµåÄÅ', 20000, 'md', 'resources/img/md/ºí·¢ÄİµåÄÅ.jpg');
+VALUES (menu_seq.nextval, 'ë¸”ë™ì½œë“œì»µ', 20000, 'md', 'resources/img/md/ë¸”ë™ì½œë“œì»µ.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, 'µ¥¹Ì¸Ó±×4°³ÀÔ', 24000, 'md', 'resources/img/md/µ¥¹Ì¸Ó±×4°³ÀÔ.jpg');
+VALUES (menu_seq.nextval, 'ë°ë¯¸ë¨¸ê·¸4ê°œì…', 24000, 'md', 'resources/img/md/ë°ë¯¸ë¨¸ê·¸4ê°œì….jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, 'µ¥¹Ì¸Ó±×2°³ÀÔ', 14000, 'md', 'resources/img/md/µ¥¹Ì¸Ó±×2°³ÀÔ.jpg');
+VALUES (menu_seq.nextval, 'ë°ë¯¸ë¨¸ê·¸2ê°œì…', 14000, 'md', 'resources/img/md/ë°ë¯¸ë¨¸ê·¸2ê°œì….jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_img)
-VALUES (menu_seq.nextval, '¿¡ÄÚÄÅ¼¼Æ®', 12000, 'md', 'resources/img/md/¿¡ÄÚÄÅ¼¼Æ®.jpg');
+VALUES (menu_seq.nextval, 'ì—ì½”ì»µì„¸íŠ¸', 12000, 'md', 'resources/img/md/ì—ì½”ì»µì„¸íŠ¸.jpg');
 
 
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¿øµÎµğÄ«ÆäÀÎÇÏ¿ì½º', 20000, 'md', 60, 'resources/img/md/¿øµÎµğÄ«ÆäÀÎÇÏ¿ì½º.jpg');
+VALUES (menu_seq.nextval, 'ì›ë‘ë””ì¹´í˜ì¸í•˜ìš°ìŠ¤', 20000, 'md', 60, 'resources/img/md/ì›ë‘ë””ì¹´í˜ì¸í•˜ìš°ìŠ¤.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¿øµÎº£¶õ´Ù', 18000, 'md', 60, 'resources/img/md/¿øµÎº£¶õ´Ù.jpg');
+VALUES (menu_seq.nextval, 'ì›ë‘ë² ë€ë‹¤', 18000, 'md', 60, 'resources/img/md/ì›ë‘ë² ë€ë‹¤.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¿øµÎº£·Î³ª', 18000, 'md', 60, 'resources/img/md/¿øµÎº£·Î³ª.jpg');
+VALUES (menu_seq.nextval, 'ì›ë‘ë² ë¡œë‚˜', 18000, 'md', 60, 'resources/img/md/ì›ë‘ë² ë¡œë‚˜.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¿øµÎ¿¡½ºÇÁ·¹¼Ò', 18000, 'md', 60, 'resources/img/md/¿øµÎ¿¡½ºÇÁ·¹¼Ò.jpg');
+VALUES (menu_seq.nextval, 'ì›ë‘ì—ìŠ¤í”„ë ˆì†Œ', 18000, 'md', 60, 'resources/img/md/ì›ë‘ì—ìŠ¤í”„ë ˆì†Œ.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¿øµÎÄÉ³Ä', 18000, 'md', 60, 'resources/img/md/¿øµÎÄÉ³Ä.jpg');
+VALUES (menu_seq.nextval, 'ì›ë‘ì¼€ëƒ', 18000, 'md', 60, 'resources/img/md/ì›ë‘ì¼€ëƒ.jpg');
 
 ----------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¹ĞÅ©ÄÉÀÌÅ©', 6500, 'food', 2, 'resources/img/food/¹ĞÅ©ÄÉÀÌÅ©.jpg');
+VALUES (menu_seq.nextval, 'ë°€í¬ì¼€ì´í¬', 6500, 'food', 2, 'resources/img/food/ë°€í¬ì¼€ì´í¬.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '¹Ù¿òÄíÇî', 35000, 'food', 2, 'resources/img/food/¹Ù¿òÄíÇî.jpg');
+VALUES (menu_seq.nextval, 'ë°”ì›€ì¿ í—¨', 35000, 'food', 2, 'resources/img/food/ë°”ì›€ì¿ í—¨.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'º§ºªÄÉÀÌÅ©', 6000, 'food', 2, 'resources/img/food/º§ºªÄÉÀÌÅ©.jpg');
+VALUES (menu_seq.nextval, 'ë²¨ë²³ì¼€ì´í¬', 6000, 'food', 2, 'resources/img/food/ë²¨ë²³ì¼€ì´í¬.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'º§ºªÈ¦ÄÉÀÌÅ©', 30000, 'food', 2, 'resources/img/food/º§ºªÈ¦ÄÉÀÌÅ©.jpg');
+VALUES (menu_seq.nextval, 'ë²¨ë²³í™€ì¼€ì´í¬', 30000, 'food', 2, 'resources/img/food/ë²¨ë²³í™€ì¼€ì´í¬.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ºí·çº£¸®¸ÓÇÉ', 4000, 'food', 3, 'resources/img/food/ºí·çº£¸®¸ÓÇÉ.jpg');
-
-
-
-INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ºí·çº£¸®º£ÀÌ±Û', 3500, 'food', 3, 'resources/img/food/ºí·çº£¸®º£ÀÌ±Û.jpg');
-
-INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, '½ºÆ®·Îº£¸®È¦ÄÉÀÌÅ©', 40000, 'food', 2, 'resources/img/food/½ºÆ®·Îº£¸®È¦ÄÉÀÌÅ©.jpg');
-
-INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ÃÊÄİ¸´¸ÓÇÉ', 4500, 'food', 3, 'resources/img/food/ÃÊÄİ¸´¸ÓÇÉ.jpg');
-
-INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ÃÊÄİ¸´½ºÄÜ', 4000, 'food', 3, 'resources/img/food/ÃÊÄİ¸´½ºÄÜ.jpg');
-
-INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ÃÊÄİ¸´ÄÉÀÌÅ©', 6500, 'food', 2, 'resources/img/food/ÃÊÄİ¸´ÄÉÀÌÅ©.jpg');
+VALUES (menu_seq.nextval, 'ë¸”ë£¨ë² ë¦¬ë¨¸í•€', 4000, 'food', 3, 'resources/img/food/ë¸”ë£¨ë² ë¦¬ë¨¸í•€.jpg');
 
 
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'ÃÊÄİ¸´È¦ÄÉÀÌÅ©', 35000, 'food', 2, 'resources/img/food/ÃÊÄİ¸´È¦ÄÉÀÌÅ©.jpg');
+VALUES (menu_seq.nextval, 'ë¸”ë£¨ë² ë¦¬ë² ì´ê¸€', 3500, 'food', 3, 'resources/img/food/ë¸”ë£¨ë² ë¦¬ë² ì´ê¸€.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'Ä¡Áîº£ÀÌ±Û', 3500, 'food', 3, 'resources/img/food/Ä¡Áîº£ÀÌ±Û.jpg');
+VALUES (menu_seq.nextval, 'ìŠ¤íŠ¸ë¡œë² ë¦¬í™€ì¼€ì´í¬', 40000, 'food', 2, 'resources/img/food/ìŠ¤íŠ¸ë¡œë² ë¦¬í™€ì¼€ì´í¬.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'Ä¡ÁîÄÉÀÌÅ©', 6500, 'food', 2, 'resources/img/food/Ä¡ÁîÄÉÀÌÅ©.jpg');
+VALUES (menu_seq.nextval, 'ì´ˆì½œë¦¿ë¨¸í•€', 4500, 'food', 3, 'resources/img/food/ì´ˆì½œë¦¿ë¨¸í•€.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'Å©·ç¾Æ»ó', 4500, 'food', 3, 'resources/img/food/Å©·ç¾Æ»ó.jpg');
+VALUES (menu_seq.nextval, 'ì´ˆì½œë¦¿ìŠ¤ì½˜', 4000, 'food', 3, 'resources/img/food/ì´ˆì½œë¦¿ìŠ¤ì½˜.jpg');
 
 INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
-VALUES (menu_seq.nextval, 'Å¬·¡½Ä½ºÄÜ', 4000, 'food', 3, 'resources/img/food/Å¬·¡½Ä½ºÄÜ.jpg');
+VALUES (menu_seq.nextval, 'ì´ˆì½œë¦¿ì¼€ì´í¬', 6500, 'food', 2, 'resources/img/food/ì´ˆì½œë¦¿ì¼€ì´í¬.jpg');
+
+
+
+INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
+VALUES (menu_seq.nextval, 'ì´ˆì½œë¦¿í™€ì¼€ì´í¬', 35000, 'food', 2, 'resources/img/food/ì´ˆì½œë¦¿í™€ì¼€ì´í¬.jpg');
+
+INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
+VALUES (menu_seq.nextval, 'ì¹˜ì¦ˆë² ì´ê¸€', 3500, 'food', 3, 'resources/img/food/ì¹˜ì¦ˆë² ì´ê¸€.jpg');
+
+INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
+VALUES (menu_seq.nextval, 'ì¹˜ì¦ˆì¼€ì´í¬', 6500, 'food', 2, 'resources/img/food/ì¹˜ì¦ˆì¼€ì´í¬.jpg');
+
+INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
+VALUES (menu_seq.nextval, 'í¬ë£¨ì•„ìƒ', 4500, 'food', 3, 'resources/img/food/í¬ë£¨ì•„ìƒ.jpg');
+
+INSERT INTO menus (menu_id, menu_name, menu_cost, menu_category, menu_expired_day, menu_img)
+VALUES (menu_seq.nextval, 'í´ë˜ì‹ìŠ¤ì½˜', 4000, 'food', 3, 'resources/img/food/í´ë˜ì‹ìŠ¤ì½˜.jpg');
