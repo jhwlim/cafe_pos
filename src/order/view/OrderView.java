@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import common.model.MenuVO;
 import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 import order.dao.MenuDao;
@@ -52,7 +53,6 @@ public class OrderView {
 		 * 6. 나머지는 이번주 안으로 더 구상 및 보완예정.
 		 * 
 		 * 7. 결제 페이지 구성
-		 * 
 		 * 
 		 */
 
