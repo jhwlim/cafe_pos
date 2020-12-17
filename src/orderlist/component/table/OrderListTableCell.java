@@ -8,6 +8,7 @@ import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
@@ -20,15 +21,18 @@ public class OrderListTableCell extends AbstractCellEditor implements TableCellE
 
 	public OrderListTableCell(JTable table) {
 		this.table = table;
-		button = new JButton("처리완료");
-
-		button.addActionListener(new ActionListener() {
+		JButton btn = new JButton("완료");
+		button = btn;
+		btn.setVisible(true);
+		btn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
+				
 				OrderListConfig.getList().remove(row);
-				((AbstractTableModel) table.getModel()).fireTableRowsDeleted(row, row+1);
+				
+				((AbstractTableModel) table.getModel()).fireTableDataChanged();				
 			}
 		});
 	}

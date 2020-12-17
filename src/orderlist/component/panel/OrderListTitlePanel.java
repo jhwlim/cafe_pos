@@ -33,40 +33,5 @@ public class OrderListTitlePanel extends JPanel {
 		label.setForeground(Color.white);
 		label.setVerticalAlignment(JLabel.CENTER);
 		add(label);
-		
-		/*
-		 * 테스트 코드 : 결재 버튼 구현시 참고
-		JPanel inputPanel = new JPanel();
-		inputPanel.setLayout(new GridLayout(2, 2));
-		inputPanel.add(new JLabel("메뉴번호"));
-		JTextField menuId = new JTextField();
-		inputPanel.add(menuId);
-		
-		inputPanel.add(new JLabel("수량"));
-		JTextField menuCount = new JTextField();
-		inputPanel.add(menuCount);
-		titlePanel.add(inputPanel, BorderLayout.CENTER);
-		
-		JButton addBtn = new JButton("추가");
-		titlePanel.add(addBtn, BorderLayout.WEST);
-		
-		List<OrdersDetailVO> list = new ArrayList<>();
-		addBtn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				OrdersDetailVO detail = new OrdersDetailVO();
-				detail.setMenuId(Integer.parseInt(menuId.getText()));
-				detail.setMenuCount(Integer.parseInt(menuCount.getText()));
-				list.add(detail);
-			}
-		});
-		
-		JButton btn = new JButton("결제");
-		titlePanel.add(btn, BorderLayout.EAST);
-		
-		btn.addActionListener(new OrderBtnClickListener(list));
-	
-		*/
 	}
 }

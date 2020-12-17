@@ -5,14 +5,14 @@ import java.util.List;
 
 import common.model.OrderVO;
 import common.model.OrdersDetailVO;
-import orderlist.dao.OrderListDao;
-import orderlist.dao.OrderListDaoImpl;
+import order.dao.OrderDao;
+import order.dao.OrderDaoImpl;
 
 public class OrderDaoTest {
 
 	public static void main(String[] args) {
 		
-		OrderListDao dao = OrderListDaoImpl.getInstance();
+		OrderDao dao = OrderDaoImpl.getInstance();
 		
 		List<OrdersDetailVO> details = new ArrayList<OrdersDetailVO>();
 		

@@ -55,7 +55,6 @@ public class SystemWindowListener extends WindowAdapter {
 					detail.setOrderDate(orderDate);
 					
 					list.add(detail);
-
 					OrderListConfig.setList(list);
 				}
 

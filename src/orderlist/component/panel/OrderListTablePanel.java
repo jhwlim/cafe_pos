@@ -31,11 +31,10 @@ public class OrderListTablePanel extends JPanel {
 	public void setComponents() {
 		JTable table = new JTable(new OrderListTableModel());
 		
-		OrderListTableCell olstc = new OrderListTableCell(table);
+//		OrderListTableCell olstc = new OrderListTableCell(table);
 		
-		
-		table.getColumn(table.getModel().getColumnName(5)).setCellEditor(olstc);
-		table.getColumn(table.getModel().getColumnName(5)).setCellRenderer(olstc);
+		table.getColumn(table.getModel().getColumnName(5)).setCellEditor(new OrderListTableCell(table));
+		table.getColumn(table.getModel().getColumnName(5)).setCellRenderer(new OrderListTableCell(table));
 		
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		

@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -22,10 +23,13 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import common.model.MenuVO;
+import common.model.OrdersDetailVO;
 import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 import order.dao.MenuDao;
 import order.dao.MenuDaoImpl;
+import order.dao.OrderDao;
+import order.dao.OrderDaoImpl;
 
 public class OrderView {
 
@@ -423,7 +427,21 @@ public class OrderView {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-
+						
+						List<OrdersDetailVO> list = new ArrayList<OrdersDetailVO>();
+						
+						for (int i = 0; i < table2.getRowCount(); i++) {
+							OrdersDetailVO detail = new OrdersDetailVO();
+							detail.setMenuId((int) table2.getValueAt(i, 0));
+							detail.setMenuCount((int) table2.getValueAt(i, 3));
+							list.add(detail);
+						
+						}
+						OrderDao dao = OrderDaoImpl.getInstance();
+						dao.insert(list);
+						btn_tocan.doClick();
+						
+						subFr.dispose();
 					}
 				});
 

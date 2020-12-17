@@ -1,4 +1,4 @@
-package orderlist.dao;
+package order.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -20,9 +20,9 @@ import store.common.config.StoreConfig;
 import store.dao.StoreDao;
 import store.dao.StoreDaoImpl;
 
-public class OrderListDaoImpl implements OrderListDao {
+public class OrderDaoImpl implements OrderDao {
 
-	private static OrderListDao dao;
+	private static OrderDao dao;
 	
 	static HikariConfig config;
 	static HikariDataSource ds;
@@ -30,15 +30,15 @@ public class OrderListDaoImpl implements OrderListDao {
 	static {
 		config = new HikariConfig(Configs.getHikariConfigPath());
 		ds = new HikariDataSource(config);
-		dao = new OrderListDaoImpl();
+		dao = new OrderDaoImpl();
 	}
 	
-	private OrderListDaoImpl() {
+	private OrderDaoImpl() {
 	}
 	
-	public static OrderListDao getInstance() {
+	public static OrderDao getInstance() {
 		if (dao == null) {
-			dao = new OrderListDaoImpl();
+			dao = new OrderDaoImpl();
 		}
 		return dao;
 	}
@@ -123,6 +123,7 @@ public class OrderListDaoImpl implements OrderListDao {
 			}
 		} finally {
 			try {
+				if (pstmt5 != null) pstmt5.close();
 				if (pstmt4 != null) pstmt4.close();
 				if (pstmt3 != null) pstmt3.close();
 				if (pstmt2 != null) pstmt2.close();
