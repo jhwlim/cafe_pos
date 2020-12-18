@@ -9,7 +9,7 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import main.component.btn.MenuBtnEnum;
+import main.component.button.MenuBtnEnum;
 
 public class ContentPanel extends JPanel {
 
@@ -20,7 +20,7 @@ public class ContentPanel extends JPanel {
 	static {
 		panel = new ContentPanel();
 		
-		panel.setLayout(new CardLayout(10, 10));
+		panel.setLayout(new CardLayout());
 		
 		cpMap = new HashMap<>();
 		

@@ -12,8 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.component.btn.MenuBtn;
-import main.component.btn.MenuBtnEnum;
+import main.component.button.MenuBtn;
+import main.component.button.MenuBtnEnum;
 import main.component.panel.ContentPanel;
 import main.controller.btn.MenuBtnClickListener;
 import stock.component.StockPanel;

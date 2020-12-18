@@ -25,8 +25,11 @@ public class MainFrame extends JFrame {
 		getContentPane().setBackground(BG_COLOR); // 백그라운드 색 지정
 		
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		setResizable(false);
+		
 		setLocationRelativeTo(null); // 프로그램을 윈도우 가운데 위치
-
+		//setLocation(-1000,100);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
