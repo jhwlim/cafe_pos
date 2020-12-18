@@ -77,7 +77,6 @@ public class MenuDaoImpl implements MenuDao {
 
 		return list;
 	}
-	
 
 	@Override
 	public List<String> selectByCategory(String category) {
@@ -116,6 +115,7 @@ public class MenuDaoImpl implements MenuDao {
 		
 		return list;
 	}
+
 	
 	@Override
 	public List<MenuVO> selectAllByCategory(String category) {
