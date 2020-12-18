@@ -4,6 +4,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -61,7 +62,8 @@ public class SystemWindowListener extends WindowAdapter {
 			}
 
 		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
+			System.out.println(prefix + fileName + " 파일을 찾을 수 없습니다.");
+//			e1.printStackTrace();
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
@@ -74,6 +76,11 @@ public class SystemWindowListener extends WindowAdapter {
 	public void windowClosing(WindowEvent e) {
 		BufferedWriter bw;
 		try {
+			File folder = new File(prefix);
+			if (!folder.exists()) {
+				folder.mkdir();
+			}
+			
 			bw = new BufferedWriter(new FileWriter(prefix + fileName));
 
 			List<OrdersDetailVO> list = OrderListConfig.getList();
