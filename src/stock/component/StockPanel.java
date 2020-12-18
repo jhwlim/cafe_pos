@@ -156,7 +156,7 @@ public class StockPanel extends JPanel{
 		//여기까지
 		
 		////////검색 눌렀을때 해당 결과만 보여줄 테이블
-		JTextField search1 = new JTextField("재고 이름 입력",20);
+		JTextField search1 = new JTextField(20);
 		btn2Panel.add(search1);
 		search1.setBounds(650, 100,200,40);
 		
@@ -285,7 +285,7 @@ public class StockPanel extends JPanel{
 		//여기까지
     	
 		// 윗쪽 재고테이블 검색시 해당 내용만 나오는 테이블
-		JTextField search2 = new JTextField("재고 이름 입력",20);
+		JTextField search2 = new JTextField(20);
 		btn3Panel.add(search2);
 		search2.setBounds(650, 100,200,40);
 		
