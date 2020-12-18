@@ -20,7 +20,7 @@ public class StoreConfig {
 	
 	private static final String STORE_ID = "STORE_ID";
 	
-	private static final int DEFAULT_STORE_ID = 0;
+	public static final int DEFAULT_STORE_ID = 0;
 	
 	
 	public static String getFilePath() {
