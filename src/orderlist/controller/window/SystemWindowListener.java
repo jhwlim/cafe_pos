@@ -4,6 +4,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -75,6 +76,11 @@ public class SystemWindowListener extends WindowAdapter {
 	public void windowClosing(WindowEvent e) {
 		BufferedWriter bw;
 		try {
+			File folder = new File(prefix);
+			if (!folder.exists()) {
+				folder.mkdir();
+			}
+			
 			bw = new BufferedWriter(new FileWriter(prefix + fileName));
 
 			List<OrdersDetailVO> list = OrderListConfig.getList();
