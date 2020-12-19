@@ -1,12 +1,14 @@
 package main.component.panel;
 
-import java.awt.CardLayout;
-import java.awt.Color;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import main.controller.TimerActionListener;
+import main.view.MainView;
 
 /*
  	# 프레임에 붙이는 패널 (1번 패널)
@@ -15,23 +17,29 @@ public class FramePanel extends JPanel {
 	
 	private static Map<FramePanelEnum, FramePanel> fpMap;
 	
+	static Timer timer;
+	
+	private static int WAITING_MILLI_SECS = 1400; 
+	
 	static {
 		fpMap = new HashMap<>();
+		
+		timer = new Timer(WAITING_MILLI_SECS, new TimerActionListener(MainView.getMainFrame()));
+		timer.start();
 		
 		for (FramePanelEnum fpe : FramePanelEnum.values()) {
 			FramePanel fp = new FramePanel();
 			fpMap.put(fpe, fp);
-		
+			
 			try {
 				Class.forName(fpe.classpath).getConstructor().newInstance();
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | NoSuchMethodException | SecurityException
 					| ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
-						
+			
 		}
 	}
 	
@@ -42,4 +50,7 @@ public class FramePanel extends JPanel {
 		return fpMap.get(fp);
 	}
 	
+	public static Timer getTimer() {
+		return timer;
+	}
 }
