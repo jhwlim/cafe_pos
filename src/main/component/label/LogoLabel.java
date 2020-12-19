@@ -10,10 +10,10 @@ import javax.swing.JLabel;
 
 public class LogoLabel extends JLabel {
 	
-	private static final String LOGO_IMG_PATH = "resources/img/main/logo.png";
+	private static final String LOGO_IMG_PATH = "resources/img/main/logo_java.png";
 	
-	private static final int LOGO_IMG_WIDTH = 300;
-	private static final int LOGO_IMG_HEIGHT = 300;
+	private static final int LOGO_IMG_WIDTH = 500;
+	private static final int LOGO_IMG_HEIGHT = 500;
 	
 	private static Image logoImg;
 	
