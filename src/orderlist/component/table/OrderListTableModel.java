@@ -5,7 +5,10 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import common.model.OrdersDetailVO;
+
 import orderlist.common.config.OrderListConfig;
+import orderlist.dao.OrderListDao;
+import orderlist.dao.OrderListDaoImpl;
 
 public class OrderListTableModel extends AbstractTableModel {
 
@@ -14,14 +17,16 @@ public class OrderListTableModel extends AbstractTableModel {
 			"메뉴번호", 
 			"메뉴이름", 
 			"주문수량", 
-			"주문시간", 
-			"비고"
+			"주문시간"
 	};
 
+	static OrderListDao dao = OrderListDaoImpl.getInstance();
+	
 	List<OrdersDetailVO> list; 
 	
-	public OrderListTableModel() {
-		list = OrderListConfig.getList();
+	
+	public OrderListTableModel(int orderId) {
+		this.list = dao.selectByOrderId(orderId);
 	}
 	
 	@Override
@@ -42,7 +47,7 @@ public class OrderListTableModel extends AbstractTableModel {
 	
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return columnIndex == 5;
+		return false;
 	}
 	
 	@Override
