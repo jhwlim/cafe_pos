@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import common.font.ContentMenuTitleFont;
-import main.component.panel.SideUpPanel;
+import main.component.panel.content.SideUpPanel;
 
 public class EmpMenuTitleLabel extends JLabel {
 	

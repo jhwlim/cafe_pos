@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import employee.view.EmployeeView;
 import main.component.button.MenuBtnEnum;
-import main.component.panel.ContentPanel;
+import main.component.panel.content.ContentPanel;
 
 public class EmpRegCancelBtnClickListener implements ActionListener {
 
