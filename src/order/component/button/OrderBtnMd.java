@@ -2,8 +2,8 @@ package order.component.button;
 
 import javax.swing.JPanel;
 
-import order.controller.button.OrderFoodBtnClickListener;
-import order.controller.button.OrderMdBtnClickListener;
+import order.controller.button.bottom.OrderFoodBtnClickListener;
+import order.controller.button.bottom.OrderMdBtnClickListener;
 
 public class OrderBtnMd extends OrderBtnSetBasic{
 

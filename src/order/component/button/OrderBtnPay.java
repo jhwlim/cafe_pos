@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import order.controller.button.OrderPayBtnClickListener;
+import order.controller.button.bottom.OrderPayBtnClickListener;
 
 public class OrderBtnPay extends JButton{
 

@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
-import order.controller.button.OrderMinusBtnClickListener;
-import order.controller.button.OrderPlusBtnClickListener;
+import order.controller.button.bottom.OrderMinusBtnClickListener;
+import order.controller.button.bottom.OrderPlusBtnClickListener;
 
 public class OrderBtnPlusMinus extends JButton{
 	

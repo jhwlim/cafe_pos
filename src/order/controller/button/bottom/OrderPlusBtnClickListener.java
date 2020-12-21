@@ -1,4 +1,4 @@
-package order.controller.button;
+package order.controller.button.bottom;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
-public class OrderMinusBtnClickListener implements ActionListener {
+public class OrderPlusBtnClickListener implements ActionListener {
 
 	JTable table;
 
-	public OrderMinusBtnClickListener(JTable table) {
+	public OrderPlusBtnClickListener(JTable table) {
 		this.table = table;
 	}
 
@@ -21,8 +21,9 @@ public class OrderMinusBtnClickListener implements ActionListener {
 		int col = 3;
 		int count = (int) table.getValueAt(row, col);
 
-		if (count > 1) {
-			table.setValueAt(count - 1, row, col);
+		if (count < 9) {
+			table.setValueAt(count + 1, row, col);
 		}
+
 	};
 }
