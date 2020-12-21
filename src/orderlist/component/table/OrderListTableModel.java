@@ -5,6 +5,8 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import common.model.OrdersDetailVO;
+import order.dao.OrderDao;
+import order.dao.OrderDaoImpl;
 import orderlist.common.config.OrderListConfig;
 
 public class OrderListTableModel extends AbstractTableModel {
@@ -14,14 +16,16 @@ public class OrderListTableModel extends AbstractTableModel {
 			"메뉴번호", 
 			"메뉴이름", 
 			"주문수량", 
-			"주문시간", 
-			"비고"
+			"주문시간"
 	};
 
+	static OrderDao dao = OrderDaoImpl.getInstance();
+	
 	List<OrdersDetailVO> list; 
 	
-	public OrderListTableModel() {
-		list = OrderListConfig.getList();
+	
+	public OrderListTableModel(int orderId) {
+		this.list = dao.selectByOrderId(orderId);
 	}
 	
 	@Override

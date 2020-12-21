@@ -36,26 +36,12 @@ public class SystemWindowListener extends WindowAdapter {
 			if (str != null) {
 				JSONParser parser = new JSONParser();
 				JSONArray jsonArr = (JSONArray) parser.parse(str);
-				List<OrdersDetailVO> list = new ArrayList<>();
+				List<Integer> list = new ArrayList<>();
 				for (int i = 0; i < jsonArr.size(); i++) {
 					JSONObject obj = (JSONObject) jsonArr.get(i);
 
-					OrdersDetailVO detail = new OrdersDetailVO();
 					int orderId = Integer.parseInt(obj.get("orderId").toString());
-					int menuId = Integer.parseInt(obj.get("menuId").toString());
-					String menuName = obj.get("menuName").toString();
-					int menuCount = Integer.parseInt(obj.get("menuCount").toString());
-					int discountedCost = Integer.parseInt(obj.get("discountedCost").toString());
-					Timestamp orderDate = Timestamp.valueOf(obj.get("orderDate").toString());
-					
-					detail.setOrderId(orderId);
-					detail.setMenuId(menuId);
-					detail.setMenuName(menuName);
-					detail.setMenuCount(menuCount);
-					detail.setDiscountedCost(discountedCost);
-					detail.setOrderDate(orderDate);
-					
-					list.add(detail);
+					list.add(orderId);
 					OrderListConfig.setList(list);
 				}
 
@@ -74,6 +60,7 @@ public class SystemWindowListener extends WindowAdapter {
 
 	@Override
 	public void windowClosing(WindowEvent e) {
+		System.out.println(OrderListConfig.getList());
 		BufferedWriter bw;
 		try {
 			File folder = new File(prefix);
@@ -83,21 +70,15 @@ public class SystemWindowListener extends WindowAdapter {
 			
 			bw = new BufferedWriter(new FileWriter(prefix + fileName));
 
-			List<OrdersDetailVO> list = OrderListConfig.getList();
+			List<Integer> list = OrderListConfig.getList();
 			JSONArray jsonArr = new JSONArray();
 
 			for (int i = 0; i < list.size(); i++) {
 				JSONObject obj = new JSONObject();
-
-				OrdersDetailVO detail = list.get(i);
-
-				obj.put("orderId", detail.getOrderId());
-				obj.put("menuId", detail.getMenuId());
-				obj.put("menuName", detail.getMenuName());
-				obj.put("menuCount", detail.getMenuCount());
-				obj.put("discountedCost", detail.getDiscountedCost());
-				obj.put("orderDate", detail.getOrderDate().toString());
-
+				
+				int orderId = list.get(i);
+				obj.put("orderId", orderId);
+			
 				jsonArr.add(obj);
 			}
 

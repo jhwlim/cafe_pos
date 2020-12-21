@@ -9,4 +9,5 @@ public interface OrderDao {
 	
 	public void insert(List<OrdersDetailVO> details);
 	
+	public List<OrdersDetailVO> selectByOrderId(int orderId);
 }

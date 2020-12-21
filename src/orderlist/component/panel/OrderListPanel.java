@@ -13,7 +13,12 @@ public class OrderListPanel extends JPanel {
 	private static final int X_MARGIN = 0;
 	private static final int Y_MARGIN = 0;
 
-	public OrderListPanel() {
+	int orderId;
+	
+	public OrderListPanel(int orderId) {
+		this.orderId = orderId;
+		
+		System.out.println("생성");
 		setDefaultConfig();
 		setComponents();
 	}
@@ -27,8 +32,11 @@ public class OrderListPanel extends JPanel {
 		OrderListTitlePanel titlePanel = new OrderListTitlePanel();
 		add(titlePanel, BorderLayout.NORTH);
 
-		OrderListTablePanel centerPanel = new OrderListTablePanel();
+		OrderListTablePanel centerPanel = new OrderListTablePanel(orderId);
 		add(centerPanel);
+		
+		OrderListBtnPanel btnPanel = new OrderListBtnPanel();
+		add(btnPanel, BorderLayout.SOUTH);
 	}
 
 }

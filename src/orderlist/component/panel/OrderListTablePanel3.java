@@ -29,13 +29,13 @@ public class OrderListTablePanel3 extends JPanel {
 	}
 	
 	public void setComponents() {
-		JTable table = new JTable(new OrderListTableModel());
+		JTable table = new JTable(new OrderListTableModel(5));
 		
 //		OrderListTableCell olstc = new OrderListTableCell(table);
-		
-		table.getColumn(table.getModel().getColumnName(5)).setCellEditor(new OrderListTableCell(table));
-		table.getColumn(table.getModel().getColumnName(5)).setCellRenderer(new OrderListTableCell(table));
-		
+//		
+//		table.getColumn(table.getModel().getColumnName(5)).setCellEditor(new OrderListTableCell(table));
+//		table.getColumn(table.getModel().getColumnName(5)).setCellRenderer(new OrderListTableCell(table));
+//		
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		
 		DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();

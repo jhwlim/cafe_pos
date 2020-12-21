@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -49,8 +50,6 @@ public class OrderDaoImpl implements OrderDao {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;		
-		PreparedStatement pstmt4 = null;		
-		PreparedStatement pstmt5 = null;		
 		ResultSet rs = null;
 		
 		int generatedKey = -1;
@@ -76,22 +75,11 @@ public class OrderDaoImpl implements OrderDao {
 			if (rs.next()) {
 				generatedKey = rs.getInt(1);
 			}
-			
-			String sql5 = "SELECT order_date FROM orders WHERE order_id = ?";
-			pstmt5 = conn.prepareStatement(sql5);
-			pstmt5.setInt(1, generatedKey);
-			rs = pstmt5.executeQuery();
-			Timestamp orderDate = null;
-			if (rs.next()) {
-				orderDate = rs.getTimestamp(1);
-			}
+			OrderListConfig.getList().add(generatedKey);
 			
 			String sql3 = "INSERT INTO orders_detail(order_id, menu_id, menu_count, discounted_cost) "
 					+ "VALUES (?, ?, ?, ?)";
 			pstmt3 = conn.prepareStatement(sql3);
-			
-			String sql4 = "SELECT menu_category, menu_name FROM menus WHERE menu_id = ?";
-			pstmt4 = conn.prepareStatement(sql4);
 			
 			for (int i = 0; i < details.size(); i++) {
 				OrdersDetailVO detail = details.get(i);
@@ -101,16 +89,6 @@ public class OrderDaoImpl implements OrderDao {
 				pstmt3.setInt(4, detail.getDiscountedCost());
 				pstmt3.executeUpdate();
 				
-				pstmt4.setInt(1, detail.getMenuId());
-				rs = pstmt4.executeQuery();
-				if (rs.next()) {
-					if (!rs.getString(1).equals("md")) {
-						detail.setOrderId(generatedKey);
-						detail.setMenuName(rs.getString("menu_name"));
-						detail.setOrderDate(orderDate);
-						OrderListConfig.getList().add(detail);
-					}
-				}
 			}
 
 			conn.commit();
@@ -123,8 +101,6 @@ public class OrderDaoImpl implements OrderDao {
 			}
 		} finally {
 			try {
-				if (pstmt5 != null) pstmt5.close();
-				if (pstmt4 != null) pstmt4.close();
 				if (pstmt3 != null) pstmt3.close();
 				if (pstmt2 != null) pstmt2.close();
 				if (pstmt != null) pstmt.close();
@@ -134,6 +110,64 @@ public class OrderDaoImpl implements OrderDao {
 			}
 			
 		}
+	}
+
+	@Override
+	public List<OrdersDetailVO> selectByOrderId(int orderId) {
+		List<OrdersDetailVO> list = new ArrayList<OrdersDetailVO>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			
+			Timestamp orderDate = null;
+			
+			String sql2 = "SELECT order_date FROM orders WHERE order_id = ?";
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.setInt(1, orderId);
+			
+			rs = pstmt2.executeQuery();
+			if (rs.next()) {
+				orderDate = rs.getTimestamp(1);
+			}
+			
+			String sql = "SELECT orders_detail.*, menus.menu_name\r\n"
+					+ "FROM orders_detail \r\n"
+					+ "INNER JOIN menus\r\n"
+					+ "ON orders_detail.menu_id = menus.menu_id "
+					+ "WHERE order_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, orderId);
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				OrdersDetailVO detail = new OrdersDetailVO();
+				detail.setMenuId(rs.getInt("menu_id"));
+				detail.setOrderId(rs.getInt("order_id"));
+				detail.setMenuCount(rs.getInt("menu_count"));
+				detail.setMenuName(rs.getString("menu_name"));
+				detail.setOrderDate(orderDate);
+				list.add(detail);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return list;
 	}
 	
 }

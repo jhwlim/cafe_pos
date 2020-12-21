@@ -11,6 +11,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
+import order.dao.OrderDao;
+import order.dao.OrderDaoImpl;
 import orderlist.component.table.OrderListTableModel;
 import orderlist.component.table.OrderListTableCell;
 
@@ -18,7 +20,11 @@ public class OrderListTablePanel extends JPanel {
 
 	public static final Color PANEL_COLOR = OrderListPanel.PANEL_COLOR;
 	
-	public OrderListTablePanel() {
+	int orderId;
+	
+	public OrderListTablePanel(int orderId) {
+		this.orderId = orderId;
+		
 		setDefaultConfig();
 		setComponents();
 	}
@@ -29,12 +35,7 @@ public class OrderListTablePanel extends JPanel {
 	}
 	
 	public void setComponents() {
-		JTable table = new JTable(new OrderListTableModel());
-		
-//		OrderListTableCell olstc = new OrderListTableCell(table);
-		
-		table.getColumn(table.getModel().getColumnName(5)).setCellEditor(new OrderListTableCell(table));
-		table.getColumn(table.getModel().getColumnName(5)).setCellRenderer(new OrderListTableCell(table));
+		JTable table = new JTable(new OrderListTableModel(orderId));
 		
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		
