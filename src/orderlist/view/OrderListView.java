@@ -45,10 +45,15 @@ public class OrderListView {
 		Date currentTime = new Date();
 		String dTime = formatter.format(currentTime);
 		JLabel time = new JLabel("현재 시간 : " + String.valueOf(dTime));
-		
+
 		JPanel top_Panel = new OrderListTopPanel("주문대기 확인");
 
-		top_Panel.add(time);
+		JLabel time2 = new OrderListTime();
+		
+		
+		
+//		top_Panel.add(time);
+		top_Panel.add(time2);
 	
 		
 		JPanel cardPanel = new JPanel(new CardLayout());
@@ -60,7 +65,6 @@ public class OrderListView {
 		JPanel right_Panel = new OrderListSidePanel();
 
 		JPanel bot_Panel = new OrderListBottomPanel();
-
 		JButton btn_Prev = new OrderListButton("이전으로");
 		JButton btn_Next = new OrderListButton("다음으로");
 
