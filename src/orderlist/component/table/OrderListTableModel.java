@@ -46,7 +46,7 @@ public class OrderListTableModel extends AbstractTableModel {
 	
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return columnIndex == 5;
+		return false;
 	}
 	
 	@Override

@@ -8,7 +8,6 @@ public class OrderListBottomPanel extends JPanel{
 
 	public OrderListBottomPanel() {
 		setBackground(Color.white);
-		
 	}
 	
 }

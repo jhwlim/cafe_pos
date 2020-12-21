@@ -10,7 +10,6 @@ public class OrderListTopPanel extends JPanel {
 	public OrderListTopPanel(String panelName) {
 		setBorder(BorderFactory.createTitledBorder(panelName));
 		setBackground(Color.white);
-
 	}
 
 }

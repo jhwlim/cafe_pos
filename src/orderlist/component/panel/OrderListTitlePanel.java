@@ -15,22 +15,25 @@ public class OrderListTitlePanel extends JPanel {
 	public static final int WIDHT = 0;
 	public static final int HEIGHT = 80;
 	
-	public OrderListTitlePanel() {
+	int orderId;
+	
+	public OrderListTitlePanel(int orderId) {
+		this.orderId = orderId;
+		
 		setDefaultConfig();
 		setComponents();
 	}
 	
 	public void setDefaultConfig() {
 		setLayout(new FlowLayout(FlowLayout.CENTER));
-		setBackground(Color.green);
+		setBackground(Color.white);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	}
 	
 	public void setComponents() {
 		JLabel label = new JLabel();
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 50));
-		label.setText("대기 주문 목록");
-		label.setForeground(Color.pink);
+		label.setText("주문번호 " + orderId);
 		label.setVerticalAlignment(JLabel.CENTER);
 		add(label);
 	}

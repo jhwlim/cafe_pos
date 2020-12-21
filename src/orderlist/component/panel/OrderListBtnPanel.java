@@ -1,5 +1,6 @@
 package orderlist.component.panel;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -14,10 +15,11 @@ import orderlist.view.OrderListView;
 public class OrderListBtnPanel extends JPanel {
 	
 	public OrderListBtnPanel(int index) {
-		setLayout(new FlowLayout(FlowLayout.RIGHT));
+		setLayout(new BorderLayout());
+//		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		JButton btn = new JButton("완료");
 		btn.setPreferredSize(new Dimension(80, 50));
-		add(btn);
+		add(btn, BorderLayout.EAST);
 		
 		btn.addActionListener(new ActionListener() {
 			

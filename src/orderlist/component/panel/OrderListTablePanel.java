@@ -58,11 +58,7 @@ public class OrderListTablePanel extends JPanel {
 				break;
 			}
 			TableColumn col = table.getColumnModel().getColumn(i);
-			
-			if (i != 5) {
-				col.setCellRenderer(cellRenderer);
-			}
-			
+			col.setCellRenderer(cellRenderer);	
 			col.setPreferredWidth(width);
 		}
 		

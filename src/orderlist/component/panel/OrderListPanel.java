@@ -18,8 +18,7 @@ public class OrderListPanel extends JPanel {
 	
 	public OrderListPanel(int orderId, int index) {
 		this.orderId = orderId;
-		
-		System.out.println("생성");
+		this.index = index;
 		setDefaultConfig();
 		setComponents();
 	}
@@ -30,7 +29,7 @@ public class OrderListPanel extends JPanel {
 	}
 
 	public void setComponents() {
-		OrderListTitlePanel titlePanel = new OrderListTitlePanel();
+		OrderListTitlePanel titlePanel = new OrderListTitlePanel(orderId);
 		add(titlePanel, BorderLayout.NORTH);
 
 		OrderListTablePanel centerPanel = new OrderListTablePanel(orderId);
