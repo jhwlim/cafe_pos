@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import employee.component.button.menu.EmpMenuBtnEnum;
 import main.component.button.MenuBtnEnum;
-import main.component.panel.ContentPanel;
+import main.component.panel.content.ContentPanel;
 import store.component.button.menu.StoreMenuBtnEnum;
 
 public class StoreMenuClickListener implements ActionListener{

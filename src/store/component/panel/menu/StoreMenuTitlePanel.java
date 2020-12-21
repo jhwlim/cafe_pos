@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import common.font.SidePanelTitleLabelFont;
 import employee.component.label.menu.EmpMenuTitleLabel;
-import main.component.panel.SideUpPanel;
+import main.component.panel.content.SideUpPanel;
 import store.component.label.menu.StoreMenuTitleLabel;
 
 public class StoreMenuTitlePanel extends JPanel {

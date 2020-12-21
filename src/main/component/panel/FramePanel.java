@@ -19,7 +19,7 @@ public class FramePanel extends JPanel {
 	
 	static Timer timer;
 	
-	private static int WAITING_MILLI_SECS = 1400; 
+	private static int WAITING_MILLI_SECS = 2600; 
 	
 	static {
 		fpMap = new HashMap<>();

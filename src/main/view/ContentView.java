@@ -6,10 +6,10 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import main.component.button.MenuBtnEnum;
-import main.component.panel.ContentPanel;
 import main.component.panel.FramePanel;
 import main.component.panel.FramePanelEnum;
-import main.component.panel.SidePanel;
+import main.component.panel.content.ContentPanel;
+import main.component.panel.content.SidePanel;
 
 public class ContentView {
 	

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import main.component.panel.FramePanelEnum;
+import main.component.panel.menu.side.MainMenuSideCenterPanel;
 import main.view.MainView;
 
 public class MainBtnClickListener implements ActionListener {
@@ -21,6 +22,7 @@ public class MainBtnClickListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		MainMenuSideCenterPanel.getInstance().update();
 		((CardLayout) cardPanel.getLayout()).show(cardPanel, FramePanelEnum.MENU.toString());;
 	}
 	

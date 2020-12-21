@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 
 import main.component.button.MenuBtnEnum;
-import main.component.panel.ContentPanel;
 import main.component.panel.FramePanelEnum;
+import main.component.panel.content.ContentPanel;
 import main.view.ContentView;
 import main.view.MainView;
 
