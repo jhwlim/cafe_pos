@@ -20,7 +20,7 @@ public class StoreConfig {
 	
 	private static final String STORE_ID = "STORE_ID";
 	
-	private static final int DEFAULT_STORE_ID = 0;
+	public static final int DEFAULT_STORE_ID = 0;
 	
 	
 	public static String getFilePath() {
@@ -36,10 +36,15 @@ public class StoreConfig {
 			
 			BufferedReader br = new BufferedReader(new FileReader(prefix + fileName));
 			
-			JSONParser parser = new JSONParser();
-			JSONObject ob = (JSONObject) parser.parse(br.readLine());
-			
-			storeId = Integer.parseInt(ob.get(STORE_ID).toString());
+			String str = br.readLine();
+			if (str != null) {
+				JSONParser parser = new JSONParser();
+				JSONObject ob = (JSONObject) parser.parse(str);
+				
+				storeId = Integer.parseInt(ob.get(STORE_ID).toString());
+			} else {
+				storeId = DEFAULT_STORE_ID;
+			}
 			
 		} catch (FileNotFoundException e) {	
 			storeId = DEFAULT_STORE_ID;

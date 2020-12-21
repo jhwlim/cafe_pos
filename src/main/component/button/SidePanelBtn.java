@@ -4,7 +4,6 @@ import javax.swing.JButton;
 
 import common.font.MenuBtnFont;
 import main.component.panel.SideDownPanel;
-import main.component.panel.SidePanel;
 
 public class SidePanelBtn extends JButton {
 

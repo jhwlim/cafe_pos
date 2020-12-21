@@ -1,9 +1,7 @@
 package main.view;
 
-import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
-
-import javax.swing.JLabel;
 
 import main.component.label.LogoLabel;
 import main.component.panel.FramePanel;
@@ -18,11 +16,9 @@ public class LogoView {
 	}
 	
 	public LogoView() {
-		panel.setBackground(Color.black);
-		panel.setLayout(new BorderLayout());
-		
-		JLabel logoLabel = new LogoLabel();
-
-		panel.add(logoLabel);
+		panel.setBackground(Color.white);
+		panel.setLayout(new CardLayout(100, 100));
+	
+		panel.add(new LogoLabel());
 	}
 }

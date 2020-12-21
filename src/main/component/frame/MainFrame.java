@@ -1,11 +1,11 @@
 package main.component.frame;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.JFrame;
+
+import orderlist.controller.window.SystemWindowListener;
 
 public class MainFrame extends JFrame {
 	
@@ -28,8 +28,11 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		
 		setLocationRelativeTo(null); // 프로그램을 윈도우 가운데 위치
+		//setLocation(-1000,100);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+		this.addWindowListener(new SystemWindowListener());
 	}
 	
 
