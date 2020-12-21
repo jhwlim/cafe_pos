@@ -22,7 +22,7 @@ public class OrderListTitlePanel extends JPanel {
 	
 	public void setDefaultConfig() {
 		setLayout(new FlowLayout(FlowLayout.CENTER));
-		setBackground(PANEL_COLOR);
+		setBackground(Color.green);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	}
 	
@@ -30,7 +30,7 @@ public class OrderListTitlePanel extends JPanel {
 		JLabel label = new JLabel();
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 50));
 		label.setText("대기 주문 목록");
-		label.setForeground(Color.white);
+		label.setForeground(Color.pink);
 		label.setVerticalAlignment(JLabel.CENTER);
 		add(label);
 	}
