@@ -14,8 +14,9 @@ public class OrderListPanel extends JPanel {
 	private static final int Y_MARGIN = 0;
 
 	int orderId;
+	int index;
 	
-	public OrderListPanel(int orderId) {
+	public OrderListPanel(int orderId, int index) {
 		this.orderId = orderId;
 		
 		System.out.println("생성");
@@ -35,7 +36,7 @@ public class OrderListPanel extends JPanel {
 		OrderListTablePanel centerPanel = new OrderListTablePanel(orderId);
 		add(centerPanel);
 		
-		OrderListBtnPanel btnPanel = new OrderListBtnPanel();
+		OrderListBtnPanel btnPanel = new OrderListBtnPanel(index);
 		add(btnPanel, BorderLayout.SOUTH);
 	}
 
