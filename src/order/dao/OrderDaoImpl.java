@@ -112,62 +112,6 @@ public class OrderDaoImpl implements OrderDao {
 		}
 	}
 
-	@Override
-	public List<OrdersDetailVO> selectByOrderId(int orderId) {
-		List<OrdersDetailVO> list = new ArrayList<OrdersDetailVO>();
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = ds.getConnection();
-			
-			Timestamp orderDate = null;
-			
-			String sql2 = "SELECT order_date FROM orders WHERE order_id = ?";
-			pstmt2 = conn.prepareStatement(sql2);
-			pstmt2.setInt(1, orderId);
-			
-			rs = pstmt2.executeQuery();
-			if (rs.next()) {
-				orderDate = rs.getTimestamp(1);
-			}
-			
-			String sql = "SELECT orders_detail.*, menus.menu_name\r\n"
-					+ "FROM orders_detail \r\n"
-					+ "INNER JOIN menus\r\n"
-					+ "ON orders_detail.menu_id = menus.menu_id "
-					+ "WHERE order_id = ?";
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, orderId);
-			
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				OrdersDetailVO detail = new OrdersDetailVO();
-				detail.setMenuId(rs.getInt("menu_id"));
-				detail.setOrderId(rs.getInt("order_id"));
-				detail.setMenuCount(rs.getInt("menu_count"));
-				detail.setMenuName(rs.getString("menu_name"));
-				detail.setOrderDate(orderDate);
-				list.add(detail);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		
-		return list;
-	}
+	
 	
 }

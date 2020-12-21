@@ -5,9 +5,10 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import common.model.OrdersDetailVO;
-import order.dao.OrderDao;
-import order.dao.OrderDaoImpl;
+
 import orderlist.common.config.OrderListConfig;
+import orderlist.dao.OrderListDao;
+import orderlist.dao.OrderListDaoImpl;
 
 public class OrderListTableModel extends AbstractTableModel {
 
@@ -19,7 +20,7 @@ public class OrderListTableModel extends AbstractTableModel {
 			"주문시간"
 	};
 
-	static OrderDao dao = OrderDaoImpl.getInstance();
+	static OrderListDao dao = OrderListDaoImpl.getInstance();
 	
 	List<OrdersDetailVO> list; 
 	

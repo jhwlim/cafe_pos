@@ -72,8 +72,13 @@ public class OrderListView {
 		panel.add(bot_Panel, BorderLayout.SOUTH);
 	
 		List<Integer> list = OrderListConfig.getList();
+		top_Panel.add(new JLabel("대기 목록 총 개수 : " + list.size()));
 		
-		int cardPageLastNum = list.size() % 4 == 0 ? (int) Math.ceil(list.size() / 4) : (int) Math.ceil(list.size() / 4) + 1;
+		int cardPageLastNum = 1;
+		if (list.size() > 0) {			
+			cardPageLastNum = list.size() % 4 == 0 ? (int) Math.ceil(list.size() / 4) : (int) Math.ceil(list.size() / 4) + 1;
+		}
+		
 		JPanel nowCardPanel = cen_Panel;
 		for (int i = 0; i < cardPageLastNum * 4; i++) {
 			if (i > 0 && i % 4 == 0) {
