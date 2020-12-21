@@ -1,15 +1,15 @@
 package orderlist.dao;
 
-public class OrderListCategoryDto {
+public class OrderListCategoryVO {
 	
 	private String menuCategory;
 	private int count;
 	
-	public OrderListCategoryDto() {
+	public OrderListCategoryVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderListCategoryDto(String menuCategory, int count) {
+	public OrderListCategoryVO(String menuCategory, int count) {
 		super();
 		this.menuCategory = menuCategory;
 		this.count = count;

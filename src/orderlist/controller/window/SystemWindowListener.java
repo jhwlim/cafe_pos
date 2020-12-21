@@ -60,7 +60,6 @@ public class SystemWindowListener extends WindowAdapter {
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		System.out.println(OrderListConfig.getList());
 		BufferedWriter bw;
 		try {
 			File folder = new File(prefix);

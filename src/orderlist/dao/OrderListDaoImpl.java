@@ -103,8 +103,8 @@ public class OrderListDaoImpl implements OrderListDao {
 	}
 
 	@Override
-	public List<OrderListCategoryDto> countByOrderIdGroupByCategory(int orderId) {
-		List<OrderListCategoryDto> list = new ArrayList<OrderListCategoryDto>();
+	public List<OrderListCategoryVO> countByOrderIdGroupByCategory(int orderId) {
+		List<OrderListCategoryVO> list = new ArrayList<OrderListCategoryVO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -127,7 +127,7 @@ public class OrderListDaoImpl implements OrderListDao {
 			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				OrderListCategoryDto dto = new OrderListCategoryDto(
+				OrderListCategoryVO dto = new OrderListCategoryVO(
 						rs.getString("menu_category"), 
 						rs.getInt("count"));
 				list.add(dto);

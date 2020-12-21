@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import orderlist.common.config.OrderListConfig;
-import orderlist.dao.OrderListCategoryDto;
+import orderlist.dao.OrderListCategoryVO;
 import orderlist.dao.OrderListDao;
 import orderlist.dao.OrderListDaoImpl;
 import orderlist.view.OrderListView;
@@ -27,7 +27,7 @@ public class OrderListBtnPanel extends JPanel {
 		
 		int orderId = OrderListConfig.getList().get(index);
 		
-		List<OrderListCategoryDto> list = dao.countByOrderIdGroupByCategory(orderId);
+		List<OrderListCategoryVO> list = dao.countByOrderIdGroupByCategory(orderId);
 		
 		int drinkCnt = 0;
 		int foodCnt = 0;

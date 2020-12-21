@@ -41,20 +41,11 @@ public class OrderListView {
 		panel.removeAll();
 
 		// 날짜 시간
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA);
-		Date currentTime = new Date();
-		String dTime = formatter.format(currentTime);
-		JLabel time = new JLabel("현재 시간 : " + String.valueOf(dTime));
-
 		JPanel top_Panel = new OrderListTopPanel("주문대기 확인");
 
 		JLabel time2 = new OrderListTime();
 		
-		
-		
-//		top_Panel.add(time);
 		top_Panel.add(time2);
-	
 		
 		JPanel cardPanel = new JPanel(new CardLayout());
 		
