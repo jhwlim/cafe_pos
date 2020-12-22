@@ -39,9 +39,9 @@ public class MainMenuTopPanel extends JPanel {
 		String text = "Welcome CAFE!";
 		JLabel label = new JLabel(text,
 								  LogoLabel.getImgIcon(), 
-								  SwingConstants.CENTER);
+								  SwingConstants.CENTER);// 텍스트 + 이미지 합침
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 68));
-		label.setForeground(Color.white);
+		label.setForeground(Color.white);// 텍스트 컬러
 		
 		
 		add(label);

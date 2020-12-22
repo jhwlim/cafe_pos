@@ -29,18 +29,18 @@ public class MenuView {
 	
 	public MenuView() {
 		MainMenuTopPanel topPanel = new MainMenuTopPanel();
-		panel.add(topPanel, BorderLayout.NORTH);
+		panel.add(topPanel, BorderLayout.NORTH);// 웰컴 카페 그림 (탑)
 		
-		JPanel centerPanel = new JPanel(new CardLayout(MARGIN, MARGIN));
+		JPanel centerPanel = new JPanel(new CardLayout(MARGIN, MARGIN));// 센터 전체적인 부분
 		panel.add(centerPanel, BorderLayout.CENTER);
 		
 		JPanel subPanel = new JPanel(new BorderLayout(MARGIN, MARGIN));
 		centerPanel.add(subPanel);
 		
-		MainMenuBtnPanel btnPanel = new MainMenuBtnPanel();
+		MainMenuBtnPanel btnPanel = new MainMenuBtnPanel();//버튼 5개있는 패널
 		subPanel.add(btnPanel, BorderLayout.CENTER);
 		
-		MainMenuSidePanel sidePanel = new MainMenuSidePanel();
-		subPanel.add(sidePanel, BorderLayout.EAST);
+//		MainMenuSidePanel sidePanel = new MainMenuSidePanel();
+//		subPanel.add(sidePanel, BorderLayout.EAST);
 	}
 }
