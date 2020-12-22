@@ -47,7 +47,7 @@ public class MainMenuBtnPanel extends JPanel {
 			if (i < MenuBtnEnum.values().length) {
 				btn = new MenuBtn(MenuBtnEnum.values()[i]);
 			} else {
-				btn = new MenuBtn();
+				btn = new MenuBtn("매장정보");
 			}
 			
 			JPanel gridInPanel = new JPanel(new CardLayout(50, 50));

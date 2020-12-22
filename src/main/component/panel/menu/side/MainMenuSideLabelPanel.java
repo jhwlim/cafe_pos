@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.component.button.MenuBtn;
+
 public class MainMenuSideLabelPanel extends JPanel {
 
 	String field;
@@ -24,8 +26,8 @@ public class MainMenuSideLabelPanel extends JPanel {
 	}
 	
 	private void setDefaultConfig() {
-		setLayout(new BorderLayout());
-		setBackground(MainMenuSidePanel.COLOR);
+		setLayout(new BorderLayout(0, 5));
+		setBackground(Color.white);
 	}
 	
 	private void setComponents() {

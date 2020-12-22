@@ -19,8 +19,8 @@ public class MainMenuSidePanel extends JPanel {
 	}
 	
 	private void setDefaultConfig() {
-		setBackground(COLOR);
-		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+//		setBackground(COLOR);
+//		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout(0, 10));
 	}
 	

@@ -6,8 +6,7 @@ public enum MenuBtnEnum {
 	ORDERLIST("대기주문확인", "orderlist.view.OrderListView"),
 	STOCK("재고관리", "stock.view.Stockview"),
 	EMPLOYEE("직원관리", "employee.view.EmployeeView"),
-	STORE("매장정보관리", "store.view.StoreView"),
-	NOW_STORE("현재매장정보", "main.frame.NowStoreInfoFrame");
+	STORE("매장정보관리", "store.view.StoreView");
 	
 	public String btnName;
 	public String classpath;
