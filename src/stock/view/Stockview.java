@@ -22,7 +22,7 @@ public class Stockview {
 		
 		panel.setLayout(new CardLayout());// panel에 작업하는게 왼쪽 영역에 표시됨.
 		
-	    //----------------stockMain---------------------
+	    //----------------stockMain----------------------
 	    stockMain = new StockPanel();
 	    panel.add("stockMain", stockMain);
 	    
