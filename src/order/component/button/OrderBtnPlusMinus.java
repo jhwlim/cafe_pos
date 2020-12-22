@@ -1,5 +1,6 @@
 package order.component.button;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,12 @@ public class OrderBtnPlusMinus extends JButton{
 		setPreferredSize(new Dimension(50, 50));
 		setFont(new Font("맑은고딕", Font.BOLD, 25));
 	
+		setBorderPainted(false);
+
+		setBackground(new Color(0x663300));
+		setForeground(Color.white);
+		setFocusPainted(false);
+		
 	switch (btnName) {
 	case "+":
 		addActionListener(new OrderPlusBtnClickListener(table));

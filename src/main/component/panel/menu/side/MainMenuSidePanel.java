@@ -8,8 +8,7 @@ import javax.swing.JPanel;
 
 public class MainMenuSidePanel extends JPanel {
 	
-	private static final int COLOR_INT = 0xCCE3EE;
-	public static final Color COLOR = new Color(COLOR_INT);
+	public static final Color COLOR = new Color(0x663300);
 	
 	public static final int WIDTH = 300;
 	public static final int HEIGHT = 0;
@@ -20,8 +19,8 @@ public class MainMenuSidePanel extends JPanel {
 	}
 	
 	private void setDefaultConfig() {
-		setBackground(COLOR);
-		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+//		setBackground(COLOR);
+//		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout(0, 10));
 	}
 	

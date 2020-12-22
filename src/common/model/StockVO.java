@@ -1,6 +1,5 @@
 package common.model;
 
-import java.sql.Date;
 
 public class StockVO {
 	
@@ -8,21 +7,30 @@ public class StockVO {
 	private int menuId;
 	private int storeId;
 	private int amount;
-	private Date inDate;
+
+	private String date;
 	private String maker;
 	
+	private String menuName;
+
+
 	public StockVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public StockVO(int stockId, int menuId, int storeId, int amount, Date inDate, String maker) {
+
+	public StockVO(int stockId, int menuId, int storeId, int amount, String date, String maker, String menuName) {
+
 		super();
 		this.stockId = stockId;
 		this.menuId = menuId;
 		this.storeId = storeId;
 		this.amount = amount;
-		this.inDate = inDate;
+
+		this.date = date;
 		this.maker = maker;
+		this.menuName = menuName;
+
 	}
 
 	public int getStockId() {
@@ -57,12 +65,14 @@ public class StockVO {
 		this.amount = amount;
 	}
 
-	public Date getInDate() {
-		return inDate;
+
+	public String getDate() {
+		return date;
 	}
 
-	public void setInDate(Date inDate) {
-		this.inDate = inDate;
+	public void setDate(String date) {
+		this.date = date;
+
 	}
 
 	public String getMaker() {
@@ -73,10 +83,20 @@ public class StockVO {
 		this.maker = maker;
 	}
 
+
+	public String getMenuName() {
+		return menuName;
+	}
+
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+
 	@Override
 	public String toString() {
 		return "StockVO [stockId=" + stockId + ", menuId=" + menuId + ", storeId=" + storeId + ", amount=" + amount
-				+ ", inDate=" + inDate + ", maker=" + maker + "]";
+				+ ", date=" + date + ", maker=" + maker + ", menuName=" + menuName + "]";
+
 	}
 	
 	

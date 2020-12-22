@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 import order.dao.OrderDao;
@@ -42,6 +43,11 @@ public class OrderListTablePanel extends JPanel {
 		DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
 		cellRenderer.setHorizontalAlignment(JLabel.CENTER);
 		table.setDefaultRenderer(String.class, cellRenderer);
+		
+		table.setBackground(new Color(0xFFFFE9));
+		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setBackground(new Color(0x663300));
+		tableHeader.setForeground(new Color(0xffffff));
 		
 		// 테이블 컬럼 사이즈 조절
 		for (int i = 0; i < table.getColumnCount(); i++) {

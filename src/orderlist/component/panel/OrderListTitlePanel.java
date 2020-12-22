@@ -26,7 +26,7 @@ public class OrderListTitlePanel extends JPanel {
 	
 	public void setDefaultConfig() {
 		setLayout(new FlowLayout(FlowLayout.CENTER));
-		setBackground(Color.white);
+		setBackground(new Color(0x000000));
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	}
 	
@@ -34,6 +34,7 @@ public class OrderListTitlePanel extends JPanel {
 		JLabel label = new JLabel();
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 50));
 		label.setText("주문번호 " + orderId);
+		label.setForeground(Color.white);
 		label.setVerticalAlignment(JLabel.CENTER);
 		add(label);
 	}

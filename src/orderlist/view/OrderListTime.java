@@ -1,5 +1,6 @@
 package orderlist.view;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.util.Calendar;
 
@@ -15,6 +16,8 @@ public class OrderListTime extends JLabel implements Runnable {
 		if (thread == null) {
 			thread = new Thread(this);
 			thread.start();
+		setForeground(Color.white);
+		setFont(new Font("야놀자야체", Font.BOLD, 25));
 		}
 	}
 

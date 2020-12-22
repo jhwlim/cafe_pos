@@ -42,9 +42,8 @@ public class MainMenuSideDownPanel extends JPanel {
 	}
 	
 	private void setComponents() {
-		JButton btn;
 		try {
-			btn = new JButton(new ImageIcon(ImageIO.read(new File("resources/img/main/exit.png")).getScaledInstance(IMG_SIZE, IMG_SIZE, Image.SCALE_SMOOTH)));
+			JButton btn = new JButton(new ImageIcon(ImageIO.read(new File("resources/img/main/exit.png")).getScaledInstance(IMG_SIZE, IMG_SIZE, Image.SCALE_SMOOTH)));
 			btn.setPreferredSize(new Dimension(IMG_SIZE, IMG_SIZE));
 //			btn.setBackground(MainMenuSidePanel.COLOR);
 //			btn.setBackground(Color.white);
