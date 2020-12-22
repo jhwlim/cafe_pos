@@ -18,13 +18,17 @@ import main.controller.btn.MenuBtnClickListener;
 
 public class MenuView {
 	
+	private static final int COLOR_INT = 0x40444a;
+	public static final Color COLOR = new Color(COLOR_INT);
+	
 	public static FramePanel panel;
 	
-	static final int MARGIN = 10;
+	static final int MARGIN = 0;
 	
 	static {
 		panel = FramePanel.getFramePanel(FramePanelEnum.MENU);
 		panel.setLayout(new BorderLayout(MARGIN, MARGIN));
+		panel.setBackground(COLOR);
 	}
 	
 	public MenuView() {
