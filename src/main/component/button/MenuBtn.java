@@ -19,8 +19,9 @@ public class MenuBtn extends JButton {
 	public MenuBtn(MenuBtnEnum mbe) {
 		super(mbe.btnName);
 		
-//		setBackground(Color.white);
+		setBackground(Color.white);
 		setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		setForeground(new Color(0x2868b0));
 		setBorder(BorderFactory.createEmptyBorder());
 		
 		addActionListener(new MenuBtnClickListener(mbe));
