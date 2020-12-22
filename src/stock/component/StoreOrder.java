@@ -1,109 +1,53 @@
 package stock.component;
 
-
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-=======
->>>>>>> 26ccdcacdf13a84b5fdf2852217ee8f5bead7f65
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
-<<<<<<< HEAD
 import common.config.Configs;
-import common.model.StockVO;
-import stock.component.StockCheck;
-import stock.dao.StockDao;
-import stock.dao.StockDaoImpl;
-import store.common.config.StoreConfig;
+import stock.view.Stockview;
 
-public class StockPanel extends JPanel{
+public class StoreOrder extends JPanel{
 	
-	public static JPanel btn1Panel;
-		
-=======
-import stock.component.StockCheck;
-import stock.component.StoreOrder;
-
-public class StockPanel extends JPanel{
+	static HikariConfig config;
+	static HikariDataSource ds;
 	
->>>>>>> 26ccdcacdf13a84b5fdf2852217ee8f5bead7f65
-	public StockPanel() {
+	static {
+		config = new HikariConfig(Configs.getHikariConfigPath());
+		ds = new HikariDataSource(config);
+	}
+	
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	public StoreOrder() {
 		this.setLayout(new CardLayout());
+		this.setLayout(null);
 		
-		JPanel stockMenuPanel = new JPanel();
-		stockMenuPanel.setLayout(null);
 		
-		JLabel label1 = new JLabel("재고관리 페이지");
-	    label1.setBounds(425, 100, 200, 200); 
-	    stockMenuPanel.add(label1);
+		JLabel stockOrder = new JLabel("발주 페이지");
+		this.add(stockOrder);
+		stockOrder.setBounds(450, 0, 100, 100);
 		
-		JButton btn1 = new JButton("재고 확인");
-		btn1.setBounds(300, 400, 100, 100);
-		stockMenuPanel.add(btn1);
-		
-		JButton btn2 = new JButton("발주");
-		btn2.setBounds(550, 400, 100, 100);
-		stockMenuPanel.add(btn2);
-		
-		this.add("stockMenu", stockMenuPanel);
-		
-		JPanel thisPanel = this;	
-		
-		//--------------------------- 재고 페이지 --------------------------
-<<<<<<< HEAD
-		btn1Panel = new StockCheck();
-		this.add("1", btn1Panel);
-=======
-		JPanel btn1Panel = new StockCheck();
-		this.add("1", btn1Panel);
-
->>>>>>> 26ccdcacdf13a84b5fdf2852217ee8f5bead7f65
-		btn1.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				((CardLayout) thisPanel.getLayout()).show(thisPanel, "1");
-			}
-		});
-	
-<<<<<<< HEAD
-		//------------------- 발주 페이지 --------------------------------
-		JPanel btn2Panel = new JPanel();
-=======
-		
-		//------------------- 발주 페이지 --------------------------------
-		JPanel btn2Panel = new StoreOrder();
->>>>>>> 26ccdcacdf13a84b5fdf2852217ee8f5bead7f65
-		this.add("2", btn2Panel);
-		
-<<<<<<< HEAD
-		JLabel storeOrder = new JLabel("발주 페이지");
-		btn2Panel.add(storeOrder);
-		storeOrder.setBounds(450, 0, 100, 100);
-=======
->>>>>>> 26ccdcacdf13a84b5fdf2852217ee8f5bead7f65
-		btn2.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				((CardLayout) thisPanel.getLayout()).show(thisPanel, "2");
-			}
-		});
-		
-<<<<<<< HEAD
 		//윗쪽에 띄울 기본 재고 테이블
 		DefaultTableModel model2;
 		String header2[] = {"재고번호","메뉴번호","매장번호","재고 수량","입고 일자","제조사","메뉴 이름"};
@@ -111,38 +55,53 @@ public class StockPanel extends JPanel{
 		model2 = new DefaultTableModel(ob2,header2);
 		JTable table2 = new JTable(model2);
 		JScrollPane scrollpane2 = new JScrollPane(table2);
-		btn2Panel.add(scrollpane2);
+		this.add(scrollpane2);
 		scrollpane2.setBounds(50, 200,900,200);
 		
 		// 테이블을 수정할 수 없도록 추가
 		table2.setDefaultEditor(Object.class, null);
 		
-		StockDao dao = StockDaoImpl.getInstance();
-		
-		List<StockVO> list = dao.selectAll("");
-		
-		for (int i = 0; i < list.size(); i++) {
-			StockVO stock = list.get(i);
-			Object data[] = {stock.getStockId(),
-						     stock.getMenuId(),
-						     stock.getStoreId(),
-						     stock.getAmount(),
-						     stock.getDate(),
-						     stock.getMaker(),
-						     stock.getMenuName()};
-			model2.addRow(data);
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement("select stock_id,stocks.menu_id,store_id,amount,in_date,maker,menu_name "
+					+ "from stocks inner join menus on stocks.menu_id = menus.menu_id ORDER BY stock_id");
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				int stockId = rs.getInt("stock_id");
+				int menuId = rs.getInt("menu_id");
+				int storeId = rs.getInt("store_id");
+				int amount = rs.getInt("amount");
+				String date = rs.getString("in_date");
+				String maker = rs.getString("maker");
+				String menuName = rs.getString("menu_name");
+				
+				Object data[] = {stockId,menuId,storeId,amount,date,maker,menuName};
+				model2.addRow(data);
+						
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
-		
-		
 		//여기까지
     	
 		// 윗쪽 재고테이블 검색시 해당 내용만 나오는 테이블
 		JTextField search2 = new JTextField(20);
-		btn2Panel.add(search2);
+		this.add(search2);
 		search2.setBounds(650, 100,200,40);
 		
 		JButton searchBtn2 = new JButton("검색");
-		btn2Panel.add(searchBtn2);
+		this.add(searchBtn2);
 		searchBtn2.setBounds(850, 100, 60, 40);
 		
 		
@@ -154,25 +113,44 @@ public class StockPanel extends JPanel{
 				model2.setRowCount(0); // 기존 테이블의 행을 모두 삭제
 				
 				String name = search2.getText();
-
-				List<StockVO> list = dao.selectAll(name);
-				
-				for (int i = 0; i < list.size(); i++) {
-					StockVO stock = list.get(i);
-					Object data[] = {stock.getStockId(),
-								     stock.getMenuId(),
-								     stock.getStoreId(),
-								     stock.getAmount(),
-								     stock.getDate(),
-								     stock.getMaker(),
-								     stock.getMenuName()};
-					model2.addRow(data);
+				try {
+					conn = ds.getConnection();
+					pstmt = conn.prepareStatement("select stock_id,stocks.menu_id,store_id,amount,in_date,maker,menu_name "
+							+ "from stocks inner join menus on stocks.menu_id = menus.menu_id and menu_name LIKE '%'||?||'%' "
+							+ "ORDER BY stock_id");
+					pstmt.setString(1, name);
+					rs = pstmt.executeQuery();
+					
+					while (rs.next()) {
+						int stockId = rs.getInt("stock_id");
+						int menuId = rs.getInt("menu_id");
+						int storeId = rs.getInt("store_id");
+						int amount = rs.getInt("amount");
+						String date = rs.getString("in_date");
+						String maker = rs.getString("maker");
+						String menuName = rs.getString("menu_name");
+						
+						Object data[] = {stockId,menuId,storeId,amount,date,maker,menuName};
+						model2.addRow(data);
+					}
+					
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} finally {
+					try {
+						if (rs != null) rs.close();
+						if (pstmt != null) pstmt.close();
+						if (conn != null) conn.close();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					
 				}
 			}
 		});
 		// 여기까지
 		
-		/////////발주 테이블
+		//발주 테이블
 		DefaultTableModel model3;
 		String header3[] = {"메뉴 번호","매장 번호","제조사", "발주 수량"};
 		Object ob3[][] = {};
@@ -187,7 +165,7 @@ public class StockPanel extends JPanel{
 		
 		JTable table3 = new JTable(model3);
 		JScrollPane scrollpane3 = new JScrollPane(table3);
-		btn2Panel.add(scrollpane3);
+		this.add(scrollpane3);
 		scrollpane3.setBounds(50, 500,900,200);
 		
 		// 재고 페이지 - 상단 뷰
@@ -242,53 +220,68 @@ public class StockPanel extends JPanel{
 				}
 			}
 		});
-			
+		
+		//여기까지
+		
+		
 		// 발주 시 해당 재고 업데이트 기능 
 		JButton orderBtn = new JButton("발주 넣기");
-		btn2Panel.add(orderBtn);
+		this.add(orderBtn);
 		orderBtn.setBounds(200, 800, 100, 100);
 		orderBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Object orderMenuId = table3.getModel().getValueAt(0, 0);
-				Object orderStoreId = table3.getModel().getValueAt(0, 1);
-				Object orderMaker = table3.getModel().getValueAt(0, 2);
-				Object orderNum = table3.getModel().getValueAt(0, 3);
 				
-				StockVO stock = new StockVO();
-				stock.setMenuId(Integer.parseInt(orderMenuId.toString()));
-				stock.setStoreId(Integer.parseInt(orderStoreId.toString()));
-				stock.setMaker(orderMaker.toString());
-				stock.setAmount(Integer.parseInt(orderNum.toString()));
-				
-				StockDao dao = StockDaoImpl.getInstance();
-				
-				dao.insert(stock);
-				
+				try {
+					Object orderMenuId = table3.getModel().getValueAt(0, 0);
+					Object orderStoreId = table3.getModel().getValueAt(0, 1);
+					Object orderMaker = table3.getModel().getValueAt(0, 2);
+					Object orderNum = table3.getModel().getValueAt(0, 3);
+					
+					conn = ds.getConnection();
+					pstmt = conn.prepareStatement("INSERT INTO stocks(stock_id,menu_id, store_id, amount, in_date,maker) "
+							+ "VALUES(STOCK_SEQ.nextval,?,?,?,sysdate,?)");
+					pstmt.setObject(1, orderMenuId);
+					pstmt.setObject(2, orderStoreId);
+					pstmt.setObject(3, orderNum);
+					pstmt.setObject(4, orderMaker);
+					
+					pstmt.executeUpdate();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} finally {
+					try {
+						if (pstmt != null) pstmt.close();
+						if (conn != null) conn.close();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					
+				}
 				JOptionPane.showMessageDialog(orderBtn, "발주 완료!");
-				//searchBtn1.doClick();
 				searchBtn2.doClick();
+				
+				JButton b = StockCheck.searchBtn1;
+				JTextField s = StockCheck.search1;
+				s.setText("");
+				b.doClick();
 			}
 		});
 		//여기까지
 		
 		JButton backBtn2 = new JButton("뒤로가기");
-		btn2Panel.add(backBtn2);
+		this.add(backBtn2);
 		backBtn2.setBounds(700, 800, 100, 100);
 		backBtn2.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				JPanel thisPanel = Stockview.stockMain;
 				((CardLayout) thisPanel.getLayout()).show(thisPanel, "stockMenu");
 			}
 		});
-		
-=======
->>>>>>> 26ccdcacdf13a84b5fdf2852217ee8f5bead7f65
 	}
-	
-	
 
 }
