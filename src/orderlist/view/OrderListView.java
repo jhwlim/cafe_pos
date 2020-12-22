@@ -3,6 +3,7 @@ package orderlist.view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -64,7 +65,11 @@ public class OrderListView {
 		panel.add(bot_Panel, BorderLayout.SOUTH);
 	
 		List<Integer> list = OrderListConfig.getList();
-		top_Panel.add(new JLabel("대기 목록 총 개수 : " + list.size()));
+		JLabel waiting_bill = new JLabel("대기 목록 총 개수 : " + list.size());
+		waiting_bill.setForeground(Color.white);
+		waiting_bill.setFont(new Font("야놀자야체", Font.BOLD, 25));
+		
+		top_Panel.add(waiting_bill);
 		
 		int cardPageLastNum = 1;
 		if (list.size() > 0) {			

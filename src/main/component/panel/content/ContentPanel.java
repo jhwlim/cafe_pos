@@ -19,6 +19,7 @@ public class ContentPanel extends JPanel {
 	
 	static {
 		panel = new ContentPanel();
+		panel.setBackground(new Color(0x006600));
 		
 		panel.setLayout(new CardLayout());
 		

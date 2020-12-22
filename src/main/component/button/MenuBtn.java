@@ -2,67 +2,79 @@ package main.component.button;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-import common.font.MenuBtnFont;
 import main.controller.btn.MenuBtnClickListener;
 
 public class MenuBtn extends JButton {
-   
+
    public MenuBtn() {
-      setBackground(new Color(0x663300));
+      setBackground(Color.white);
       setBorder(BorderFactory.createEmptyBorder());
    }
-   
+
    public MenuBtn(MenuBtnEnum mbe) {
       super(mbe.btnName);
-      
+
       setBackground(new Color(0x2868b0));
-      setFont(new Font("맑은 고딕", Font.BOLD, 30));
+      setFont(new Font("야놀자야체", Font.BOLD, 30));
       setForeground(new Color(0x663300));
-      setBorder(BorderFactory.createEmptyBorder());
-      
+//      setBorder(BorderFactory.createEmptyBorder());
+
       addActionListener(new MenuBtnClickListener(mbe));
-   }
-   
-   protected void decorate() { 
-      setBorderPainted(false); 
-      setOpaque(false); 
+
+      setContentAreaFilled(false);
    }
 
-   public static int round = 50;
+   static int round = 40;
    
-   @Override
-   protected void paintComponent(Graphics g) {
-      int width = getWidth(); 
-      int height = getHeight(); 
-      Graphics2D graphics = (Graphics2D) g; 
-      graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
-      if (getModel().isArmed()) { 
-         graphics.setColor(getBackground().darker()); 
-      } else if (getModel().isRollover()) { 
-         graphics.setColor(getBackground().brighter()); 
-      } else { 
-         graphics.setColor(getBackground()); 
-      } 
-      graphics.fillRoundRect(0, 0, width, height, round, round); 
-      FontMetrics fontMetrics = graphics.getFontMetrics(); 
-      Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds(); 
-      int textX = (width - stringBounds.width) / 2; 
-      int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 
-      graphics.setColor(getForeground()); 
-      graphics.setFont(getFont()); 
-      graphics.drawString(getText(), textX, textY); 
-      graphics.dispose(); 
-      super.paintComponent(g);
+   public void paint(Graphics g) {
+       // Set background same as parent.
+       setBackground(getParent().getBackground());
+       setBorder(null);
 
-   }
+       // I don't need this -- calls to above methods will 
+       // invoke repaint as needed.
+       super.paint(g);
+
+       // Take advantage of Graphics2D to position string
+       Graphics2D g2d = (Graphics2D)g;
+
+       // Make it grey #DDDDDD, and make it round with 
+       // 1px black border.
+       // Use an HTML color guide to find a desired color.
+       // Last color is alpha, with max 0xFF to make 
+       // completely opaque.
+       g2d.setColor(new Color(0x663300));
+
+       // Draw rectangle with rounded corners on top of 
+       // button
+       g2d.fillRoundRect(0,0,getWidth(),getHeight(),round,round);
+
+       // I'm just drawing a border
+       g2d.setColor(getForeground());
+       
+       g2d.drawRoundRect(0,0,getWidth()-1,
+          getHeight()-1,round,round);
+
+       // Finding size of text so can position in center.
+       FontRenderContext frc = 
+          new FontRenderContext(null, false, false);
+       Rectangle2D r = getFont().getStringBounds(getText(), frc);
+
+       float xMargin = (float)(getWidth()-r.getWidth())/2;
+       float yMargin = (float)(getHeight()-getFont().getSize())/2;
+
+       // Draw the text in the center
+       g2d.drawString(getText(), xMargin, 
+          (float)getFont().getSize() + yMargin);
+      }
    
+
 }
