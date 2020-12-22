@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 
 import common.model.MenuVO;
@@ -67,7 +68,6 @@ public class OrderView {
 
 		// 필드 생성
 		String title[] = { "번호", "메뉴", "가격", "개수" };
-
 		DefaultTableModel dtm = new DefaultTableModel(title, 0) {
 			public boolean isCellEditable(int row, int column) {
 				if (column >= 0) {
@@ -78,16 +78,31 @@ public class OrderView {
 			}
 		};
 		
-		
 		JPanel menu_panel = new OrderMenuPanel(dtm);// 메인 패널 위에 메뉴패널
 		JPanel C_panel = new OrderTablePanel();// 센터 패널
 		JPanel B_panel = new OrderBottomPanel();// 하단 패널
 
 		// 상단부
 		panel.add(menu_panel, BorderLayout.NORTH);
-
+		menu_panel.setBackground(new Color(0x186f3d));
+		
 		// 중간부
 		panel.add(C_panel, BorderLayout.CENTER);
+		C_panel.setBackground(new Color(0x186f3d));
+		
+//		JTable table = new JTable(dtm) {
+//	         public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+//	            Component comp = super.prepareRenderer(renderer, row, col);
+//	            Color alternateColor = new Color(0x99CC99);
+//	            Color whiteColor = new Color(0xFFFFE9);
+//	            if (!comp.getBackground().equals(getSelectionBackground())) {
+//	               Color c = (row % 2 == 0 ? alternateColor : whiteColor);
+//	               comp.setBackground(c);
+//	            }
+//	            
+//	            return comp;
+//	         }
+//	      };
 
 		JTable table = new JTable(dtm) {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
@@ -105,6 +120,8 @@ public class OrderView {
 		
 		JScrollPane jsp = new JScrollPane(table);
 		C_panel.add(jsp);
+
+		jsp.getViewport().setBackground(new Color(0xFFFFE9));
 		
 		table.getColumnModel().getColumn(0).setPreferredWidth(10);
 		table.getColumnModel().getColumn(1).setPreferredWidth(130);
@@ -113,15 +130,20 @@ public class OrderView {
 
 		table.getTableHeader().setReorderingAllowed(false); // 컬럼 고정
 		table.getTableHeader().setResizingAllowed(false); // 사이즈 고정
-		jsp.setPreferredSize(new Dimension(870, 200));
+		jsp.setPreferredSize(new Dimension(900, 250));
 
 		JTable table2 = new JTable(table.getModel());
 
 		JScrollPane jsp2 = new JScrollPane(table2);
-
+		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setBackground(new Color(0x663300));
+		tableHeader.setForeground(new Color(0xffffff));
+		
 		// 하단부
 		panel.add(B_panel, BorderLayout.SOUTH);
+		B_panel.setBackground(new Color(0x186f3d));
 
+		
 		// 아래 패널
 		JButton btn_drink = new OrderBtnDrink("음료", menu_panel);
 		JButton btn_Food = new OrderBtnFood("푸드", menu_panel);
@@ -138,6 +160,7 @@ public class OrderView {
 		JButton btn_selectClear = new OrderBtnSetBasic("선택 취소");
 		JButton btn_pay = new OrderBtnPay("결제", menu_panel);
 
+	
 		// 아래패널
 
 		btn_selectClear.addActionListener(new ActionListener() {
@@ -181,6 +204,7 @@ public class OrderView {
 							JOptionPane.WARNING_MESSAGE);
 					subFr.dispose();
 				}
+				
 				
 				jsp2.setPreferredSize(new Dimension(400, 150));
 

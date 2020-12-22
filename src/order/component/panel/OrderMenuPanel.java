@@ -1,6 +1,7 @@
 package order.component.panel;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,8 @@ public class OrderMenuPanel extends JPanel {
 		
 		this.setLayout(new CardLayout(10, 10));
 		this.setPreferredSize(new Dimension(0, 580));
-
+		this.setBackground(new Color(0x006600));
+		
 		JPanel D_panel = new JPanel();// 메인 패널 위에 메뉴패널
 		JPanel F_panel = new JPanel();// 메인 패널 위에 메뉴패널
 		JPanel M_panel = new JPanel();// 메인 패널 위에 메뉴패널

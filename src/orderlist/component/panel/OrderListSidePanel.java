@@ -8,7 +8,7 @@ public class OrderListSidePanel extends JPanel {
 
 	
 	public OrderListSidePanel() {
-		setBackground(Color.white);
+		setBackground(new Color(0x186f3d));
 		
 	}
 	
