@@ -8,7 +8,7 @@ public class OrderBtnSpace extends JButton{
 
 	public OrderBtnSpace(){
 		super();
-		setPreferredSize(new Dimension(90, 90));
+		setPreferredSize(new Dimension(75, 90));
 		setBorderPainted(false);
 		setContentAreaFilled(false);
 		setFocusPainted(false);

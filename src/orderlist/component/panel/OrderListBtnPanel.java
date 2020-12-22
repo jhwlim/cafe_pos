@@ -1,6 +1,7 @@
 package orderlist.component.panel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -61,6 +62,9 @@ public class OrderListBtnPanel extends JPanel {
 		
 		JButton btn = new JButton("완료");
 		btn.setPreferredSize(new Dimension(80, 50));
+		btn.setBackground(new Color(0x663300));
+		btn.setForeground(new Color(0xffffff));
+		btn.setFont(new Font("야놀자야체", Font.BOLD, 20));
 		add(btn, BorderLayout.EAST);
 		
 		btn.addActionListener(new ActionListener() {
