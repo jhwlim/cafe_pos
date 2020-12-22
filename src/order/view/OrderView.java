@@ -60,6 +60,7 @@ public class OrderView {
 
 	public static JPanel panel;
 
+	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.ORDER);
 
@@ -76,6 +77,7 @@ public class OrderView {
 				}
 			}
 		};
+		
 		JPanel menu_panel = new OrderMenuPanel(dtm);// 메인 패널 위에 메뉴패널
 		JPanel C_panel = new OrderTablePanel();// 센터 패널
 		JPanel B_panel = new OrderBottomPanel();// 하단 패널
@@ -88,19 +90,34 @@ public class OrderView {
 		panel.add(C_panel, BorderLayout.CENTER);
 		C_panel.setBackground(new Color(0x186f3d));
 		
+//		JTable table = new JTable(dtm) {
+//	         public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+//	            Component comp = super.prepareRenderer(renderer, row, col);
+//	            Color alternateColor = new Color(0x99CC99);
+//	            Color whiteColor = new Color(0xFFFFE9);
+//	            if (!comp.getBackground().equals(getSelectionBackground())) {
+//	               Color c = (row % 2 == 0 ? alternateColor : whiteColor);
+//	               comp.setBackground(c);
+//	            }
+//	            
+//	            return comp;
+//	         }
+//	      };
+
 		JTable table = new JTable(dtm) {
-	         public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
-	            Component comp = super.prepareRenderer(renderer, row, col);
-	            Color alternateColor = new Color(0x99CC99);
-	            Color whiteColor = new Color(0xFFFFE9);
-	            if (!comp.getBackground().equals(getSelectionBackground())) {
-	               Color c = (row % 2 == 0 ? alternateColor : whiteColor);
-	               comp.setBackground(c);
-	            }
-	            
-	            return comp;
-	         }
-	      };
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+				Component comp = super.prepareRenderer(renderer, row, col);
+				Color alternateColor = new Color(0xe3e3bc);
+				Color whiteColor = Color.white;
+				if (!comp.getBackground().equals(getSelectionBackground())) {
+					Color c = (row % 2 == 0 ? alternateColor : whiteColor);
+					comp.setBackground(c);
+				}
+				
+				return comp;
+			}
+		};
+		
 		JScrollPane jsp = new JScrollPane(table);
 		C_panel.add(jsp);
 
