@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class MainMenuSidePanel extends JPanel {
 	
-	private static final int COLOR_INT = 0xCCE3EE;
+	private static final int COLOR_INT = 0xffffff;
 	public static final Color COLOR = new Color(COLOR_INT);
 	
 	public static final int WIDTH = 300;
