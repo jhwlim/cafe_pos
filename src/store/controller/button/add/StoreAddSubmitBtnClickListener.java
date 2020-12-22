@@ -21,7 +21,7 @@ import employee.dao.EmployeeDao;
 import employee.dao.EmployeeDaoImpl;
 import employee.view.EmployeeView;
 import main.component.button.MenuBtnEnum;
-import main.component.panel.ContentPanel;
+import main.component.panel.content.ContentPanel;
 import store.component.panel.add.center.form.StoreAddFormFieldEnum;
 import store.component.panel.add.center.form.StoreAddFormInputPanel;
 import store.component.panel.add.center.form.StoreAddFormPanel;

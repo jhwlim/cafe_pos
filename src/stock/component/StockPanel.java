@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,26 +26,16 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import common.config.Configs;
-
+import common.model.StockVO;
 import stock.component.StockCheck;
+import stock.dao.StockDao;
+import stock.dao.StockDaoImpl;
+import store.common.config.StoreConfig;
 
 public class StockPanel extends JPanel{
+	
 	public static JPanel btn1Panel;
-	
-	static HikariConfig config;
-	static HikariDataSource ds;
-	
-	static {
-		config = new HikariConfig(Configs.getHikariConfigPath());
-		ds = new HikariDataSource(config);
 		
-		
-	}
-	
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	
 	public StockPanel() {
 		this.setLayout(new CardLayout());
 		
@@ -69,11 +61,6 @@ public class StockPanel extends JPanel{
 		//--------------------------- 재고 페이지 --------------------------
 		btn1Panel = new StockCheck();
 		this.add("1", btn1Panel);
-//		btn2Panel.setLayout(null);
-//		
-//		JLabel stockCheck = new JLabel("재고 확인");
-//		btn2Panel.add(stockCheck);
-//		stockCheck.setBounds(450, 0, 100, 100);
 		btn1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -81,120 +68,7 @@ public class StockPanel extends JPanel{
 				((CardLayout) thisPanel.getLayout()).show(thisPanel, "1");
 			}
 		});
-//		
-//		
-//		//////////// 기본 재고 테이블
-//		DefaultTableModel model;
-//		String header[] = {"재고번호","메뉴번호","매장번호","재고 수량","입고 일자","제조사","메뉴 이름"};
-//		Object ob[][] = {};
-//		model = new DefaultTableModel(ob,header);
-//		JTable table = new JTable(model);
-//		JScrollPane scrollpane = new JScrollPane(table);
-//		btn2Panel.add(scrollpane);
-//		scrollpane.setBounds(50, 200,900,400);
-//		
-//		// 테이블을 수정할 수 없도록 추가
-//		table.setDefaultEditor(Object.class, null);
-//		
-//		try {
-//			conn = ds.getConnection();
-//			pstmt = conn.prepareStatement("select stock_id,stocks.menu_id,store_id,amount,in_date,maker,menu_name "
-//					+ "from stocks inner join menus on stocks.menu_id = menus.menu_id ORDER BY stock_id");
-//			rs = pstmt.executeQuery();
-//			
-//			while (rs.next()) {
-//				int stockId = rs.getInt("stock_id");
-//				int menuId = rs.getInt("menu_id");
-//				int storeId = rs.getInt("store_id");
-//				int amount = rs.getInt("amount");
-//				String date = rs.getString("in_date");
-//				String maker = rs.getString("maker");
-//				String menuName = rs.getString("menu_name");
-//				
-//				Object data[] = {stockId,menuId,storeId,amount,date,maker,menuName};
-//				model.addRow(data);
-//						
-//			}
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (rs != null) rs.close();
-//				if (pstmt != null) pstmt.close();
-//				if (conn != null) conn.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//			
-//		}
-//		//여기까지
-//		
-//		////////검색 눌렀을때 해당 결과만 보여줄 테이블
-//		JTextField search1 = new JTextField(20);
-//		btn2Panel.add(search1);
-//		search1.setBounds(650, 100,200,40);
-//		
-//		JButton searchBtn1 = new JButton("검색");
-//		btn2Panel.add(searchBtn1);
-//		searchBtn1.setBounds(850, 100, 60, 40);
-//		searchBtn1.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				model.setRowCount(0);// 기존 테이블의 행을 모두 삭제
-//				
-//				String name = search1.getText();
-//				try {
-//					conn = ds.getConnection();
-//					pstmt = conn.prepareStatement("select stock_id,stocks.menu_id,store_id,amount,in_date,maker,menu_name "
-//							+ "from stocks inner join menus on stocks.menu_id = menus.menu_id and menu_name LIKE '%'||?||'%' "
-//							+ "ORDER BY stock_id");
-//					pstmt.setString(1, name);
-//					rs = pstmt.executeQuery();
-//					
-//					while (rs.next()) {
-//						int stockId = rs.getInt("stock_id");
-//						int menuId = rs.getInt("menu_id");
-//						int storeId = rs.getInt("store_id");
-//						int amount = rs.getInt("amount");
-//						String date = rs.getString("in_date");
-//						String maker = rs.getString("maker");
-//						String menuName = rs.getString("menu_name");
-//						
-//						Object data[] = {stockId,menuId,storeId,amount,date,maker,menuName};
-//						model.addRow(data);
-//					}
-//					
-//				} catch (SQLException e1) {
-//					e1.printStackTrace();
-//				} finally {
-//					try {
-//						if (rs != null) rs.close();
-//						if (pstmt != null) pstmt.close();
-//						if (conn != null) conn.close();
-//					} catch (SQLException e1) {
-//						e1.printStackTrace();
-//					}
-//					
-//				}
-//				
-//			}
-//		});
-//		//여기까지
-//		
-//		JButton backBtn1 = new JButton("뒤로가기");
-//		btn1Panel.add(backBtn1);
-//		backBtn1.setBounds(800, 700, 100, 100);
-//		backBtn1.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				((CardLayout) thisPanel.getLayout()).show(thisPanel, "storeMenu");
-//			}
-//		});
-//		
-		
+	
 		//------------------- 발주 페이지 --------------------------------
 		JPanel btn2Panel = new JPanel();
 		this.add("2", btn2Panel);
@@ -224,38 +98,23 @@ public class StockPanel extends JPanel{
 		// 테이블을 수정할 수 없도록 추가
 		table2.setDefaultEditor(Object.class, null);
 		
-		try {
-			conn = ds.getConnection();
-			pstmt = conn.prepareStatement("select stock_id,stocks.menu_id,store_id,amount,in_date,maker,menu_name "
-					+ "from stocks inner join menus on stocks.menu_id = menus.menu_id ORDER BY stock_id");
-			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				int stockId = rs.getInt("stock_id");
-				int menuId = rs.getInt("menu_id");
-				int storeId = rs.getInt("store_id");
-				int amount = rs.getInt("amount");
-				String date = rs.getString("in_date");
-				String maker = rs.getString("maker");
-				String menuName = rs.getString("menu_name");
-				
-				Object data[] = {stockId,menuId,storeId,amount,date,maker,menuName};
-				model2.addRow(data);
-						
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) rs.close();
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
+		StockDao dao = StockDaoImpl.getInstance();
+		
+		List<StockVO> list = dao.selectAll("");
+		
+		for (int i = 0; i < list.size(); i++) {
+			StockVO stock = list.get(i);
+			Object data[] = {stock.getStockId(),
+						     stock.getMenuId(),
+						     stock.getStoreId(),
+						     stock.getAmount(),
+						     stock.getDate(),
+						     stock.getMaker(),
+						     stock.getMenuName()};
+			model2.addRow(data);
 		}
+		
+		
 		//여기까지
     	
 		// 윗쪽 재고테이블 검색시 해당 내용만 나오는 테이블
@@ -276,38 +135,19 @@ public class StockPanel extends JPanel{
 				model2.setRowCount(0); // 기존 테이블의 행을 모두 삭제
 				
 				String name = search2.getText();
-				try {
-					conn = ds.getConnection();
-					pstmt = conn.prepareStatement("select stock_id,stocks.menu_id,store_id,amount,in_date,maker,menu_name "
-							+ "from stocks inner join menus on stocks.menu_id = menus.menu_id and menu_name LIKE '%'||?||'%' "
-							+ "ORDER BY stock_id");
-					pstmt.setString(1, name);
-					rs = pstmt.executeQuery();
-					
-					while (rs.next()) {
-						int stockId = rs.getInt("stock_id");
-						int menuId = rs.getInt("menu_id");
-						int storeId = rs.getInt("store_id");
-						int amount = rs.getInt("amount");
-						String date = rs.getString("in_date");
-						String maker = rs.getString("maker");
-						String menuName = rs.getString("menu_name");
-						
-						Object data[] = {stockId,menuId,storeId,amount,date,maker,menuName};
-						model2.addRow(data);
-					}
-					
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				} finally {
-					try {
-						if (rs != null) rs.close();
-						if (pstmt != null) pstmt.close();
-						if (conn != null) conn.close();
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
+
+				List<StockVO> list = dao.selectAll(name);
+				
+				for (int i = 0; i < list.size(); i++) {
+					StockVO stock = list.get(i);
+					Object data[] = {stock.getStockId(),
+								     stock.getMenuId(),
+								     stock.getStoreId(),
+								     stock.getAmount(),
+								     stock.getDate(),
+								     stock.getMaker(),
+								     stock.getMenuName()};
+					model2.addRow(data);
 				}
 			}
 		});
@@ -383,13 +223,7 @@ public class StockPanel extends JPanel{
 				}
 			}
 		});
-		
-		//여기까지
-		
-		
-		
-		
-		
+			
 		// 발주 시 해당 재고 업데이트 기능 
 		JButton orderBtn = new JButton("발주 넣기");
 		btn2Panel.add(orderBtn);
@@ -399,33 +233,21 @@ public class StockPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				Object orderMenuId = table3.getModel().getValueAt(0, 0);
+				Object orderStoreId = table3.getModel().getValueAt(0, 1);
+				Object orderMaker = table3.getModel().getValueAt(0, 2);
+				Object orderNum = table3.getModel().getValueAt(0, 3);
 				
-				try {
-					Object orderMenuId = table3.getModel().getValueAt(0, 0);
-					Object orderStoreId = table3.getModel().getValueAt(0, 1);
-					Object orderMaker = table3.getModel().getValueAt(0, 2);
-					Object orderNum = table3.getModel().getValueAt(0, 3);
-					
-					conn = ds.getConnection();
-					pstmt = conn.prepareStatement("INSERT INTO stocks(stock_id,menu_id, store_id, amount, in_date,maker) "
-							+ "VALUES(STOCK_SEQ.nextval,?,?,?,sysdate,?)");
-					pstmt.setObject(1, orderMenuId);
-					pstmt.setObject(2, orderStoreId);
-					pstmt.setObject(3, orderNum);
-					pstmt.setObject(4, orderMaker);
-					
-					pstmt.executeUpdate();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				} finally {
-					try {
-						if (pstmt != null) pstmt.close();
-						if (conn != null) conn.close();
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
-				}
+				StockVO stock = new StockVO();
+				stock.setMenuId(Integer.parseInt(orderMenuId.toString()));
+				stock.setStoreId(Integer.parseInt(orderStoreId.toString()));
+				stock.setMaker(orderMaker.toString());
+				stock.setAmount(Integer.parseInt(orderNum.toString()));
+				
+				StockDao dao = StockDaoImpl.getInstance();
+				
+				dao.insert(stock);
+				
 				JOptionPane.showMessageDialog(orderBtn, "발주 완료!");
 				//searchBtn1.doClick();
 				searchBtn2.doClick();
@@ -440,7 +262,7 @@ public class StockPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				((CardLayout) thisPanel.getLayout()).show(thisPanel, "storeMenu");
+				((CardLayout) thisPanel.getLayout()).show(thisPanel, "stockMenu");
 			}
 		});
 		

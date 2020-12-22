@@ -13,7 +13,7 @@ import employee.component.button.menu.EmpMenuBtnEnum;
 import employee.component.panel.content.EmpContentPanel;
 import employee.component.panel.menu.EmpMenuPanel;
 import main.component.button.MenuBtnEnum;
-import main.component.panel.ContentPanel;
+import main.component.panel.content.ContentPanel;
 
 public class EmployeeView {
 

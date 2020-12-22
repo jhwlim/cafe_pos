@@ -1,4 +1,4 @@
-package main.component.panel;
+package main.component.panel.content;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -19,6 +19,7 @@ public class ContentPanel extends JPanel {
 	
 	static {
 		panel = new ContentPanel();
+		panel.setBackground(new Color(0x006600));
 		
 		panel.setLayout(new CardLayout());
 		

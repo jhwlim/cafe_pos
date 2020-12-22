@@ -12,13 +12,13 @@ public class MainFrame extends JFrame {
 	static final int FRAME_WIDTH = 1300;
 	static final int FRAME_HEIGHT = 1000;
 	
-	private static final int X_MARGIN = 5;
-	private static final int Y_MARGIN = 5;
+	private static final int X_MARGIN = 0;
+	private static final int Y_MARGIN = 0;
 	
-	private static final Color BG_COLOR = Color.gray;
+	private static final Color BG_COLOR = new Color(0x000000);
 	
 	public MainFrame() {
-		setTitle("Title");
+		setTitle("STARBUCKS");
 		
 		setLayout(new CardLayout(X_MARGIN, Y_MARGIN)); // 레이아웃 설정
 		
@@ -28,7 +28,6 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		
 		setLocationRelativeTo(null); // 프로그램을 윈도우 가운데 위치
-		//setLocation(-1000,100);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	

@@ -7,7 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import main.component.button.MenuBtnEnum;
-import main.component.panel.ContentPanel;
+import main.component.panel.content.ContentPanel;
+
 import stock.component.StockPanel;
  
 public class Stockview {
@@ -21,10 +22,9 @@ public class Stockview {
 		
 		panel.setLayout(new CardLayout());// panel에 작업하는게 왼쪽 영역에 표시됨.
 		
-	    //----------------stockMain---------------------
 	    stockMain = new StockPanel();
 	    panel.add("stockMain", stockMain);
-	    
+
 	}
 	
 	public Stockview() {

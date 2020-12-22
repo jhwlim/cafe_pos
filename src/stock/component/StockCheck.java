@@ -3,10 +3,7 @@ package stock.component;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,25 +13,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
-import common.config.Configs;
+import common.model.StockVO;
+import stock.dao.StockDao;
+import stock.dao.StockDaoImpl;
 import stock.view.Stockview;
 
 public class StockCheck extends JPanel{
-
-	static HikariConfig config;
-	static HikariDataSource ds;
-	
-	static {
-		config = new HikariConfig(Configs.getHikariConfigPath());
-		ds = new HikariDataSource(config);
-	}
-	
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
 	
 	public StockCheck() {
 		this.setLayout(new CardLayout());
@@ -59,38 +43,22 @@ public class StockCheck extends JPanel{
 		// 테이블을 수정할 수 없도록 추가
 		table.setDefaultEditor(Object.class, null);
 		
-		try {
-			conn = ds.getConnection();
-			pstmt = conn.prepareStatement("select stock_id,stocks.menu_id,store_id,amount,in_date,maker,menu_name "
-					+ "from stocks inner join menus on stocks.menu_id = menus.menu_id ORDER BY stock_id");
-			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				int stockId = rs.getInt("stock_id");
-				int menuId = rs.getInt("menu_id");
-				int storeId = rs.getInt("store_id");
-				int amount = rs.getInt("amount");
-				String date = rs.getString("in_date");
-				String maker = rs.getString("maker");
-				String menuName = rs.getString("menu_name");
-				
-				Object data[] = {stockId,menuId,storeId,amount,date,maker,menuName};
-				model.addRow(data);
-						
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) rs.close();
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
+		StockDao dao = StockDaoImpl.getInstance();
+		
+		List<StockVO> list = dao.selectAll("");
+		
+		for (int i = 0; i < list.size(); i++) {
+			StockVO stock = list.get(i);
+			Object data[] = {stock.getStockId(),
+						     stock.getMenuId(),
+						     stock.getStoreId(),
+						     stock.getAmount(),
+						     stock.getDate(),
+						     stock.getMaker(),
+						     stock.getMenuName()};
+			model.addRow(data);
 		}
+		
 		//여기까지
 		
 		////////검색 눌렀을때 해당 결과만 보여줄 테이블
@@ -108,38 +76,19 @@ public class StockCheck extends JPanel{
 				model.setRowCount(0);// 기존 테이블의 행을 모두 삭제
 				
 				String name = search1.getText();
-				try {
-					conn = ds.getConnection();
-					pstmt = conn.prepareStatement("select stock_id,stocks.menu_id,store_id,amount,in_date,maker,menu_name "
-							+ "from stocks inner join menus on stocks.menu_id = menus.menu_id and menu_name LIKE '%'||?||'%' "
-							+ "ORDER BY stock_id");
-					pstmt.setString(1, name);
-					rs = pstmt.executeQuery();
-					
-					while (rs.next()) {
-						int stockId = rs.getInt("stock_id");
-						int menuId = rs.getInt("menu_id");
-						int storeId = rs.getInt("store_id");
-						int amount = rs.getInt("amount");
-						String date = rs.getString("in_date");
-						String maker = rs.getString("maker");
-						String menuName = rs.getString("menu_name");
-						
-						Object data[] = {stockId,menuId,storeId,amount,date,maker,menuName};
-						model.addRow(data);
-					}
-					
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				} finally {
-					try {
-						if (rs != null) rs.close();
-						if (pstmt != null) pstmt.close();
-						if (conn != null) conn.close();
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-					
+				
+				List<StockVO> list = dao.selectAll(name);
+				
+				for (int i = 0; i < list.size(); i++) {
+					StockVO stock = list.get(i);
+					Object data[] = {stock.getStockId(),
+								     stock.getMenuId(),
+								     stock.getStoreId(),
+								     stock.getAmount(),
+								     stock.getDate(),
+								     stock.getMaker(),
+								     stock.getMenuName()};
+					model.addRow(data);
 				}
 				
 			}

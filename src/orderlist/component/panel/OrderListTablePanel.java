@@ -9,8 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
+import order.dao.OrderDao;
+import order.dao.OrderDaoImpl;
 import orderlist.component.table.OrderListTableModel;
 import orderlist.component.table.OrderListTableCell;
 
@@ -18,7 +21,11 @@ public class OrderListTablePanel extends JPanel {
 
 	public static final Color PANEL_COLOR = OrderListPanel.PANEL_COLOR;
 	
-	public OrderListTablePanel() {
+	int orderId;
+	
+	public OrderListTablePanel(int orderId) {
+		this.orderId = orderId;
+		
 		setDefaultConfig();
 		setComponents();
 	}
@@ -29,18 +36,18 @@ public class OrderListTablePanel extends JPanel {
 	}
 	
 	public void setComponents() {
-		JTable table = new JTable(new OrderListTableModel());
-		
-//		OrderListTableCell olstc = new OrderListTableCell(table);
-		
-		table.getColumn(table.getModel().getColumnName(5)).setCellEditor(new OrderListTableCell(table));
-		table.getColumn(table.getModel().getColumnName(5)).setCellRenderer(new OrderListTableCell(table));
+		JTable table = new JTable(new OrderListTableModel(orderId));
 		
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		
 		DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
 		cellRenderer.setHorizontalAlignment(JLabel.CENTER);
 		table.setDefaultRenderer(String.class, cellRenderer);
+		
+		table.setBackground(new Color(0xFFFFE9));
+		JTableHeader tableHeader = table.getTableHeader();
+		tableHeader.setBackground(new Color(0x663300));
+		tableHeader.setForeground(new Color(0xffffff));
 		
 		// 테이블 컬럼 사이즈 조절
 		for (int i = 0; i < table.getColumnCount(); i++) {
@@ -57,11 +64,7 @@ public class OrderListTablePanel extends JPanel {
 				break;
 			}
 			TableColumn col = table.getColumnModel().getColumn(i);
-			
-			if (i != 5) {
-				col.setCellRenderer(cellRenderer);
-			}
-			
+			col.setCellRenderer(cellRenderer);	
 			col.setPreferredWidth(width);
 		}
 		
