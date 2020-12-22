@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 public class OrderTablePanel extends JPanel {
 
 	public OrderTablePanel() {
-
 		this.setBackground(Color.WHITE);
 	}
 }

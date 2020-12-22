@@ -10,4 +10,5 @@ public interface OrderListDao {
 	public List<OrdersDetailVO> selectByOrderId(int orderId);
 	
 	public List<OrderListCategoryVO> countByOrderIdGroupByCategory(int orderId);
+	
 }

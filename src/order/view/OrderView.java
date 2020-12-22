@@ -42,7 +42,9 @@ import order.component.panel.OrderMenuPanel;
 import order.component.panel.OrderPayBottomPanel;
 import order.component.panel.OrderPayTopPanel;
 import order.component.panel.OrderTablePanel;
+import order.controller.button.bottom.OrderPayBtnClickOpenFrameListener;
 import order.controller.button.bottom.OrderPlusBtnClickListener;
+import order.controller.button.bottom.OrderSelectClearBtnClickListener;
 import order.dao.MenuDao;
 import order.dao.MenuDaoImpl;
 import order.dao.OrderDao;
@@ -57,6 +59,8 @@ public class OrderView {
 
 	public static JPanel panel;
 
+	public static JButton btn_clear;
+	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.ORDER);
 
@@ -117,12 +121,13 @@ public class OrderView {
 		JButton btn_space1 = new OrderBtnSpace();
 		JButton btn_space2 = new OrderBtnSpace();
 
-		JButton btn_clear = new OrderBtnClear("전체 취소", table);
+		btn_clear = new OrderBtnClear("전체 취소", table);
 		JButton btn_selectClear = new OrderBtnSetBasic("선택 취소");
 		JButton btn_pay = new OrderBtnPay("결제", menu_panel);
 
 		// 아래패널
-
+		btn_selectClear.addActionListener(new OrderSelectClearBtnClickListener(table, dtm));
+		/*
 		btn_selectClear.addActionListener(new ActionListener() {
 
 			@Override
@@ -132,8 +137,10 @@ public class OrderView {
 					return;
 				dtm.removeRow(rowindex);
 			}
-		});
+		});*/
 
+		btn_pay.addActionListener(new OrderPayBtnClickOpenFrameListener(table, table2, jsp2));
+		/*
 		btn_pay.addActionListener(new ActionListener() {
 
 			@Override
@@ -230,7 +237,8 @@ public class OrderView {
 				});
 			}
 		});
-
+		*/
+		
 		B_panel.add(btn_drink);
 		B_panel.add(btn_Food);
 		B_panel.add(btn_M);

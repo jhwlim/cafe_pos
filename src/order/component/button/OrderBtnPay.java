@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import order.controller.button.bottom.OrderPayBtnClickListener;
+//import order.controller.button.bottom.OrderPayBtnClickListener;
 
 public class OrderBtnPay extends JButton{
 
@@ -13,6 +13,6 @@ public class OrderBtnPay extends JButton{
 		super(btnName);
 		setPreferredSize(new Dimension(90, 90));
 	
-		addActionListener(new OrderPayBtnClickListener(menu_panel));
+//		addActionListener(new OrderPayBtnClickListener(menu_panel));
 	}
 }
