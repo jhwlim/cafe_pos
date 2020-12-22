@@ -1,10 +1,12 @@
 package main.component.panel.menu.side;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
 import common.model.StoreVO;
+import main.component.button.MenuBtn;
 import store.common.config.StoreConfig;
 import store.dao.StoreDao;
 import store.dao.StoreDaoImpl;
@@ -13,7 +15,7 @@ public class MainMenuSideCenterPanel extends JPanel {
 	
 	private static MainMenuSideCenterPanel panel;
 	
-	private static final int GRID_ROW_NUM = 6;
+	private static final int GRID_ROW_NUM = 4;
 	private static final int GRID_COL_NUM = 1;
 	
 	static {
@@ -26,8 +28,8 @@ public class MainMenuSideCenterPanel extends JPanel {
 	}
 	
 	private void setDefaultConfig() {
-		setLayout(new GridLayout(GRID_ROW_NUM, GRID_COL_NUM));
-		setBackground(MainMenuSidePanel.COLOR);
+		setLayout(new GridLayout(GRID_ROW_NUM, GRID_COL_NUM, 0, 5));		
+		setBackground(Color.white);
 	}
 	
 	private void setComponents() {
