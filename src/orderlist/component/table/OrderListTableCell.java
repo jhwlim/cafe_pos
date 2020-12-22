@@ -28,9 +28,11 @@ public class OrderListTableCell extends AbstractCellEditor implements TableCellE
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int row = table.getSelectedRow();
+//				int row = table.getSelectedRow();
 				
-				OrderListConfig.getList().remove(row);
+				OrderListConfig.getList().remove(table);
+				
+				
 				
 				((AbstractTableModel) table.getModel()).fireTableDataChanged();				
 			}

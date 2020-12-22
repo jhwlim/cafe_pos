@@ -8,7 +8,7 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.component.panel.SideUpPanel;
+import main.component.panel.content.SideUpPanel;
 
 public class EmpMenuCenterPanel extends JPanel {
 	

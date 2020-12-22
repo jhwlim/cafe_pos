@@ -23,7 +23,7 @@ public class TimerActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (count < 2) {
-			((CardLayout) cardPanel.getLayout()).next(cardPanel);			
+			((CardLayout) cardPanel.getLayout()).next(cardPanel);				
 		} else {
 			FramePanel.getTimer().stop();			
 		}

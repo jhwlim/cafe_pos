@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import main.component.button.MenuBtnEnum;
-import main.component.panel.ContentPanel;
+import main.component.panel.content.ContentPanel;
 import stock.component.StockPanel;
  
 public class Stockview {

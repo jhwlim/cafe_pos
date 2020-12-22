@@ -25,8 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import common.model.MenuVO;
 import common.model.OrdersDetailVO;
 import main.component.button.MenuBtnEnum;
-import main.component.panel.ContentPanel;
-
+import main.component.panel.content.ContentPanel;
 import order.component.button.OrderBtnSetBasic;
 import order.component.button.OrderBtnSpace;
 import order.component.frame.OrderPayFrame;
