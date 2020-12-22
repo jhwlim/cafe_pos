@@ -6,7 +6,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import main.component.button.MenuBtnEnum;
-import main.component.panel.ContentPanel;
+import main.component.panel.content.ContentPanel;
 import store.component.panel.menu.StoreMenuPanel;
 
 public class StoreView {

@@ -7,17 +7,18 @@ import common.model.OrdersDetailVO;
 
 public class OrderListConfig {
 	
-	private static List<OrdersDetailVO> orderDetailList;
+	
+	private static List<Integer> orderIdList;
 	
 	static {
-		orderDetailList = new LinkedList<>();
+		orderIdList = new LinkedList<>();
 	}
 	
-	public static List<OrdersDetailVO> getList() {
-		return orderDetailList;
+	public static List<Integer> getList() {
+		return orderIdList;
 	}
 	
-	public static void setList(List<OrdersDetailVO> list) {
-		orderDetailList = list;
+	public static void setList(List<Integer> list) {
+		orderIdList = list;
 	}
 }

@@ -3,7 +3,7 @@ package main.component.button;
 import javax.swing.JButton;
 
 import common.font.MenuBtnFont;
-import main.component.panel.SideDownPanel;
+import main.component.panel.content.SideDownPanel;
 
 public class SidePanelBtn extends JButton {
 

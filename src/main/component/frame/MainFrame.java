@@ -28,7 +28,6 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		
 		setLocationRelativeTo(null); // 프로그램을 윈도우 가운데 위치
-		//setLocation(-1000,100);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	

@@ -7,7 +7,7 @@ public class OrderPayFrame extends JFrame{
 	public OrderPayFrame(String FrameName) {
 		super(FrameName);
 		setSize(600, 300);
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(null);;
 		setVisible(true);
 	}
 	

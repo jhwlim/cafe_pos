@@ -1,12 +1,14 @@
 package main.view;
 
+import javax.swing.JFrame;
+
 import main.component.frame.MainFrame;
 import main.component.panel.FramePanel;
 import main.component.panel.FramePanelEnum;
 
 public class MainView {
 	
-	static MainFrame frame;
+	static JFrame frame;
 	
 	static {
 		frame = new MainFrame();
@@ -22,7 +24,7 @@ public class MainView {
 		frame.setVisible(true);
 	}
 	
-	public static MainFrame getMainFrame() {
+	public static JFrame getMainFrame() {
 		return frame;
 	}
 	

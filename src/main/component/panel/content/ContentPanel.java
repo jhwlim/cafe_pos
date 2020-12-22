@@ -1,4 +1,4 @@
-package main.component.panel;
+package main.component.panel.content;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
