@@ -3,6 +3,7 @@ package order.view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import common.model.MenuVO;
 import common.model.OrdersDetailVO;
@@ -57,6 +59,7 @@ public class OrderView {
 
 	public static JPanel panel;
 
+	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.ORDER);
 
@@ -74,7 +77,8 @@ public class OrderView {
 				}
 			}
 		};
-
+		
+		
 		JPanel menu_panel = new OrderMenuPanel(dtm);// 메인 패널 위에 메뉴패널
 		JPanel C_panel = new OrderTablePanel();// 센터 패널
 		JPanel B_panel = new OrderBottomPanel();// 하단 패널
@@ -85,10 +89,23 @@ public class OrderView {
 		// 중간부
 		panel.add(C_panel, BorderLayout.CENTER);
 
-		JTable table = new JTable(dtm);
+		JTable table = new JTable(dtm) {
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+				Component comp = super.prepareRenderer(renderer, row, col);
+				Color alternateColor = new Color(0xe3e3bc);
+				Color whiteColor = Color.white;
+				if (!comp.getBackground().equals(getSelectionBackground())) {
+					Color c = (row % 2 == 0 ? alternateColor : whiteColor);
+					comp.setBackground(c);
+				}
+				
+				return comp;
+			}
+		};
+		
 		JScrollPane jsp = new JScrollPane(table);
 		C_panel.add(jsp);
-
+		
 		table.getColumnModel().getColumn(0).setPreferredWidth(10);
 		table.getColumnModel().getColumn(1).setPreferredWidth(130);
 		table.getColumnModel().getColumn(2).setPreferredWidth(10);
