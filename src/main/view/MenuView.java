@@ -18,7 +18,8 @@ import main.controller.btn.MenuBtnClickListener;
 
 public class MenuView {
 	
-	private static final int COLOR_INT = 0x40444a;
+//	private static final int COLOR_INT = 0x40444a;
+	private static final int COLOR_INT = 0xffffff;
 	public static final Color COLOR = new Color(COLOR_INT);
 	
 	public static FramePanel panel;

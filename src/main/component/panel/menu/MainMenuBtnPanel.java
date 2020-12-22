@@ -8,9 +8,11 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 import common.component.button.RoundedBorder;
 import main.component.button.MenuBtn;
@@ -48,9 +50,13 @@ public class MainMenuBtnPanel extends JPanel {
 			} else {
 				btn = new MenuBtn();
 			}
+			btn.setForeground(new Color(0xFFFFFF));// 버튼 폰트
+			btn.setBackground(new Color(0x663300));// 버튼 배경
+			btn.setBorder(BorderFactory.createLineBorder(new Color(0x663300)));
+			
 			
 			JPanel gridInPanel = new JPanel(new CardLayout(50, 50));
-			gridInPanel.setBackground(COLOR);
+			gridInPanel.setBackground(new Color(0x006600));// 밑 배경
 			gridInPanel.add(btn);
 			this.add(gridInPanel);
 		}

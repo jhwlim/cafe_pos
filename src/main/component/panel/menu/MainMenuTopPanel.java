@@ -18,10 +18,10 @@ import main.view.MenuView;
 
 public class MainMenuTopPanel extends JPanel {
 	
-//	public static final Color COLOR = MenuView.COLOR;
+	public static final Color COLOR = MenuView.COLOR;
 	
 	public static final int WIDTH = 0;
-	public static final int HEIGHT = 340;
+	public static final int HEIGHT = 420;
 	
 	public MainMenuTopPanel() {
 		setDefaultConfig();
@@ -35,7 +35,7 @@ public class MainMenuTopPanel extends JPanel {
 	}
 	
 	private void setComponents() {
-		String text = "Welcome CAFE!";
+		String text = "";
 		JLabel label = new JLabel(text,
 								  LogoLabel.getImgIcon(), 
 								  SwingConstants.CENTER);// 텍스트 + 이미지 합침
