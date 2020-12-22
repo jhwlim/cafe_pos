@@ -31,7 +31,7 @@ public class MenuView {
 		MainMenuTopPanel topPanel = new MainMenuTopPanel();
 		panel.add(topPanel, BorderLayout.NORTH);// 웰컴 카페 그림 (탑)
 		
-		JPanel centerPanel = new JPanel(new CardLayout(MARGIN, MARGIN));// 센터 전체적인 부분
+		JPanel centerPanel = new JPanel(new CardLayout(MARGIN, MARGIN));// 센터 전체적인 
 		panel.add(centerPanel, BorderLayout.CENTER);
 		
 		JPanel subPanel = new JPanel(new BorderLayout(MARGIN, MARGIN));
