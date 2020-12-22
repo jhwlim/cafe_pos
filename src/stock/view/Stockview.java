@@ -8,10 +8,7 @@ import javax.swing.JPanel;
 
 import main.component.button.MenuBtnEnum;
 import main.component.panel.content.ContentPanel;
-<<<<<<< HEAD
 
-=======
->>>>>>> 26ccdcacdf13a84b5fdf2852217ee8f5bead7f65
 import stock.component.StockPanel;
  
 public class Stockview {
@@ -23,21 +20,12 @@ public class Stockview {
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.STOCK);// 카드 레이아웃
 		
-<<<<<<< HEAD
 		panel.setLayout(new CardLayout());// panel에 작업하는게 왼쪽 영역에 표시됨.
 		
 	    stockMain = new StockPanel();
 	    panel.add("stockMain", stockMain);
 
-=======
-		
-		panel.setLayout(new CardLayout());// panel에 작업하는게 왼쪽 영역에 표시됨.
-		
-	    //----------------stockMain----------------------
-	    stockMain = new StockPanel();
-	    panel.add("stockMain", stockMain);
-	    
->>>>>>> 26ccdcacdf13a84b5fdf2852217ee8f5bead7f65
+
 	}
 	
 	public Stockview() {

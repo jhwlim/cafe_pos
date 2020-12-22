@@ -20,6 +20,9 @@ import stock.view.Stockview;
 
 public class StockCheck extends JPanel{
 	
+	public static JTextField search1;
+	public static JButton searchBtn1;
+	
 	public StockCheck() {
 		this.setLayout(new CardLayout());
 		this.setLayout(null);
@@ -62,11 +65,11 @@ public class StockCheck extends JPanel{
 		//여기까지
 		
 		////////검색 눌렀을때 해당 결과만 보여줄 테이블
-		JTextField search1 = new JTextField(20);
+		search1 = new JTextField(20);
 		this.add(search1);
 		search1.setBounds(650, 100,200,40);
 		
-		JButton searchBtn1 = new JButton("검색");
+		searchBtn1 = new JButton("검색");
 		this.add(searchBtn1);
 		searchBtn1.setBounds(850, 100, 60, 40);
 		searchBtn1.addActionListener(new ActionListener() {
