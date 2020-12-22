@@ -1,56 +1,56 @@
-package main.component.button;
+package common.component.button;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import main.controller.btn.MenuBtnClickListener;
 
-public class MenuBtn extends JButton {
+public class RoundImgBtn extends JButton {
 
-	static final Color FONT_COLOR = new Color(0xFFFFFF);
-	static final Color BG_COLOR = new Color(0x663300);
+	private static final int IMG_SIZE = 60;
+	
+	int round;
+	Color bgColor;
+	Color fontColor;
 
-	public MenuBtn() {
-		setForeground(new Color(0xFFFFFF));// 버튼 폰트
-		setBackground(new Color(0x663300));// 버튼 배경
-		setBorder(BorderFactory.createLineBorder(new Color(0x663300)));
-	}
-
-	public MenuBtn(MenuBtnEnum mbe) {
-		super(mbe.btnName);
-
-		setFont(new Font("맑은 고딕", Font.BOLD, 30));
-
-		addActionListener(new MenuBtnClickListener(mbe));
-
+	public RoundImgBtn(String path, int round, Color bgColor, Color fontColor) throws IOException {
+		super(new ImageIcon(ImageIO.read(new File(path)).getScaledInstance(IMG_SIZE, IMG_SIZE, Image.SCALE_SMOOTH)));
+		
+		this.round = round;
+		this.bgColor = bgColor;
+		this.fontColor = fontColor;
+		
 		setContentAreaFilled(false);
 
-		setForeground(FONT_COLOR);// 버튼 폰트
-		setBackground(BG_COLOR);// 버튼 배경
-		setBorder(BorderFactory.createLineBorder(BG_COLOR));
-
+		setForeground(fontColor);// 버튼 폰트
+		setBackground(bgColor);// 버튼 배경
+		setBorder(BorderFactory.createLineBorder(bgColor));
 	}
 
-	static int round = 40;
-
+	
 	public void paint(Graphics g) {
 		setBackground(getParent().getBackground());
 		setBorder(null);
 
 		Graphics2D g2d = (Graphics2D)g;
 
-		g2d.setColor(BG_COLOR); // BG Color
+		g2d.setColor(bgColor); // BG Color
 
 		g2d.fillRoundRect(0,0,getWidth(),getHeight(),round,round);
 
-		g2d.setColor(FONT_COLOR);
+		g2d.setColor(fontColor);
 
 		g2d.drawRoundRect(0,0,getWidth()-1, getHeight()-1,round, round);
 
