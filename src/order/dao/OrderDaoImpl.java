@@ -95,9 +95,11 @@ public class OrderDaoImpl implements OrderDao {
 				
 				int amount = detail.getMenuCount();
 				int menuId = detail.getMenuId();
-				String sql4 = "SELECT stock_id, amount FROM stocks \r\n"
-						+ "WHERE menu_id = ? AND ROWNUM = 1 AND store_id = ? \r\n"
-						+ "ORDER BY in_date ASC";
+				String sql4 = "SELECT * FROM (\r\n"
+						+ "    SELECT stock_id, amount FROM stocks\r\n"
+						+ "    WHERE menu_id = ? AND store_id = ?\r\n"
+						+ "    ORDER BY in_date ASC\r\n"
+						+ ") WHERE ROWNUM = 1";
 				pstmt4 = conn.prepareStatement(sql4);
 				
 				String sql5 = "DELETE FROM stocks WHERE stock_id = ?";
