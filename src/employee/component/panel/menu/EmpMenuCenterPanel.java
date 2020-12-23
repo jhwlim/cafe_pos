@@ -11,12 +11,11 @@ import javax.swing.JPanel;
 import main.component.panel.content.SideUpPanel;
 
 public class EmpMenuCenterPanel extends JPanel {
-	
-//	public static final int WIDTH = 0;
-//	public static final int HEIGHT = SideUpPanel.PANEL_HEIGHT;
-	
+		
 	static final int X_MARGIN = 0;
 	static final int Y_MARGIN = 20;
+	
+	static final Color BG_COLOR = new Color(0xffffff);
 	
 	private static EmpMenuCenterPanel panel; 
 	
@@ -38,17 +37,23 @@ public class EmpMenuCenterPanel extends JPanel {
 	}
 	
 	private static void setDefaultConfig() {
-		panel.setLayout(new BorderLayout(X_MARGIN, Y_MARGIN));
-		panel.setBackground(new Color(EmpMenuPanel.COLOR));
+		panel.setLayout(new CardLayout(70, 50));
+		panel.setBackground(BG_COLOR);
 		setComponents();
 	}
 	
 	private static void setComponents() {	
+		JPanel innerPanel = new JPanel();
+		innerPanel.setLayout(new BorderLayout(X_MARGIN, Y_MARGIN));
+		innerPanel.setBackground(BG_COLOR);
+		
+		panel.add(innerPanel);
+		
 		JPanel emtp = EmpMenuTitlePanel.getInstance();
-		panel.add(emtp, BorderLayout.NORTH);
+		innerPanel.add(emtp, BorderLayout.NORTH);
 		
 		JPanel embp = EmpMenuBtnPanel.getInstance();
-		panel.add(embp, BorderLayout.CENTER);
+		innerPanel.add(embp, BorderLayout.CENTER);
 	}
 	
 }

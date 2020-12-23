@@ -28,8 +28,7 @@ public class OrderPayOkBtnClickListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int storeId = StoreConfig.getStoreId();
-		
-		
+			
 		if (storeId == StoreConfig.DEFAULT_STORE_ID) {
 			JOptionPane.showMessageDialog(null, "매장 정보가 등록되어 있지 않습니다.", "경고",
 					JOptionPane.WARNING_MESSAGE);

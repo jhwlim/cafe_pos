@@ -11,7 +11,9 @@ import javax.swing.JPanel;
 import main.component.panel.content.SideUpPanel;
 
 public class StoreMenuCenterPanel extends JPanel {
-	
+
+	static final Color BG_COLOR = new Color(0xffffff);
+
 	static final int X_MARGIN = 0;
 	static final int Y_MARGIN = 20;
 	
@@ -36,17 +38,23 @@ public class StoreMenuCenterPanel extends JPanel {
 	}
 	
 	private void setDefaultConfig() {
-		setLayout(new BorderLayout(X_MARGIN, Y_MARGIN));
-		setBackground(new Color(StoreMenuPanel.COLOR));
+		setLayout(new CardLayout(70, 50));
+		setBackground(BG_COLOR);
 		
 	}
 	
 	private void setComponents() {	
+		JPanel innerPanel = new JPanel();
+		innerPanel.setLayout(new BorderLayout(X_MARGIN, Y_MARGIN));
+		innerPanel.setBackground(BG_COLOR);
+		
+		add(innerPanel);
+		
 		JPanel title = StoreMenuTitlePanel.getInstance();
-		add(title, BorderLayout.NORTH);
+		innerPanel.add(title, BorderLayout.NORTH);
 		
 		JPanel btns = StoreMenuBtnPanel.getInstance();
-		add(btns, BorderLayout.CENTER);
+		innerPanel.add(btns, BorderLayout.CENTER);
 	}
 	
 }

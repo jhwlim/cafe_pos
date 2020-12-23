@@ -65,7 +65,7 @@ public class SideDownPanel extends JPanel {
 		subPanel.setBackground(BG_COLOR);
 		sideDownPanel.add(subPanel);
 		try {
-			JButton backBtn = new JButton(new ImageIcon(ImageIO.read(new File("resources/img/main/prev.png")).getScaledInstance(IMG_SIZE, IMG_SIZE, Image.SCALE_SMOOTH)));
+			JButton backBtn = new JButton(new ImageIcon(ImageIO.read(new File("resources/img/main/back.png")).getScaledInstance(IMG_SIZE, IMG_SIZE, Image.SCALE_SMOOTH)));
 			backBtn.setPreferredSize(new Dimension(IMG_SIZE, IMG_SIZE));
 			backBtn.setBackground(Color.white);
 			backBtn.setBorder(BorderFactory.createEmptyBorder());

@@ -1,6 +1,7 @@
 package stock.component;
 
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -16,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import common.model.StockVO;
 import stock.dao.StockDao;
 import stock.dao.StockDaoImpl;
-import stock.view.Stockview;
+import stock.view.StockView;
 
 public class StockCheck extends JPanel{
 	
@@ -29,8 +30,9 @@ public class StockCheck extends JPanel{
 		
 		
 		JLabel stockCheck = new JLabel("재고 확인");
+		stockCheck.setFont(new Font("맑은 고딕", Font.BOLD, 40));
 		this.add(stockCheck);
-		stockCheck.setBounds(450, 0, 100, 100);
+		stockCheck.setBounds(400, 0, 300, 100);
 		
 		
 		//////////// 기본 재고 테이블
@@ -105,7 +107,7 @@ public class StockCheck extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JPanel thisPanel = Stockview.stockMain;
+				JPanel thisPanel = StockView.stockMain;
 				((CardLayout) thisPanel.getLayout()).show(thisPanel, "stockMenu");
 			}
 		});

@@ -49,6 +49,7 @@ import order.component.panel.OrderMenuPanel;
 import order.component.panel.OrderPayBottomPanel;
 import order.component.panel.OrderPayTopPanel;
 import order.component.panel.OrderTablePanel;
+import order.controller.button.bottom.OrderSelectClearBtnClickListener;
 import order.dao.MenuDao;
 import order.dao.MenuDaoImpl;
 import order.dao.OrderDao;
@@ -157,8 +158,11 @@ public class OrderView {
 		JButton btn_selectClear = new OrderBtnSetBasic("선택 취소");
 		JButton btn_pay = new OrderBtnPay("결제", menu_panel);
 
-	
 		// 아래패널
+//<<<<<<< HEAD
+		btn_selectClear.addActionListener(new OrderSelectClearBtnClickListener(table, dtm));
+//=======
+//>>>>>>> master
 
 		btn_selectClear.addActionListener(new ActionListener() {
 
@@ -271,7 +275,6 @@ public class OrderView {
 			}
 		});
 
-		
 		
 		B_panel.add(btn_drink);
 		B_panel.add(btn_Food);

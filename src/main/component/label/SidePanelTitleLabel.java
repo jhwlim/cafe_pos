@@ -32,6 +32,7 @@ public class SidePanelTitleLabel extends JLabel {
 		setFont(new SidePanelTitleLabelFont()); 
 		setForeground(Color.white);
 	}
+	
 	public SidePanelTitleLabel(MenuBtnEnum mbe) {
 		super(mbe.btnName, SwingConstants.CENTER);
 		super.setLocation(LABLE_X_LOCATION, LABLE_Y_LOCATION);

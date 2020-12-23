@@ -12,6 +12,8 @@ import common.model.StoreVO;
 
 public class StoreInfoShowPanel extends JPanel {
 	
+	public static final Color BG_COLOR = new Color(0xf0e6bd);
+	
 	public static final int NUM_OF_FIELDS = StoreInfoFieldPanel.NUM_OF_FIELDS;
 	
 	public static final int GRID_ROW = NUM_OF_FIELDS;
@@ -29,14 +31,14 @@ public class StoreInfoShowPanel extends JPanel {
 	
 	private void setDefaultConfig() {
 		setLayout(new GridLayout(GRID_ROW, GRID_COL, GRID_X_MARGIN, GRID_Y_MARGIN));
-		setBackground(new Color(StoreInfoPanel.COLOR));
+		setBackground(BG_COLOR);
 	}
 	
 	private void setComponents(StoreVO store) {
 		for (StoreInfoFieldEnum field : StoreInfoFieldEnum.values()) {
 			JLabel input = new JLabel();
 			input.setOpaque(true);
-			input.setBackground(new Color(StoreInfoPanel.COLOR));
+			input.setBackground(BG_COLOR);
 			
 			switch (field) {
 			case STORE_ID :

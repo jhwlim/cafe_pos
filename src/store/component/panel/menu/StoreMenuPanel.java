@@ -8,11 +8,9 @@ import javax.swing.JPanel;
 public class StoreMenuPanel extends JPanel {
 	
 	private static StoreMenuPanel panel;
-	
-	public static final int COLOR = 0xffffff;
-	
-	private static final int X_MARGIN = 300;
-	private static final int Y_MARGIN = 280;
+		
+	private static final int X_MARGIN = 320;
+	private static final int Y_MARGIN = 70;
 	
 	static {
 		panel = new StoreMenuPanel();	
@@ -34,7 +32,6 @@ public class StoreMenuPanel extends JPanel {
 	
 	private void setDefaultConfig() {
 		setLayout(new CardLayout(X_MARGIN, Y_MARGIN));
-		setBackground(new Color(COLOR));
 	}
 	
 	private void setComponents() {

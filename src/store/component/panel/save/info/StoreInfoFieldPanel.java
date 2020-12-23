@@ -12,6 +12,8 @@ import store.component.panel.add.center.StoreAddCenterPanel;
 
 public class StoreInfoFieldPanel extends JPanel {
 	
+	public static final Color BG_COLOR = new Color(0xf0e6bd);
+	
 	private static StoreInfoFieldPanel panel;
 	
 	public static final int NUM_OF_FIELDS = StoreInfoFieldEnum.values().length;
@@ -37,8 +39,7 @@ public class StoreInfoFieldPanel extends JPanel {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		
 		setLayout(new GridLayout(GRID_ROW, GRID_COL, GRID_X_MARGIN, GRID_Y_MARGIN));
-//		setBackground(new Color(StoreAddCenterPanel.COLOR));
-		setBackground(new Color(StoreInfoPanel.COLOR));
+		setBackground(BG_COLOR);
 		
 		setComponents();
 	}

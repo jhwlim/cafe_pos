@@ -5,50 +5,53 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import common.component.label.LogoLabel;
 import common.font.SidePanelTitleLabelFont;
 import employee.component.label.menu.EmpMenuTitleLabel;
 import main.component.panel.content.SideUpPanel;
 
 public class EmpMenuTitlePanel extends JPanel {
 	
-//	public static final int WIDTH = 0;
-//	public static final int HEIGHT = 50;
+	public static final Color BG_COLOR = new Color(0xffffff);
 	
 	private static EmpMenuTitlePanel emtp; 
 	
 	static {
 		emtp = new EmpMenuTitlePanel();
-		setDefaultConfig();
+		
 	}
 	
-	private EmpMenuTitlePanel() {
+	public EmpMenuTitlePanel() {
+		setDefaultConfig();
+		setComponents();
 	}
 	
 	public static EmpMenuTitlePanel getInstance() {
 		if (emtp == null) {
 			emtp = new EmpMenuTitlePanel();
-			setDefaultConfig();
 		}
 		
 		return emtp;
 	}
 	
-	private static void setDefaultConfig() {
-//		emtp.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		
-		emtp.setLayout(new FlowLayout(FlowLayout.CENTER));
-		emtp.setBackground(new Color(EmpMenuPanel.COLOR));
-	
-		setComponents();
+	private  void setDefaultConfig() {
+		setLayout(new FlowLayout(FlowLayout.CENTER));
+		setBackground(BG_COLOR);
 	}
 	
-	private static void setComponents() {
-		JLabel title = new EmpMenuTitleLabel("Employee Management");
-		emtp.add(title);
+	private void setComponents() {
+		try {
+			JLabel title = new LogoLabel();
+			add(title);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

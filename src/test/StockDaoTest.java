@@ -11,8 +11,21 @@ public class StockDaoTest {
 		
 		StockDao dao = StockDaoImpl.getInstance();
 		
+//<<<<<<< HEAD
+		StockVO stock = new StockVO();
+		stock.setMenuId(42);
+		stock.setAmount(5);
+		stock.setMaker("제조사A");
+		stock.setStoreId(StoreConfig.getStoreId());
+		dao.insert(stock);
+		
+		/*
+		int menuIdStartIdx = 41;
+		int menuIdEndIdx = 86;
+=======
 		int menuIdStartIdx = 181;
 		int menuIdEndIdx = 226;
+>>>>>>> master
 		
 		for (int i = menuIdStartIdx; i < menuIdEndIdx; i++) {
 			StockVO stock = new StockVO();
@@ -24,7 +37,7 @@ public class StockDaoTest {
 			
 			stock.setMaker("제조사B");
 			dao.insert(stock);
-		}
+		}*/
 		
 		System.out.println("완료");
 		

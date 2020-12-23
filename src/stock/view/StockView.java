@@ -11,7 +11,7 @@ import main.component.panel.content.ContentPanel;
 
 import stock.component.StockPanel;
  
-public class Stockview {
+public class StockView {
 
 	public static JPanel panel;
 	public static JPanel stockMain;
@@ -21,15 +21,16 @@ public class Stockview {
 		panel = ContentPanel.getPanel(MenuBtnEnum.STOCK);// 카드 레이아웃
 		
 		panel.setLayout(new CardLayout());// panel에 작업하는게 왼쪽 영역에 표시됨.
-		
-	    stockMain = new StockPanel();
-	    panel.add("stockMain", stockMain);
-
-
 	}
 	
-	public Stockview() {
-		((CardLayout) stockMain.getLayout()).show(stockMain, "stockMenu"); 
+	public StockView() {
+		
+		panel.removeAll();
+		
+		stockMain = new StockPanel();
+	    panel.add("stockMain", stockMain);
+
+	    ((CardLayout) stockMain.getLayout()).show(stockMain, "stockMenu"); 
 		((CardLayout) panel.getLayout()).show(panel, "stockMain"); 
 		
 	}

@@ -1,27 +1,27 @@
 package store.component.panel.menu;
 
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 
-
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import employee.component.button.menu.EmpMenuBtn;
-import employee.component.button.menu.EmpMenuBtnEnum;
+import common.font.SidePanelTitleLabelFont;
 import store.component.button.menu.StoreMenuBtn;
 import store.component.button.menu.StoreMenuBtnEnum;
 
 public class StoreMenuBtnPanel extends JPanel {
 
+	public static final Color BG_COLOR = new Color(0xffffff);
+	
 	private static StoreMenuBtnPanel panel; 
-	
-	private static final int X_MARGIN = 50;
-	private static final int Y_MARGIN = 50;
-	
-	private static final int GRID_ROW = 2;
-	private static final int GRID_COL = 2;
 	
 	static {
 		panel = new StoreMenuBtnPanel();
@@ -42,28 +42,45 @@ public class StoreMenuBtnPanel extends JPanel {
 	}
 	
 	private void setDefaultConfig() {
-		setLayout(new GridLayout(GRID_ROW, GRID_COL, X_MARGIN, Y_MARGIN));
-		setBackground(new Color(StoreMenuPanel.COLOR));
+		setLayout(new FlowLayout());
+		setBackground(BG_COLOR);
 	}
 	
 	private void setComponents() {
 		
-		int count = 0;
+		JPanel labelPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		labelPanel.setPreferredSize(new Dimension(200, StoreMenuBtn.BTN_HEIGHT + 30));
+		labelPanel.setBackground(BG_COLOR);
+		add(labelPanel);
+		
+		JLabel label = new JLabel("매장관리");
+		label.setFont(new SidePanelTitleLabelFont()); 
+		labelPanel.add(label);
 		
 		for (StoreMenuBtnEnum smb : StoreMenuBtnEnum.values()) {
 			try {
+				JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+				btnPanel.setBackground(BG_COLOR);
+				btnPanel.setPreferredSize(new Dimension(200, StoreMenuBtn.BTN_HEIGHT + 10));
+				add(btnPanel);
+				
 				JButton button = new StoreMenuBtn(smb);
-				add(button);
+				btnPanel.add(button);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			count++;
 		}
 		
-		for (int i = count; i < GRID_ROW * GRID_COL; i++) {
-			add(new StoreMenuBtn());
-		}
+		JPanel imgPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		imgPanel.setBackground(BG_COLOR);
+		add(imgPanel);
 		
+		try {
+			JLabel imglabel = new JLabel(new ImageIcon(ImageIO.read(new File("resources/img/design/img1.jpg")).getScaledInstance(220, 220, Image.SCALE_SMOOTH)));
+			imgPanel.add(imglabel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
