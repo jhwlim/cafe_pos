@@ -16,8 +16,11 @@ import javax.swing.table.DefaultTableModel;
 
 import common.model.MenuVO;
 import order.controller.button.menu.OrderMenuBtnClickAddListener;
+import order.controller.mouse.MenuMouseClickListener;
 import order.dao.MenuDao;
 import order.dao.MenuDaoImpl;
+import order.dao.StockDao;
+import order.dao.StockDaoImpl;
 
 public class OrderMenuPanel extends JPanel {
 	
@@ -25,18 +28,12 @@ public class OrderMenuPanel extends JPanel {
 		
 		this.setLayout(new CardLayout(10, 10));
 		this.setPreferredSize(new Dimension(0, 580));
-//<<<<<<< HEAD
-//
+
 		JPanel drinkPanel = new JPanel();	
 		JPanel foodPanel = new JPanel();	
 		JPanel mdPanel = new JPanel();		
-//=======
+
 		this.setBackground(new Color(0x006600));
-		
-//		JPanel D_panel = new JPanel();// 메인 패널 위에 메뉴패널
-//		JPanel F_panel = new JPanel();// 메인 패널 위에 메뉴패널
-//		JPanel M_panel = new JPanel();// 메인 패널 위에 메뉴패널
-//>>>>>>> master
 
 		this.add(drinkPanel, "Drink");
 		this.add(foodPanel, "Food");
@@ -57,7 +54,9 @@ public class OrderMenuPanel extends JPanel {
 
 			JButton btn = new JButton(imageIcon);
 
+			
 			btn.addActionListener(new OrderMenuBtnClickAddListener(dtm, menu));
+			btn.addMouseListener(new MenuMouseClickListener(menu.getMenuId()));
 			
 			switch (category) {
 			case "drink" :
