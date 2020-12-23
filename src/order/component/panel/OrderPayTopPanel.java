@@ -9,7 +9,7 @@ public class OrderPayTopPanel extends JPanel {
 
 	public OrderPayTopPanel(String panelName) {
 		setBorder(BorderFactory.createTitledBorder(panelName));
-		setBackground(Color.white);
+		setBackground(new Color(0x186f3d));
 	}
 	
 }

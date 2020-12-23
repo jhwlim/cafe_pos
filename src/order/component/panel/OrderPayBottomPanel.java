@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 public class OrderPayBottomPanel extends JPanel{
 
 	public OrderPayBottomPanel() {
-		setBackground(Color.white);
+		setBackground(new Color(0x186f3d));
 	}
 	
 }
