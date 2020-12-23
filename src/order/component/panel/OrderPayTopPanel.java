@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 public class OrderPayTopPanel extends JPanel {
 
 	public OrderPayTopPanel(String panelName) {
-
 		setBorder(BorderFactory.createTitledBorder(panelName));
 		setBackground(Color.white);
 	}

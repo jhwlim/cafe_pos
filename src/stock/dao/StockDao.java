@@ -9,4 +9,5 @@ public interface StockDao {
 	public List<StockVO> selectAll(String name);
 	
 	public void insert(StockVO stock);
+
 }

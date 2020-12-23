@@ -6,7 +6,7 @@ import java.awt.Font;
 
 import javax.swing.JPanel;
 
-import order.controller.button.OrderFoodBtnClickListener;
+import order.controller.button.bottom.OrderFoodBtnClickListener;
 
 public class OrderBtnFood extends OrderBtnSetBasic {
 	

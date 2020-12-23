@@ -8,7 +8,6 @@ public class OrderPayBottomPanel extends JPanel{
 
 	public OrderPayBottomPanel() {
 		setBackground(Color.white);
-		
 	}
 	
 }

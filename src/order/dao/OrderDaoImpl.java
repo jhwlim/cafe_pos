@@ -16,6 +16,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import common.config.Configs;
 import common.model.OrderVO;
 import common.model.OrdersDetailVO;
+import common.model.StockVO;
 import orderlist.common.config.OrderListConfig;
 import store.common.config.StoreConfig;
 import store.dao.StoreDao;
@@ -50,6 +51,9 @@ public class OrderDaoImpl implements OrderDao {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;		
+		PreparedStatement pstmt4 = null;		
+		PreparedStatement pstmt5 = null;		
+		PreparedStatement pstmt6 = null;		
 		ResultSet rs = null;
 		
 		int generatedKey = -1;
@@ -89,6 +93,42 @@ public class OrderDaoImpl implements OrderDao {
 				pstmt3.setInt(4, detail.getDiscountedCost());
 				pstmt3.executeUpdate();
 				
+				int amount = detail.getMenuCount();
+				int menuId = detail.getMenuId();
+				String sql4 = "SELECT * FROM (\r\n"
+						+ "    SELECT stock_id, amount FROM stocks\r\n"
+						+ "    WHERE menu_id = ? AND store_id = ?\r\n"
+						+ "    ORDER BY in_date ASC\r\n"
+						+ ") WHERE ROWNUM = 1";
+				pstmt4 = conn.prepareStatement(sql4);
+				
+				String sql5 = "DELETE FROM stocks WHERE stock_id = ?";
+				pstmt5 = conn.prepareStatement(sql5);
+				
+				String sql6 = "UPDATE stocks SET amount = ? WHERE stock_id = ?";
+				pstmt6 = conn.prepareStatement(sql6);
+				
+				while (amount > 0) {
+					pstmt4.setInt(1, menuId);
+					pstmt4.setInt(2, StoreConfig.getStoreId());
+					pstmt4.executeUpdate();
+
+					rs = pstmt4.executeQuery();
+					if (rs.next()) {
+						int stockId = rs.getInt("stock_id");
+						int stockAmount = rs.getInt("amount");
+						
+						if (amount - stockAmount >= 0) {
+							pstmt5.setInt(1, stockId);
+							pstmt5.executeUpdate();
+						} else {
+							pstmt6.setInt(1, stockAmount - amount);
+							pstmt6.setInt(2, stockId);
+							pstmt6.executeUpdate();
+						}
+						amount -= stockAmount;
+					}
+				}
 			}
 
 			conn.commit();
@@ -101,6 +141,9 @@ public class OrderDaoImpl implements OrderDao {
 			}
 		} finally {
 			try {
+				if (pstmt6 != null) pstmt6.close();
+				if (pstmt5 != null) pstmt5.close();
+				if (pstmt4 != null) pstmt4.close();
 				if (pstmt3 != null) pstmt3.close();
 				if (pstmt2 != null) pstmt2.close();
 				if (pstmt != null) pstmt.close();

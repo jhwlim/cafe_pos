@@ -7,7 +7,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
-import order.controller.button.OrderClearBtnClickListener;
+import order.controller.button.bottom.OrderClearBtnClickListener;
 
 public class OrderBtnClear extends JButton{
 

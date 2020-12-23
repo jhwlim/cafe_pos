@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +89,6 @@ public class StockDaoImpl implements StockDao {
 		PreparedStatement pstmt = null;
 		
 		try {
-			
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement("INSERT INTO stocks(stock_id,menu_id, store_id, amount, maker) "
 					+ "VALUES(STOCK_SEQ.nextval,?,?,?,?)");

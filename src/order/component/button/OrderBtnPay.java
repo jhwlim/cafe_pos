@@ -7,7 +7,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import order.controller.button.OrderPayBtnClickListener;
+//import order.controller.button.bottom.OrderPayBtnClickListener;
 
 public class OrderBtnPay extends JButton{
 
@@ -22,6 +22,6 @@ public class OrderBtnPay extends JButton{
 		setFont(new Font("야놀자야체", Font.BOLD, 30));
 		setPreferredSize(new Dimension(105, 100));
 	
-		addActionListener(new OrderPayBtnClickListener(menu_panel));
+//		addActionListener(new OrderPayBtnClickListener(menu_panel));
 	}
 }
