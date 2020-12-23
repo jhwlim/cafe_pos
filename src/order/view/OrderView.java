@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -33,20 +35,20 @@ import order.component.button.OrderBtnSetBasic;
 import order.component.button.OrderBtnSpace;
 import order.component.frame.OrderPayFrame;
 import order.component.button.OrderBtnPlusMinus;
+import order.component.Label.OrderLbBasic;
 import order.component.button.OrderBtnClear;
 import order.component.button.OrderBtnClose;
 import order.component.button.OrderBtnDrink;
 import order.component.button.OrderBtnFood;
 import order.component.button.OrderBtnMd;
 import order.component.button.OrderBtnPay;
+import order.component.button.OrderBtnPayOk;
 import order.component.panel.OrderBottomPanel;
 import order.component.panel.OrderPayCenterPanel;
 import order.component.panel.OrderMenuPanel;
 import order.component.panel.OrderPayBottomPanel;
 import order.component.panel.OrderPayTopPanel;
 import order.component.panel.OrderTablePanel;
-import order.controller.button.bottom.OrderPayBtnClickOpenFrameListener;
-import order.controller.button.bottom.OrderPlusBtnClickListener;
 import order.controller.button.bottom.OrderSelectClearBtnClickListener;
 import order.dao.MenuDao;
 import order.dao.MenuDaoImpl;
@@ -63,7 +65,7 @@ public class OrderView {
 	public static JPanel panel;
 
 	public static JButton btn_clear;
-
+	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.ORDER);
 
@@ -123,10 +125,17 @@ public class OrderView {
 
 		JTable table2 = new JTable(table.getModel());
 
-		JScrollPane jsp2 = new JScrollPane(table2);
 		JTableHeader tableHeader = table.getTableHeader();
 		tableHeader.setBackground(new Color(0x663300));
 		tableHeader.setForeground(new Color(0xffffff));
+		
+		JScrollPane jsp2 = new JScrollPane(table2);
+
+		JTableHeader tableHeader2 = table2.getTableHeader();
+		tableHeader2.setBackground(new Color(0x663300));
+		tableHeader2.setForeground(new Color(0xffffff));
+		
+		jsp2.getViewport().setBackground(new Color(0xFFFFE9));
 		
 		// 하단부
 		panel.add(B_panel, BorderLayout.SOUTH);
@@ -145,14 +154,127 @@ public class OrderView {
 		JButton btn_space1 = new OrderBtnSpace();
 		JButton btn_space2 = new OrderBtnSpace();
 
-		btn_clear = new OrderBtnClear("전체 취소", table);
+		JButton btn_clear = new OrderBtnClear("전체 취소", table);
 		JButton btn_selectClear = new OrderBtnSetBasic("선택 취소");
 		JButton btn_pay = new OrderBtnPay("결제", menu_panel);
 
 		// 아래패널
+//<<<<<<< HEAD
 		btn_selectClear.addActionListener(new OrderSelectClearBtnClickListener(table, dtm));
+//=======
+//>>>>>>> master
 
-		btn_pay.addActionListener(new OrderPayBtnClickOpenFrameListener(table, table2, jsp2));
+		btn_selectClear.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int rowindex = table.getSelectedRow();
+				if (rowindex == -1)
+					return;
+				dtm.removeRow(rowindex);
+			}
+		});
+
+		btn_pay.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				JFrame subFr = new OrderPayFrame("결제");
+
+				JPanel top_panel = new OrderPayTopPanel("결제 페이지");
+				JPanel bot_panel = new OrderPayBottomPanel();
+				JPanel cen_panel = new OrderPayCenterPanel();
+
+				JButton btn_ok = new OrderBtnPayOk("결제");
+				JButton btn_no = new OrderBtnClose("취소", subFr);
+
+				int total_price = 0;
+				int total_su = 0;
+
+				for (int j = 0; j < table.getRowCount(); j++) {
+
+					total_price += (int) table.getValueAt(j, 2) * (int) table.getValueAt(j, 3);
+
+					total_su += (int) table.getValueAt(j, 3);
+
+				}
+				
+				if (total_price == 0) {
+					JOptionPane.showMessageDialog(null, "선택된 상품이 없습니다.", "경고",
+							JOptionPane.WARNING_MESSAGE);
+					subFr.dispose();
+				}
+				
+				
+				jsp2.setPreferredSize(new Dimension(550, 150));
+
+				JLabel total_pri = new OrderLbBasic("총 금액 : " + String.valueOf(total_price)+ "원    ");
+				JLabel total_ea = new OrderLbBasic("총 " + String.valueOf(total_su)+ "개");
+				
+				
+				subFr.add(top_panel, BorderLayout.NORTH);
+
+				cen_panel.add(jsp2);
+
+				cen_panel.add(total_pri);
+				cen_panel.add(total_ea);
+				
+				
+
+				subFr.add(cen_panel, FlowLayout.CENTER);
+				subFr.add(bot_panel, BorderLayout.SOUTH);
+
+				bot_panel.add(btn_ok);
+				bot_panel.add(btn_no);
+
+				// 결제 를 하면 넘어가는 단계 같이 해야할듯!
+				btn_ok.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						int storeId = StoreConfig.getStoreId();
+						
+						if (storeId == StoreConfig.DEFAULT_STORE_ID) {
+							JOptionPane.showMessageDialog(null, "매장 정보가 등록되어 있지 않습니다.", "경고",
+									JOptionPane.WARNING_MESSAGE);
+						} else {
+							List<OrdersDetailVO> list = new ArrayList<OrdersDetailVO>();
+							
+							for (int i = 0; i < table2.getRowCount(); i++) {
+								OrdersDetailVO detail = new OrdersDetailVO();
+								detail.setMenuId((int) table2.getValueAt(i, 0));
+								detail.setMenuCount((int) table2.getValueAt(i, 3));
+								list.add(detail);
+							
+							}
+							
+							if (list.size() == 0) {
+								JOptionPane.showMessageDialog(null, "선택된 상품이 없습니다.", "경고",
+										JOptionPane.WARNING_MESSAGE);
+							} else {
+								OrderDao dao = OrderDaoImpl.getInstance();
+								dao.insert(list);
+								btn_clear.doClick();
+							}
+							
+							subFr.dispose();
+						}
+						
+					}
+				});
+
+				
+				btn_no.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						subFr.dispose();
+					}
+				});
+			}
+		});
+
 		
 		B_panel.add(btn_drink);
 		B_panel.add(btn_Food);
