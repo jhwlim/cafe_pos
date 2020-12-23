@@ -65,7 +65,7 @@ public class OrderView {
 	public static JPanel panel;
 
 	public static JButton btn_clear;
-	
+
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.ORDER);
 
@@ -82,7 +82,7 @@ public class OrderView {
 				}
 			}
 		};
-		
+
 		JPanel menu_panel = new OrderMenuPanel(dtm);// 메인 패널 위에 메뉴패널
 		JPanel C_panel = new OrderTablePanel();// 센터 패널
 		JPanel B_panel = new OrderBottomPanel();// 하단 패널
@@ -90,7 +90,7 @@ public class OrderView {
 		// 상단부
 		panel.add(menu_panel, BorderLayout.NORTH);
 		menu_panel.setBackground(new Color(0x186f3d));
-		
+
 		// 중간부
 		panel.add(C_panel, BorderLayout.CENTER);
 		C_panel.setBackground(new Color(0x186f3d));
@@ -104,16 +104,16 @@ public class OrderView {
 					Color c = (row % 2 == 0 ? alternateColor : whiteColor);
 					comp.setBackground(c);
 				}
-				
+
 				return comp;
 			}
 		};
-		
+
 		JScrollPane jsp = new JScrollPane(table);
 		C_panel.add(jsp);
 
 		jsp.getViewport().setBackground(new Color(0xFFFFE9));
-		
+
 		table.getColumnModel().getColumn(0).setPreferredWidth(10);
 		table.getColumnModel().getColumn(1).setPreferredWidth(130);
 		table.getColumnModel().getColumn(2).setPreferredWidth(10);
@@ -128,20 +128,19 @@ public class OrderView {
 		JTableHeader tableHeader = table.getTableHeader();
 		tableHeader.setBackground(new Color(0x663300));
 		tableHeader.setForeground(new Color(0xffffff));
-		
+
 		JScrollPane jsp2 = new JScrollPane(table2);
 
 		JTableHeader tableHeader2 = table2.getTableHeader();
 		tableHeader2.setBackground(new Color(0x663300));
 		tableHeader2.setForeground(new Color(0xffffff));
-		
+
 		jsp2.getViewport().setBackground(new Color(0xFFFFE9));
-		
+
 		// 하단부
 		panel.add(B_panel, BorderLayout.SOUTH);
 		B_panel.setBackground(new Color(0x186f3d));
 
-		
 		// 아래 패널
 		JButton btn_drink = new OrderBtnDrink("음료", menu_panel);
 		JButton btn_Food = new OrderBtnFood("푸드", menu_panel);
@@ -199,28 +198,23 @@ public class OrderView {
 					total_su += (int) table.getValueAt(j, 3);
 
 				}
-				
+
 				if (total_price == 0) {
-					JOptionPane.showMessageDialog(null, "선택된 상품이 없습니다.", "경고",
-							JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "선택된 상품이 없습니다.", "경고", JOptionPane.WARNING_MESSAGE);
 					subFr.dispose();
 				}
-				
-				
+
 				jsp2.setPreferredSize(new Dimension(550, 150));
 
-				JLabel total_pri = new OrderLbBasic("총 금액 : " + String.valueOf(total_price)+ "원    ");
-				JLabel total_ea = new OrderLbBasic("총 " + String.valueOf(total_su)+ "개");
-				
-				
+				JLabel total_pri = new OrderLbBasic("총 금액 : " + String.valueOf(total_price) + "원    ");
+				JLabel total_ea = new OrderLbBasic("총 " + String.valueOf(total_su) + "개");
+
 				subFr.add(top_panel, BorderLayout.NORTH);
 
 				cen_panel.add(jsp2);
 
 				cen_panel.add(total_pri);
 				cen_panel.add(total_ea);
-				
-				
 
 				subFr.add(cen_panel, FlowLayout.CENTER);
 				subFr.add(bot_panel, BorderLayout.SOUTH);
@@ -233,39 +227,37 @@ public class OrderView {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						
+
 						int storeId = StoreConfig.getStoreId();
-						
+
 						if (storeId == StoreConfig.DEFAULT_STORE_ID) {
 							JOptionPane.showMessageDialog(null, "매장 정보가 등록되어 있지 않습니다.", "경고",
 									JOptionPane.WARNING_MESSAGE);
 						} else {
 							List<OrdersDetailVO> list = new ArrayList<OrdersDetailVO>();
-							
+
 							for (int i = 0; i < table2.getRowCount(); i++) {
 								OrdersDetailVO detail = new OrdersDetailVO();
 								detail.setMenuId((int) table2.getValueAt(i, 0));
 								detail.setMenuCount((int) table2.getValueAt(i, 3));
 								list.add(detail);
-							
+
 							}
-							
+
 							if (list.size() == 0) {
-								JOptionPane.showMessageDialog(null, "선택된 상품이 없습니다.", "경고",
-										JOptionPane.WARNING_MESSAGE);
+								JOptionPane.showMessageDialog(null, "선택된 상품이 없습니다.", "경고", JOptionPane.WARNING_MESSAGE);
 							} else {
 								OrderDao dao = OrderDaoImpl.getInstance();
 								dao.insert(list);
 								btn_clear.doClick();
 							}
-							
+
 							subFr.dispose();
 						}
-						
+
 					}
 				});
 
-				
 				btn_no.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -275,7 +267,6 @@ public class OrderView {
 			}
 		});
 
-		
 		B_panel.add(btn_drink);
 		B_panel.add(btn_Food);
 		B_panel.add(btn_M);
