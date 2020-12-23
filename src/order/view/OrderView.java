@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -33,12 +35,14 @@ import order.component.button.OrderBtnSetBasic;
 import order.component.button.OrderBtnSpace;
 import order.component.frame.OrderPayFrame;
 import order.component.button.OrderBtnPlusMinus;
+import order.component.Label.OrderLbBasic;
 import order.component.button.OrderBtnClear;
 import order.component.button.OrderBtnClose;
 import order.component.button.OrderBtnDrink;
 import order.component.button.OrderBtnFood;
 import order.component.button.OrderBtnMd;
 import order.component.button.OrderBtnPay;
+import order.component.button.OrderBtnPayOk;
 import order.component.panel.OrderBottomPanel;
 import order.component.panel.OrderPayCenterPanel;
 import order.component.panel.OrderMenuPanel;
@@ -59,6 +63,7 @@ public class OrderView {
 
 	public static JPanel panel;
 
+	public static JButton btn_clear;
 	
 	static {
 		panel = ContentPanel.getPanel(MenuBtnEnum.ORDER);
@@ -119,10 +124,17 @@ public class OrderView {
 
 		JTable table2 = new JTable(table.getModel());
 
-		JScrollPane jsp2 = new JScrollPane(table2);
 		JTableHeader tableHeader = table.getTableHeader();
 		tableHeader.setBackground(new Color(0x663300));
 		tableHeader.setForeground(new Color(0xffffff));
+		
+		JScrollPane jsp2 = new JScrollPane(table2);
+
+		JTableHeader tableHeader2 = table2.getTableHeader();
+		tableHeader2.setBackground(new Color(0x663300));
+		tableHeader2.setForeground(new Color(0xffffff));
+		
+		jsp2.getViewport().setBackground(new Color(0xFFFFE9));
 		
 		// 하단부
 		panel.add(B_panel, BorderLayout.SOUTH);
@@ -170,7 +182,7 @@ public class OrderView {
 				JPanel bot_panel = new OrderPayBottomPanel();
 				JPanel cen_panel = new OrderPayCenterPanel();
 
-				JButton btn_ok = new JButton("결제");
+				JButton btn_ok = new OrderBtnPayOk("결제");
 				JButton btn_no = new OrderBtnClose("취소", subFr);
 
 				int total_price = 0;
@@ -191,11 +203,12 @@ public class OrderView {
 				}
 				
 				
-				jsp2.setPreferredSize(new Dimension(400, 150));
+				jsp2.setPreferredSize(new Dimension(550, 150));
 
-				JLabel total_pri = new JLabel("총 금액 : " + String.valueOf(total_price));
-				JLabel total_ea = new JLabel("총 갯수 : " + String.valueOf(total_su));
-
+				JLabel total_pri = new OrderLbBasic("총 금액 : " + String.valueOf(total_price)+ "원    ");
+				JLabel total_ea = new OrderLbBasic("총 " + String.valueOf(total_su)+ "개");
+				
+				
 				subFr.add(top_panel, BorderLayout.NORTH);
 
 				cen_panel.add(jsp2);
@@ -205,7 +218,7 @@ public class OrderView {
 				
 				
 
-				subFr.add(cen_panel, BorderLayout.CENTER);
+				subFr.add(cen_panel, FlowLayout.CENTER);
 				subFr.add(bot_panel, BorderLayout.SOUTH);
 
 				bot_panel.add(btn_ok);
@@ -248,6 +261,7 @@ public class OrderView {
 					}
 				});
 
+				
 				btn_no.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -257,6 +271,8 @@ public class OrderView {
 			}
 		});
 
+		
+		
 		B_panel.add(btn_drink);
 		B_panel.add(btn_Food);
 		B_panel.add(btn_M);

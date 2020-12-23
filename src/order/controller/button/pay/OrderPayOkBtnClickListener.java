@@ -50,7 +50,7 @@ public class OrderPayOkBtnClickListener implements ActionListener {
 			} else {
 				OrderDao dao = OrderDaoImpl.getInstance();
 				dao.insert(list);
-//				OrderView.btn_clear.doClick();
+				OrderView.btn_clear.doClick();
 			}
 			
 			subFr.dispose();
