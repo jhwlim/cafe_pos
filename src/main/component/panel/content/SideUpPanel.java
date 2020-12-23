@@ -22,15 +22,11 @@ public class SideUpPanel extends JPanel {
 	public static final int PANEL_WIDTH = SidePanel.SIDEPANEL_WIDTH;
 	public static final int PANEL_HEIGHT = 80;
 
-//	public static final Color BG_COLOR = SidePanel.BG_COLOR;
 	public static final Color BG_COLOR = new Color(0x663300);
 	
 	
 	static {
 		sideUpPanel = new SideUpPanel();
-		
-		
-		
 	}
 	
 	private SideUpPanel() {

@@ -15,14 +15,14 @@ public class ContentView {
 	
 	public static FramePanel panel;
 	
-	private static final int X_MARGIN = 5;
+	private static final int X_MARGIN = 3;
 	private static final int Y_MARGIN = 0;
 	
 
 	static {
 		panel = FramePanel.getFramePanel(FramePanelEnum.CONTENT);
 		panel.setLayout(new BorderLayout(X_MARGIN, Y_MARGIN));
-		panel.setBackground(Color.gray);
+		panel.setBackground(Color.black);
 	}
 	
 	public ContentView() {

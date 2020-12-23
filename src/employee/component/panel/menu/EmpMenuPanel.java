@@ -11,10 +11,8 @@ public class EmpMenuPanel extends JPanel {
 
 	private static EmpMenuPanel empMenuPanel;
 	
-	public static final int COLOR = 0xffffff;
-	
-	private static final int X_MARGIN = 300;
-	private static final int Y_MARGIN = 280;
+	private static final int X_MARGIN = 320;
+	private static final int Y_MARGIN = 70;
 	
 	static {
 		empMenuPanel = new EmpMenuPanel();	
@@ -36,7 +34,6 @@ public class EmpMenuPanel extends JPanel {
 	
 	private void setDefaultConfig() {
 		empMenuPanel.setLayout(new CardLayout(X_MARGIN, Y_MARGIN));
-		empMenuPanel.setBackground(new Color(COLOR));
 		
 		empMenuPanel.setComponents();
 	}

@@ -5,18 +5,19 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import common.component.label.LogoLabel;
 import common.font.SidePanelTitleLabelFont;
 import employee.component.label.menu.EmpMenuTitleLabel;
 import main.component.panel.content.SideUpPanel;
 
 public class EmpMenuTitlePanel extends JPanel {
 	
-//	public static final int WIDTH = 0;
-//	public static final int HEIGHT = 50;
+	public static final Color BG_COLOR = new Color(0xffffff);
 	
 	private static EmpMenuTitlePanel emtp; 
 	
@@ -38,17 +39,20 @@ public class EmpMenuTitlePanel extends JPanel {
 	}
 	
 	private static void setDefaultConfig() {
-//		emtp.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		
 		emtp.setLayout(new FlowLayout(FlowLayout.CENTER));
-		emtp.setBackground(new Color(EmpMenuPanel.COLOR));
+		emtp.setBackground(BG_COLOR);
 	
 		setComponents();
 	}
 	
 	private static void setComponents() {
-		JLabel title = new EmpMenuTitleLabel("Employee Management");
-		emtp.add(title);
+		try {
+			JLabel title = new LogoLabel();
+			emtp.add(title);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

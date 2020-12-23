@@ -1,66 +1,91 @@
 package employee.component.panel.menu;
 
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 
-
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import common.font.SidePanelTitleLabelFont;
 import employee.component.button.menu.EmpMenuBtn;
 import employee.component.button.menu.EmpMenuBtnEnum;
 
 public class EmpMenuBtnPanel extends JPanel {
 
+	public static final Color BG_COLOR = new Color(0xffffff);
+	
 	private static EmpMenuBtnPanel panel; 
-	
-	private static final int X_MARGIN = 50;
-	private static final int Y_MARGIN = 50;
-	
-	private static final int GRID_ROW = 2;
-	private static final int GRID_COL = 2;
 	
 	static {
 		panel = new EmpMenuBtnPanel();
-		setDefaultConfig();
 	}
 	
 	private EmpMenuBtnPanel() {
+		setDefaultConfig();
+		setComponents();
 	}
 	
 	public static EmpMenuBtnPanel getInstance() {
 		if (panel == null) {
 			panel = new EmpMenuBtnPanel();
-			setDefaultConfig();
+			
 		}
 		
 		return panel;
 	}
 	
-	private static void setDefaultConfig() {
-		panel.setLayout(new GridLayout(GRID_ROW, GRID_COL, X_MARGIN, Y_MARGIN));
-		panel.setBackground(new Color(EmpMenuPanel.COLOR));
-		setComponents();
+	private void setDefaultConfig() {
+		setLayout(new FlowLayout());
+		setBackground(BG_COLOR);
 	}
 	
-	private static void setComponents() {
+	private void setComponents() {
+		JPanel labelPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		labelPanel.setPreferredSize(new Dimension(200, EmpMenuBtn.BTN_HEIGHT + 30));
+		labelPanel.setBackground(BG_COLOR);
+		add(labelPanel);
 		
-		int count = 0;
+		JLabel label = new JLabel("직원 관리");
+		label.setFont(new SidePanelTitleLabelFont()); 
+		labelPanel.add(label);
+		
 		
 		for (EmpMenuBtnEnum embe : EmpMenuBtnEnum.values()) {
 			try {
+				JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+				btnPanel.setBackground(BG_COLOR);
+				btnPanel.setPreferredSize(new Dimension(200, EmpMenuBtn.BTN_HEIGHT + 10));
+				add(btnPanel);
+				
 				JButton button = new EmpMenuBtn(embe);
-				panel.add(button);
+				btnPanel.add(button);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			count++;
 		}
 		
-		for (int i = count; i < GRID_ROW * GRID_COL; i++) {
-			panel.add(new EmpMenuBtn());
+		JPanel imgPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+//		imgPanel.setPreferredSize(new Dimension(200, EmpMenuBtn.BTN_HEIGHT));
+		imgPanel.setBackground(BG_COLOR);
+		add(imgPanel);
+		
+		try {
+			JLabel imglabel = new JLabel(new ImageIcon(ImageIO.read(new File("resources/img/design/img1.jpg")).getScaledInstance(220, 220, Image.SCALE_SMOOTH)));
+			imgPanel.add(imglabel);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	
 		
 		
 	}

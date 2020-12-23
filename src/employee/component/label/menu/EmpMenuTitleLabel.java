@@ -15,7 +15,6 @@ public class EmpMenuTitleLabel extends JLabel {
 	public static final int HEIGHT = SideUpPanel.PANEL_HEIGHT;
 	
 	static final int COLOR = 0x387e9c;
-//	static final int COLOR = 0xffffff;
 	
 	public EmpMenuTitleLabel() {
 	}
