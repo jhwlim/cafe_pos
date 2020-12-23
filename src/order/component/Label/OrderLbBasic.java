@@ -11,7 +11,7 @@ public class OrderLbBasic extends JLabel{
 		super(lbName);
 		setBackground(new Color(0x663300));
 		setForeground(Color.white);
-		setFont(new Font("야놀자야체", Font.BOLD, 40));
+		setFont(new Font("야놀자야체", Font.BOLD, 36));
 
 		
 	}
