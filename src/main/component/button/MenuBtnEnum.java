@@ -4,7 +4,7 @@ public enum MenuBtnEnum {
 	
 	ORDER("주문", "order.view.OrderView"),
 	ORDERLIST("대기주문확인", "orderlist.view.OrderListView"),
-	STOCK("재고관리", "stock.view.Stockview"),
+	STOCK("재고관리", "stock.view.StockView"),
 	EMPLOYEE("직원관리", "employee.view.EmployeeView"),
 	STORE("매장정보관리", "store.view.StoreView");
 	

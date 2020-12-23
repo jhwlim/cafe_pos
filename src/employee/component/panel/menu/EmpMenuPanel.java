@@ -22,7 +22,6 @@ public class EmpMenuPanel extends JPanel {
 	private EmpMenuPanel() {
 	}
 	
-	
 	public static EmpMenuPanel getInstance() {
 		if (empMenuPanel == null) {
 			empMenuPanel = new EmpMenuPanel();

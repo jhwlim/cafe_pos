@@ -18,7 +18,6 @@ import main.controller.btn.MenuBtnClickListener;
 
 public class MenuView {
 	
-//	private static final int COLOR_INT = 0x40444a;
 	private static final int COLOR_INT = 0xffffff;
 	public static final Color COLOR = new Color(COLOR_INT);
 	
@@ -42,10 +41,8 @@ public class MenuView {
 		JPanel subPanel = new JPanel(new BorderLayout(MARGIN, MARGIN));
 		centerPanel.add(subPanel);
 		
-		MainMenuBtnPanel btnPanel = new MainMenuBtnPanel();//버튼 5개있는 패널
+		MainMenuBtnPanel btnPanel = new MainMenuBtnPanel(); //버튼 5개있는 패널
 		subPanel.add(btnPanel, BorderLayout.CENTER);
 		
-//		MainMenuSidePanel sidePanel = new MainMenuSidePanel();
-//		subPanel.add(sidePanel, BorderLayout.EAST);
 	}
 }

@@ -19,6 +19,7 @@ public class EmpMenuBtn extends JButton {
 	
 	private static final int IMG_WIDTH = 40;
 	private static final int IMG_HEIGHT = 40;
+	
 	private static final int COLOR = 0xedf2f2;
 	
 	public EmpMenuBtn(EmpMenuBtnEnum embe) throws IOException {

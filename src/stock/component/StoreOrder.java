@@ -1,6 +1,7 @@
 package stock.component;
 
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -23,7 +24,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import common.config.Configs;
-import stock.view.Stockview;
+import stock.view.StockView;
 
 public class StoreOrder extends JPanel{
 	
@@ -45,8 +46,9 @@ public class StoreOrder extends JPanel{
 		
 		
 		JLabel stockOrder = new JLabel("발주 페이지");
+		stockOrder.setFont(new Font("맑은 고딕", Font.BOLD, 40));
 		this.add(stockOrder);
-		stockOrder.setBounds(450, 0, 100, 100);
+		stockOrder.setBounds(400, 0, 300, 100);
 		
 		//윗쪽에 띄울 기본 재고 테이블
 		DefaultTableModel model2;
@@ -278,7 +280,7 @@ public class StoreOrder extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JPanel thisPanel = Stockview.stockMain;
+				JPanel thisPanel = StockView.stockMain;
 				((CardLayout) thisPanel.getLayout()).show(thisPanel, "stockMenu");
 			}
 		});

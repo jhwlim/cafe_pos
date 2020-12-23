@@ -1,4 +1,4 @@
-package employee.component.panel.menu;
+package stock.component;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -15,33 +15,32 @@ import common.font.SidePanelTitleLabelFont;
 import employee.component.label.menu.EmpMenuTitleLabel;
 import main.component.panel.content.SideUpPanel;
 
-public class EmpMenuTitlePanel extends JPanel {
+public class StockMenuTitlePanel extends JPanel {
 	
 	public static final Color BG_COLOR = new Color(0xffffff);
 	
-	private static EmpMenuTitlePanel emtp; 
+	private static StockMenuTitlePanel emtp; 
 	
 	static {
-		emtp = new EmpMenuTitlePanel();
-		
+		emtp = new StockMenuTitlePanel();
 	}
 	
-	public EmpMenuTitlePanel() {
+	public StockMenuTitlePanel() {
 		setDefaultConfig();
 		setComponents();
 	}
 	
-	public static EmpMenuTitlePanel getInstance() {
+	public static StockMenuTitlePanel getInstance() {
 		if (emtp == null) {
-			emtp = new EmpMenuTitlePanel();
+			emtp = new StockMenuTitlePanel();
 		}
 		
 		return emtp;
 	}
 	
-	private  void setDefaultConfig() {
+	private void setDefaultConfig() {
 		setLayout(new FlowLayout(FlowLayout.CENTER));
-		setBackground(BG_COLOR);
+		setBackground(BG_COLOR);		
 	}
 	
 	private void setComponents() {

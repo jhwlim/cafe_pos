@@ -51,7 +51,6 @@ public class MainMenuBtnPanel extends JPanel {
 			}
 			
 			JPanel gridInPanel = new JPanel(new CardLayout(50, 50));
-//			gridInPanel.setBackground(new Color(0x006600));// 밑 배경
 			gridInPanel.setBackground(new Color(0x186f3d));// 밑 배경
 			gridInPanel.setBackground(BG_COLOR);// 밑 배경
 
