@@ -58,7 +58,6 @@ public class EmpMenuBtnPanel extends JPanel {
 		label.setFont(new SidePanelTitleLabelFont()); 
 		labelPanel.add(label);
 		
-		
 		for (EmpMenuBtnEnum embe : EmpMenuBtnEnum.values()) {
 			try {
 				JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -74,7 +73,6 @@ public class EmpMenuBtnPanel extends JPanel {
 		}
 		
 		JPanel imgPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-//		imgPanel.setPreferredSize(new Dimension(200, EmpMenuBtn.BTN_HEIGHT));
 		imgPanel.setBackground(BG_COLOR);
 		add(imgPanel);
 		
@@ -82,7 +80,6 @@ public class EmpMenuBtnPanel extends JPanel {
 			JLabel imglabel = new JLabel(new ImageIcon(ImageIO.read(new File("resources/img/design/img1.jpg")).getScaledInstance(220, 220, Image.SCALE_SMOOTH)));
 			imgPanel.add(imglabel);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	

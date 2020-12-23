@@ -149,13 +149,10 @@ public class OrderView {
 		JButton btn_selectClear = new OrderBtnSetBasic("선택 취소");
 		JButton btn_pay = new OrderBtnPay("결제", menu_panel);
 
-	
 		// 아래패널
 		btn_selectClear.addActionListener(new OrderSelectClearBtnClickListener(table, dtm));
-		
 
 		btn_pay.addActionListener(new OrderPayBtnClickOpenFrameListener(table, table2, jsp2));
-		
 		
 		B_panel.add(btn_drink);
 		B_panel.add(btn_Food);

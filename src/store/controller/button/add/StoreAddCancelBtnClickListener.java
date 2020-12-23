@@ -21,7 +21,6 @@ public class StoreAddCancelBtnClickListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("호출");
 		((CardLayout) container.getLayout()).show(container, menuPageName);
 	}
 
