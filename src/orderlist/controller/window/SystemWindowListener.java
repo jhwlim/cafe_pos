@@ -49,7 +49,6 @@ public class SystemWindowListener extends WindowAdapter {
 
 		} catch (FileNotFoundException e1) {
 			System.out.println(prefix + fileName + " 파일을 찾을 수 없습니다.");
-//			e1.printStackTrace();
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {

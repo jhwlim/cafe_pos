@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import common.model.EmployeeVO;
 import employee.component.combobox.EmpRankComboBox;
 import employee.component.label.register.EmpRegErrorLabel;
+import store.common.config.StoreConfig;
 
 public class EmpRegFormInputPanel extends JPanel {
 	
@@ -42,6 +43,9 @@ public class EmpRegFormInputPanel extends JPanel {
 				JTextField input = new JTextField();
 				add(input);
 				inputMap.put(field, input);
+				if (field == EmpRegFormFieldEnum.STORE_ID) {
+					input.setText(String.valueOf(StoreConfig.getStoreId()));
+				}
 				
 				EmpRegErrorLabel label = new EmpRegErrorLabel();
 				add(label);

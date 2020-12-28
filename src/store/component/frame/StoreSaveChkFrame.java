@@ -7,6 +7,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import common.model.EmployeeVO;
 import common.model.StoreVO;
 import employee.component.panel.info.EmpInfoPanel;
 import employee.component.panel.register.EmpRegCenterPanel;
+import main.view.MainView;
 import store.common.config.StoreConfig;
 import store.dao.StoreDao;
 import store.dao.StoreDaoImpl;
@@ -103,7 +105,7 @@ public class StoreSaveChkFrame extends JFrame {
 					
 					Container container = StoreView.getContentPanel();
 					((CardLayout) container.getLayout()).show(container, "MENU");
-					
+					MainView.getMainFrame().dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}

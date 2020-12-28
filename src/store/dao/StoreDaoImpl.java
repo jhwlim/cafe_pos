@@ -122,9 +122,15 @@ public class StoreDaoImpl implements StoreDao {
 		try {
 			conn = ds.getConnection();
 			
-			String sql = "SELECT * FROM stores WHERE store_addr LIKE ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%" + keyword + "%");
+			String sql;
+			if (keyword.equals("")) {
+				sql = "SELECT * FROM stores ORDER BY store_id ASC";
+				pstmt = conn.prepareStatement(sql);
+			} else {
+				sql = "SELECT * FROM stores WHERE store_addr LIKE ? ORDER BY store_id ASC";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + keyword + "%");
+			}
 			
 			rs = pstmt.executeQuery();
 			

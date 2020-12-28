@@ -79,7 +79,9 @@ public class OrderDaoImpl implements OrderDao {
 			if (rs.next()) {
 				generatedKey = rs.getInt(1);
 			}
-			OrderListConfig.getList().add(generatedKey);
+			
+			// 발생한 주문번호를 대기주문화면에 추가할 수 있도록 리스트에 저장
+			OrderListConfig.getList().add(generatedKey); 
 			
 			String sql3 = "INSERT INTO orders_detail(order_id, menu_id, menu_count, discounted_cost) "
 					+ "VALUES (?, ?, ?, ?)";
@@ -93,8 +95,8 @@ public class OrderDaoImpl implements OrderDao {
 				pstmt3.setInt(4, detail.getDiscountedCost());
 				pstmt3.executeUpdate();
 				
-				int amount = detail.getMenuCount();
-				int menuId = detail.getMenuId();
+				int amount = detail.getMenuCount(); // 주문 수량
+				int menuId = detail.getMenuId();	// 주문 메뉴
 				String sql4 = "SELECT * FROM (\r\n"
 						+ "    SELECT stock_id, amount FROM stocks\r\n"
 						+ "    WHERE menu_id = ? AND store_id = ?\r\n"
@@ -108,7 +110,7 @@ public class OrderDaoImpl implements OrderDao {
 				String sql6 = "UPDATE stocks SET amount = ? WHERE stock_id = ?";
 				pstmt6 = conn.prepareStatement(sql6);
 				
-				while (amount > 0) {
+				while (amount > 0) { // 주문한 수량이 0이 될때 까지 반복
 					pstmt4.setInt(1, menuId);
 					pstmt4.setInt(2, StoreConfig.getStoreId());
 					pstmt4.executeUpdate();

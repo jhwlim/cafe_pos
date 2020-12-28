@@ -51,3 +51,4 @@ public class MainMenuSideCenterPanel extends JPanel {
 		return panel;
 	}
 }
+

@@ -70,7 +70,11 @@ public class StoreAddSubmitBtnClickListener implements ActionListener {
 						}
 						break;
 					case ADDR :
-						store.setStoreAddr(input);
+						if (input.length() == 0 || input == null) {
+							store.setStoreAddr("");
+						} else {							
+							store.setStoreAddr(input);							
+						}
 						break;
 					case SIZE :
 						if (input.length() != 0) {

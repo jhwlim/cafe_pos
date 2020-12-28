@@ -85,7 +85,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		try {
 			conn = ds.getConnection();
 			
-			String sql = "SELECT * FROM employees WHERE emp_name LIKE ?";
+			String sql = "SELECT * FROM employees WHERE emp_name LIKE ? ORDER BY emp_id ASC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + keyword + "%");
 			
